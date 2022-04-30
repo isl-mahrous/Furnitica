@@ -15,7 +15,11 @@ namespace Core.Entities
         public int UnitsInStock { get; set; }
         public int UnitsSold { get; set; }
         public DateTime ManufactureDate { get; set; }
-        public Specification Specifications { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
+        public int Weight { get; set; }
+        public string Color { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
 

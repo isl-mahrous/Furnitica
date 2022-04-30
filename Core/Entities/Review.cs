@@ -23,7 +23,12 @@ namespace Core.Entities
         public DateTime Date { get; set; } = DateTime.Now;
 
         [Range(1, 5)]
+        public int Stars { get; set; }
 
+        public int ProductId { get; set; }
+
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
 
 
     }

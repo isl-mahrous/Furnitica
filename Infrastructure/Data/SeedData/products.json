@@ -8,13 +8,11 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Brown"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
 
   },
   {
@@ -26,13 +24,11 @@
     "UnitsInStock": 20,
     "UnitsSold": 3,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 100,
-      "Width": 100,
-      "Length": 200,
-      "Weight": 60,
-      "Color": "Blue"
-    }
+    "Height": 100,
+    "Width": 100,
+    "Length": 200,
+    "Weight": 60,
+    "Color": "Blue"
   },
   {
     "Name": "Bedroom for Islam",
@@ -43,13 +39,11 @@
     "UnitsInStock": 1,
     "UnitsSold": 0,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Brown"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
   },
   {
     "Name": "Bedroom for girls",
@@ -60,13 +54,12 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Pink"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Pink"
+
   },
   {
     "Name": "Bedrooooom",
@@ -77,13 +70,12 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Red"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Red"
+
   },
   {
     "Name": "Bedroom for lovers",
@@ -94,13 +86,12 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Brown"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
   },
   {
     "Name": "Chairs for lovers",
@@ -111,13 +102,12 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Brown"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
   },
   {
     "Name": "Chairs for lovers",
@@ -128,12 +118,11 @@
     "UnitsInStock": 100,
     "UnitsSold": 20,
     "ManufactureDate": "2022-04-30T14:37:21.163Z",
-    "Specification": {
-      "Height": 150,
-      "Width": 150,
-      "Length": 250,
-      "Weight": 100,
-      "Color": "Brown"
-    }
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
   }
 ]

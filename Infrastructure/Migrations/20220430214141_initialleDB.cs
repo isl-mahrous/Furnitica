@@ -5,23 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialleDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AppUser",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUser", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "ProductBrands",
                 columns: table => new
@@ -61,11 +48,11 @@ namespace Infrastructure.Migrations
                     UnitsInStock = table.Column<int>(type: "int", nullable: false),
                     UnitsSold = table.Column<int>(type: "int", nullable: false),
                     ManufactureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Specifications_Height = table.Column<int>(type: "int", nullable: true),
-                    Specifications_Width = table.Column<int>(type: "int", nullable: true),
-                    Specifications_Length = table.Column<int>(type: "int", nullable: true),
-                    Specifications_Weight = table.Column<int>(type: "int", nullable: true),
-                    Specifications_Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Height = table.Column<int>(type: "int", nullable: false),
+                    Width = table.Column<int>(type: "int", nullable: false),
+                    Length = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductTypeId = table.Column<int>(type: "int", nullable: false),
                     ProductBrandId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -107,27 +94,21 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Review",
+                name: "Reviews",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Body = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Stars = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Review", x => x.Id);
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Review_AppUser_Id",
-                        column: x => x.Id,
-                        principalTable: "AppUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Review_Products_ProductId",
+                        name: "FK_Reviews_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -150,8 +131,8 @@ namespace Infrastructure.Migrations
                 column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_ProductId",
-                table: "Review",
+                name: "IX_Reviews_ProductId",
+                table: "Reviews",
                 column: "ProductId");
         }
 
@@ -161,10 +142,7 @@ namespace Infrastructure.Migrations
                 name: "Medias");
 
             migrationBuilder.DropTable(
-                name: "Review");
-
-            migrationBuilder.DropTable(
-                name: "AppUser");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Products");

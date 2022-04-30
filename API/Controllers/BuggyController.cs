@@ -1,5 +1,5 @@
 ﻿using API.Errors;
-using Infrastructue.Data;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
