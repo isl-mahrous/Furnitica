@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Entities
+﻿namespace API.DTOs
 {
-    public class Product:BaseEntity
+    public class ProductToReturnDto
     {
-       
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -22,10 +16,10 @@ namespace Core.Entities
 
         //public virtual ICollection<Media> Pictures { get; set; }
 
-        public virtual ProductType ProductType { get; set; }
-        public int ProductTypeId { get; set; }
+        public string  ProductType { get; set; }
+     
 
-        public virtual ProductBrand ProductBrand { get; set; }
-        public int ProductBrandId { get; set; }
+        public string  ProductBrand { get; set; }
+        
     }
 }
