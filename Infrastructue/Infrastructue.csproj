@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Configs\" />
-    <Folder Include="Data\Repositories\" />
     <Folder Include="Data\SeedData\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
