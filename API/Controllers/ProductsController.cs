@@ -1,4 +1,5 @@
 ﻿using API.DTOs;
+using API.Errors;
 using API.Helpers;
 using AutoMapper;
 using Core.Entities;
@@ -48,5 +49,70 @@ namespace API.Controllers
 
             return Ok(reponse);
         }
+
+
+        [HttpGet("{id}")]
+
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(id);
+          
+            var product=  await this.productRepo.GetByIdAsync(id,specs);
+            if (product == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+
+
+            return Ok(mapper.Map<Product, ProductDto>(product));
+
+        }
+
+
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            var checkProudct= await this.productRepo.UpdateAsync(id, product);
+            if (checkProudct == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+           
+            return NoContent();
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Product>> CreateProduct(Product product)
+        {
+            await this.productRepo.AddAsync(product);
+          
+            return Ok(product);
+
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
+        {
+
+            var checkProudct= await this.productRepo.DeleteAsync(id);
+            if (checkProudct == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return NoContent();
+
+
+        }
+
+
     }
 }

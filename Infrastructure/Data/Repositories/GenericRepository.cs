@@ -31,12 +31,17 @@ namespace Infrastructure.Data.Repositories
             return await ApplySpecification(spec).CountAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<T> DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
+            if (entity == null)
+            {
+                return null;
+            }
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
@@ -65,11 +70,25 @@ namespace Infrastructure.Data.Repositories
 
         }
 
-        public async Task UpdateAsync(int id, T entity)
+        public async Task<T> UpdateAsync(int id, T entity)
         {
-            EntityEntry entityEntry = _context.Entry<T>(entity);
-            entityEntry.State = EntityState.Modified;
+            var local = _context.Set<T>().FirstOrDefault(entry => entry.Id.Equals(id));
+
+            if (local != null)
+            {
+                // detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            else
+            {
+                return null;
+
+            }
+            _context.Entry(entity).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
+
+            return entity;
         }
 
 
