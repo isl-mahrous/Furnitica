@@ -17,10 +17,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\Infrastructue\Infrastructue.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+
+
+    <Folder Include="DTOs\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Middlewares\" />
   </ItemGroup>
 

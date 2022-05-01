@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,15 @@ namespace Core.Entities
         public int UnitsInStock { get; set; }
         public int UnitsSold { get; set; }
         public DateTime ManufactureDate { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
+        public int Weight { get; set; }
+        public string Color { get; set; }
 
-        //public Specification Specifications { get; set; }
+        public ICollection<Review> Reviews { get; set; }
 
-        //public ICollection<Review> Reviews { get; set; }
-
-        //public virtual ICollection<Media> Pictures { get; set; }
+        public virtual ICollection<Media> Pictures { get; set; }
 
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }

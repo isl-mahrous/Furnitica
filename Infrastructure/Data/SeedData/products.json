@@ -1,0 +1,128 @@
+[
+  {
+    "Name": "Bedroom for lovers",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 1,
+    "ProductBrandId": 1,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
+  },
+  {
+    "Name": "Bedroom for Kids",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1000,
+    "ProductTypeId": 1,
+    "ProductBrandId": 1,
+    "UnitsInStock": 20,
+    "UnitsSold": 3,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 100,
+    "Width": 100,
+    "Length": 200,
+    "Weight": 60,
+    "Color": "Blue"
+  },
+  {
+    "Name": "Bedroom for Islam",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 5000,
+    "ProductTypeId": 1,
+    "ProductBrandId": 2,
+    "UnitsInStock": 1,
+    "UnitsSold": 0,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+  },
+  {
+    "Name": "Bedroom for girls",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 1,
+    "ProductBrandId": 2,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Pink"
+
+  },
+  {
+    "Name": "Bedrooooom",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 1,
+    "ProductBrandId": 4,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Red"
+
+  },
+  {
+    "Name": "Bedroom for lovers",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 1,
+    "ProductBrandId": 5,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
+  },
+  {
+    "Name": "Chairs for lovers",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 2,
+    "ProductBrandId": 2,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
+  },
+  {
+    "Name": "Chairs for lovers",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 1500,
+    "ProductTypeId": 2,
+    "ProductBrandId": 2,
+    "UnitsInStock": 100,
+    "UnitsSold": 20,
+    "ManufactureDate": "2022-04-30T14:37:21.163Z",
+    "Height": 150,
+    "Width": 150,
+    "Length": 250,
+    "Weight": 100,
+    "Color": "Brown"
+
+  }
+]
