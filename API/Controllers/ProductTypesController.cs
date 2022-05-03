@@ -1,4 +1,5 @@
 ﻿using API.DTOs;
+using API.Errors;
 using API.Helpers;
 using AutoMapper;
 using Core.Entities;
@@ -48,6 +49,22 @@ namespace API.Controllers
             };
 
             return Ok(reponse);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductTypeDto>> GetProductType(int id)
+        {
+            var specs = new ProductTypesSpecification(id);
+
+            var productType = await this._productTypeRepo.GetByIdAsync(id, specs);
+            
+            if (productType == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+            return Ok(_mapper.Map<ProductType, ProductTypeDto>(productType));
         }
     }
 }
