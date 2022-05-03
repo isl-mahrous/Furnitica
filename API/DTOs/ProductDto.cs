@@ -16,7 +16,6 @@ namespace API.DTOs
         public int Weight { get; set; }
         public string Color { get; set; }
         public  string ProductType { get; set; }
-
         public  string ProductBrand { get; set; }
 
     }
