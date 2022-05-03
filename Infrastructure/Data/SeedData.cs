@@ -67,6 +67,20 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
+                if (!context.Reviews.Any())
+                {
+                    var reviewsData = await
+                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/reviews.json");
+
+                    var reviews = JsonConvert.DeserializeObject<List<Review>>(reviewsData);
+
+                    foreach (var review in reviews)
+                    {
+                        context.Reviews.Add(review);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
             }
             catch (Exception ex)
             {
