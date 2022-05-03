@@ -86,14 +86,28 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(ProductTypeDto productTypeDto)
+        public async Task<ActionResult<ProductTypeDto>> CreateProduct(ProductTypeDto productTypeDto)
         {
             var productType = _mapper.Map<ProductTypeDto, ProductType>(productTypeDto);
 
             await _productTypeRepo.AddAsync(productType);
 
-            return Ok(productType);
+            return Ok(productTypeDto);
 
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ProductTypeDto>> DeleteProduct(int id)
+        {
+
+            var checkProudct = await _productTypeRepo.DeleteAsync(id);
+
+            if (checkProudct == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+            return NoContent();
         }
 
     }
