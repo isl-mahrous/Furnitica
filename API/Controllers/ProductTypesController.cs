@@ -51,7 +51,6 @@ namespace API.Controllers
             return Ok(reponse);
         }
 
-
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductTypeDto>> GetProductType(int id)
         {
@@ -66,5 +65,36 @@ namespace API.Controllers
 
             return Ok(_mapper.Map<ProductType, ProductTypeDto>(productType));
         }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductType>> UpdateProduct(int id, ProductType productType)
+        {
+            if (id != productType.Id)
+            {
+                return BadRequest(new ApiResponse(400));
+            }
+
+            var checkProudct = await this._productTypeRepo.UpdateAsync(id, productType);
+
+            if (checkProudct == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Product>> CreateProduct(ProductTypeDto productTypeDto)
+        {
+            var productType = _mapper.Map<ProductTypeDto, ProductType>(productTypeDto);
+
+            await _productTypeRepo.AddAsync(productType);
+
+            return Ok(productType);
+
+        }
+
     }
 }
