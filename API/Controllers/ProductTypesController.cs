@@ -28,7 +28,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Pagination<ProductTypeDto>>> GetProductsTypes([FromQuery] ProductSpecParams productParams)
+        public async Task<ActionResult<Pagination<ProductTypeDto>>> GetProductTypes([FromQuery] ProductSpecParams productParams)
         {
             var specs = new ProductTypesSpecification(productParams);
 
@@ -38,7 +38,7 @@ namespace API.Controllers
 
             var productstypes = await _productTypeRepo.GetAllAsync(specs);
 
-            var data = _mapper.Map<IReadOnlyList<ProductType>, IReadOnlyList<ProductTypeDto>>(productstypes);
+            var data = _mapper.Map< IReadOnlyList<ProductType>, IReadOnlyList<ProductTypeDto> >(productstypes);
 
             var reponse = new Pagination<ProductTypeDto>()
             {
