@@ -17,7 +17,7 @@ namespace Core.Specifications
         {
             Criteria = criteria;
         }
-        public Expression<Func<T, bool>> Criteria { get; }
+        public Expression<Func<T, bool>> Criteria { get; set; }
 
         public List<Expression<Func<T, object>>> Includes { get; } = new();
 
@@ -30,6 +30,11 @@ namespace Core.Specifications
         public int Take { get; private set; }
 
         public bool IsPagingEnabled { get; private set; }
+
+        protected void AddCriteria(Expression<Func<T, bool>> criteriaExpression)
+        {
+            Criteria = criteriaExpression;
+        }
 
         protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {

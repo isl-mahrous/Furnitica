@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Core.Entities
@@ -22,13 +23,17 @@ namespace Core.Entities
         public int Weight { get; set; }
         public string Color { get; set; }
 
+        [JsonIgnore]
         public ICollection<Review> Reviews { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Media> Pictures { get; set; }
 
+        [JsonIgnore]
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
 
+        [JsonIgnore]
         public virtual ProductBrand ProductBrand { get; set; }
         public int ProductBrandId { get; set; }
     }
