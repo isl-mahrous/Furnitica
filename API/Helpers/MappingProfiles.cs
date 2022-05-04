@@ -15,6 +15,7 @@ namespace API.Helpers
 
             CreateMap<ProductType, ProductTypeDto>().ReverseMap();
 
+            CreateMap<ProductBrand, ProductBrandDto>().ReverseMap();
 
         }
     }

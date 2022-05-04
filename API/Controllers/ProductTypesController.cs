@@ -14,7 +14,6 @@ namespace API.Controllers
     [ApiController]
     public class ProductTypesController : ControllerBase
     {
-        private readonly IGenericRepository<Product> _productRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
         private readonly IMapper _mapper;
 
@@ -22,7 +21,6 @@ namespace API.Controllers
                                       IGenericRepository<ProductType> productTypeRepo,
                                       IMapper mapper)
         {
-            _productRepo = productRepo;
             _productTypeRepo = productTypeRepo;
             _mapper = mapper;
         }
