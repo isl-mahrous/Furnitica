@@ -13,7 +13,7 @@ namespace API.Helpers
                 .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name)
                 );
 
-            CreateMap<ProductType, ProductTypeDto>();
+            CreateMap<ProductType, ProductTypeDto>().ReverseMap();
 
 
         }

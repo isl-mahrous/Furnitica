@@ -68,12 +68,14 @@ namespace API.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductType>> UpdateProduct(int id, ProductType productType)
+        public async Task<ActionResult<ProductType>> UpdateProduct(int id, ProductTypeDto productTypeDto)
         {
-            if (id != productType.Id)
+            if (id != productTypeDto.Id)
             {
                 return BadRequest(new ApiResponse(400));
             }
+
+            var productType = _mapper.Map<ProductTypeDto, ProductType>(productTypeDto);
 
             var checkProudct = await this._productTypeRepo.UpdateAsync(id, productType);
 
@@ -86,13 +88,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductTypeDto>> CreateProduct(ProductTypeDto productTypeDto)
+        public async Task<ActionResult<ProductTypeDto>> CreateProduct( ProductTypeDto productTypeDto )
         {
             var productType = _mapper.Map<ProductTypeDto, ProductType>(productTypeDto);
 
             await _productTypeRepo.AddAsync(productType);
 
-            return Ok(productTypeDto);
+            return NoContent();
 
         }
 
