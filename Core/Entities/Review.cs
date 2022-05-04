@@ -13,9 +13,9 @@ namespace Core.Entities
     {
 
         // Todo User
-        //public string UserId { get; set; }
-        //[ForeignKey(UserId)]
-        //public AppUser User { get; set; }
+        // public string UserId { get; set; }
+        // [ForeignKey(UserId)]
+        // public AppUser User { get; set; }
 
         [StringLength(150)]
         public string Body { get; set; }
