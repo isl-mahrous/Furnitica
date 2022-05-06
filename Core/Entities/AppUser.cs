@@ -1,9 +1,8 @@
-﻿
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Core.Entities
 {
-    public class AppUser: BaseEntity
+    public class AppUser: IdentityUser
     {
-        public string Name { get; set; }
     }
 }
