@@ -35,11 +35,11 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery] ProductSpecParams productParams)
         {
-            var specs = new ProductTypesSpecification(productParams);
+            var specs = new ProductsWithTypesAndBrandsSpecification(productParams);
 
             var countSpecs = new ProductsWithFiltersCount(productParams);
             var totalItems = await productRepo.CountAsync(countSpecs);
-            var products = await productRepo.GetAllAsync();
+            var products = await productRepo.GetAllAsync(specs);
             var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
 
             var reponse = new Pagination<ProductDto>()
