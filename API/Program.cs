@@ -6,6 +6,11 @@ using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Core.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +26,26 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StoreContext>(options => options.
             UseSqlServer(builder.Configuration.
             GetConnectionString("Default")));
+
+
+// Adding Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+    };
+});
 
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -47,6 +72,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 //Generic Repostiory Service
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<StoreContext>();
+
 //How To Use? 
 /// <summary>
 /// In the constructor you just need to specify the types... for example
