@@ -126,10 +126,6 @@ namespace API.Controllers
 
 
             }
-
-           
-          
-
         }
 
         [HttpPost]

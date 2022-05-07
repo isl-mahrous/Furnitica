@@ -1,4 +1,7 @@
-﻿using Core.Entities;
+﻿using API.DTOs;
+using API.Errors;
+using API.Helpers;
+using Core.Entities;
 using JWTAuth.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +18,15 @@ namespace API.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _config;
+        private readonly IMediaHandler mediaHandler;
         public AccountController(
             UserManager<AppUser> user,
-            IConfiguration config)
+            IConfiguration config,
+            IMediaHandler _mediaHandler)
         {
             _userManager = user;
             _config = config;
+            mediaHandler = _mediaHandler;
         }
 
         [HttpPost("register")]
@@ -91,6 +97,7 @@ namespace API.Controllers
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token),
+                        userId = user.Id,
                         expiration = token.ValidTo
                     });
                 }
@@ -102,5 +109,70 @@ namespace API.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(UserProfileDto))]
+        public async Task<IActionResult> GetUserProfile(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            return Ok(new UserProfileDto
+            {
+                id = user.Id,
+                userName = user.UserName,
+                email = user.Email,
+                phoneNumber = user.PhoneNumber,
+                profilePicture = user.ProfilePicture
+            });
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserProfile(UserProfileDto userProfileDto)
+        {
+            var user = await _userManager.FindByIdAsync(userProfileDto.id);
+
+            if (user != null)
+            {
+                user.UserName = userProfileDto.userName;
+                user.Email = userProfileDto.email;
+                user.PhoneNumber = userProfileDto.phoneNumber;
+
+                await _userManager.UpdateAsync(user);
+                return Ok(new ApiResponse(200));
+            }
+
+            return BadRequest(new ApiResponse(400));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUserProfileImage([FromForm] string id, [FromForm] IFormFile image)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (user.ProfilePicture == null)
+                {
+                    string profilePictureURL = mediaHandler.UploadImage(image);
+                    user.ProfilePicture = profilePictureURL;
+                    await _userManager.UpdateAsync(user);
+
+                    return Ok(new ApiResponse(200));
+                }
+                else if (user.ProfilePicture != null)
+                {
+                    mediaHandler.RemoveImage(user.ProfilePicture);
+
+                    string profilePictureURL = mediaHandler.UploadImage(image);
+                    user.ProfilePicture = profilePictureURL;
+                    await _userManager.UpdateAsync(user);
+
+                    return Ok(new ApiResponse(200));
+                }
+            }
+            
+            return BadRequest(new ApiResponse(400));
+        }
+
+
     }
 }
