@@ -78,6 +78,9 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<StoreContext>();
 
+//Basket Repository Service
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
 //How To Use? 
 /// <summary>
 /// In the constructor you just need to specify the types... for example
