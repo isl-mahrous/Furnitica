@@ -1,0 +1,39 @@
+<div class="product-grid">
+  <div class="product-content">
+    <h3 class="title"><a href="#">{{product.name}}</a></h3>
+    <div class="price">{{product.price | currency}}</div>
+    <!-- TODO Rating : Use NgFor to display nearest number of stars -->
+    <ul class="rating">
+      <li class="fa fa-star"></li>
+      <li class="fa fa-star"></li>
+      <li class="fa fa-star"></li>
+      <li class="fa fa-star"></li>
+      <li class="fa fa-star"></li>
+    </ul>
+    <ul class="product-links">
+      <li><a><i class="fa fa-shopping-cart"></i></a></li>
+      <li><a><i class="fa fa-heart"></i></a></li>
+      <li><a><i class="fa fa-eye"></i></a></li>
+    </ul>
+  </div>
+  <div class="product-image">
+    <div class="image">
+      <ng-container *ngIf="product.pictures"></ng-container>
+      <carousel>
+        <ng-container *ngFor="let item of product.pictures">
+          <slide>
+            <img src="{{item}}" alt="{{product.name}}" style="display: block; width: 100%;">
+          </slide>
+        </ng-container>
+
+      </carousel>
+
+      <ng-container *ngIf="product.pictures.length === 0">
+        <img
+          src="https://wuxiaworldsite.com/wp-content/uploads/2020/02/although-its-the-weakest-an-unprofitable-occupation%E3%80%8Eblacksmith%E3%80%8F-has-become-the-strongest-realized-he-can-make-anything-he-wants-the-man-started-his-leisurely-life.jpg"
+          alt="Image placeholder" class="img-fluid">
+      </ng-container>
+    </div>
+    <span class="product-sale-label">{{product.productBrand}}</span>
+  </div>
+</div>

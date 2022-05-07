@@ -4,6 +4,7 @@ namespace API.DTOs
 {
     public class ProductDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -17,8 +18,6 @@ namespace API.DTOs
         public string Color { get; set; }
         public  string ProductType { get; set; }
         public  string ProductBrand { get; set; }
-
-
         public List<string> Pictures { get; set; }
 
     }
