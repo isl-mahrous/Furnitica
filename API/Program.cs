@@ -83,6 +83,19 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<S
 /// In the constructor you just need to specify the types... for example
 /// public ProductsController(IGenericRepository<Product> productRepo,IGenericRepository<ProductBrand> productBrandRepo)
 /// </summary>
+/// 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowAnyOrigin();
+                      });
+});
 
 var app = builder.Build();
 
@@ -116,6 +129,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
+
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.UseStaticFiles();
 app.UseAuthorization();
