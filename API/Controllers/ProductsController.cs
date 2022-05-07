@@ -189,5 +189,21 @@ namespace API.Controllers
         }
 
 
+
+        //////////////////////// TO BE DELETED ///////////////////
+        
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetBrands()
+        {
+            return Ok(await productBrandRepo.GetAllAsync());
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetTypes()
+        {
+            return Ok(await productTypeRepo.GetAllAsync());
+        }
+
+
     }
 }
