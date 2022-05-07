@@ -18,5 +18,8 @@ namespace API.DTOs
         public  string ProductType { get; set; }
         public  string ProductBrand { get; set; }
 
+
+        public List<string> Pictures { get; set; }
+
     }
 }

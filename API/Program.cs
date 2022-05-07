@@ -27,6 +27,10 @@ builder.Services.AddDbContext<StoreContext>(options => options.
             UseSqlServer(builder.Configuration.
             GetConnectionString("Default")));
 
+//Media Services
+
+builder.Services.AddScoped<IMediaHandler, MediaHandler>();
+
 
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
@@ -113,7 +117,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-
+app.UseStaticFiles();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -8,6 +8,7 @@ using Core.Specifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -16,19 +17,29 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IGenericRepository<Product> productRepo;
+        private readonly IGenericRepository<Media> mediaRepo;
         private readonly IGenericRepository<ProductBrand> productBrandRepo;
         private readonly IGenericRepository<ProductType> productTypeRepo;
         private readonly IMapper mapper;
+        private readonly IMediaHandler mediaHandler;
+
+      
 
         public ProductsController(IGenericRepository<Product> productRepo,
+            IGenericRepository<Media> mediaRepo,
             IGenericRepository<ProductBrand> productBrandRepo,
             IGenericRepository<ProductType> productTypeRepo,
-            IMapper mapper)
+            IMapper mapper,
+            IMediaHandler mediaHandler
+            
+            )
         {
             this.productRepo = productRepo;
+            this.mediaRepo = mediaRepo;
             this.productBrandRepo = productBrandRepo;
             this.productTypeRepo = productTypeRepo;
             this.mapper = mapper;
+            this.mediaHandler = mediaHandler;
         }
 
         //[Authorize(AuthenticationSchemes = "Bearer")]
@@ -75,29 +86,75 @@ namespace API.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
+        public async Task<ActionResult<Product>> UpdateProduct(int id, [FromForm] DataWithImagesUpload obj)
         {
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
 
-            var checkProudct= await this.productRepo.UpdateAsync(id, product);
+         
+            var specs = new ProductsWithTypesAndBrandsSpecification(id);
+
+
+            var checkProudct = await this.productRepo.GetByIdAsync(id, specs);
+
             if (checkProudct == null)
             {
                 return NotFound(new ApiResponse(404));
             }
+            else
+            {
+                foreach (var media in checkProudct.Pictures)
+                {
+
+                    mediaHandler.RemoveImage(media.ImageUrl);
+
+                    await this.mediaRepo.DeleteAsync(media.Id);
+
+                }
+               
+
+                Product product = JsonConvert.DeserializeObject<Product>(obj.product);
+                
+                for (int i = 0; i < obj.files.Count; i++)
+                {
+                    string imgPath = mediaHandler.UploadImage(obj.files[i]);
+
+                    Media picture = new Media() { ProductId = id, ImageUrl = imgPath };
+                   
+                    await this.mediaRepo.AddAsync(picture);
+                }
+                await this.productRepo.UpdateAsync(id, product);
+                return NoContent();
+
+
+            }
+
            
-            return NoContent();
+          
 
         }
 
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(Product product)
+        public async Task<ActionResult<Product>> CreateProduct([FromForm] DataWithImagesUpload obj)
         {
+
+
+            Product product = JsonConvert.DeserializeObject<Product>(obj.product);
+            
+
             await this.productRepo.AddAsync(product);
-          
+
+            int id=product.Id;
+
+            for (int i = 0; i < obj.files.Count; i++)
+            {
+                string imgPath = mediaHandler.UploadImage(obj.files[i]);
+
+                Media picture = new Media() {ProductId=id, ImageUrl = imgPath };
+
+                await this.mediaRepo.AddAsync(picture);
+            }
+
             return Ok(product);
+
 
         }
 
@@ -106,12 +163,31 @@ namespace API.Controllers
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
 
-            var checkProudct= await this.productRepo.DeleteAsync(id);
+
+            var specs = new ProductsWithTypesAndBrandsSpecification(id);
+
+ 
+            var checkProudct= await this.productRepo.GetByIdAsync(id,specs);
+
             if (checkProudct == null)
             {
                 return NotFound(new ApiResponse(404));
             }
-            return NoContent();
+            else
+            {
+                await this.productRepo.DeleteAsync(checkProudct.Id);
+                if (checkProudct.Pictures != null)
+                {
+                    foreach (var media in checkProudct.Pictures)
+                    {
+
+                        mediaHandler.RemoveImage(media.ImageUrl);
+
+                    }
+                }
+                return NoContent();
+            }
+            
 
 
         }
