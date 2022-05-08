@@ -81,6 +81,20 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
+                if (!context.Medias.Any())
+                {
+                    var mediaData = await
+                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/media.json");
+
+                    var medias = JsonConvert.DeserializeObject<List<Media>>(mediaData);
+
+                    foreach (var media in medias)
+                    {
+                        context.Medias.Add(media);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
             }
             catch (Exception ex)
             {

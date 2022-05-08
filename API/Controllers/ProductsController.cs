@@ -83,9 +83,20 @@ namespace API.Controllers
 
         }
 
+        [HttpPost("uploadimages")]
+        public IActionResult UploadImages([FromForm] List<IFormFile> files)
+        {
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                string imgPath = mediaHandler.UploadImage(files[i]);
+
+            }
+            return Ok(new ApiResponse(200));
+        }
+
 
         [HttpPut("{id}")]
-
         public async Task<ActionResult<Product>> UpdateProduct(int id, [FromForm] DataWithImagesUpload obj)
         {
 
