@@ -22,6 +22,15 @@ export class ShopService {
 
     let params = new HttpParams();
 
+    //Price Filteration
+    if (shopParams.priceFrom !== 0) {
+      params = params.append("priceFrom", shopParams.priceFrom.toString());
+    }
+
+    if (shopParams.priceFrom !== 10000) {
+      params = params.append("priceTo", shopParams.priceTo.toString());
+    }
+
     if (shopParams.brandId !== 0) {
       params = params.append("brandId", shopParams.brandId.toString());
     }

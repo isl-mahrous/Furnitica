@@ -1,3 +1,4 @@
+import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IBrand } from '../shared/models/brand';
 import { IProduct } from '../shared/models/product';
@@ -24,6 +25,22 @@ export class ShopComponent implements OnInit {
     { name: "Price: High to Low", value: "priceDesc" }
   ];
   @ViewChild("search", { static: false }) searchTerm: ElementRef;
+  minValue = 0;
+  maxValue = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: 10000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "$" + value;
+        case LabelType.High:
+          return "$" + value;
+        default:
+          return "$" + value;
+      }
+    }
+  };
 
   constructor(private shopService: ShopService) { }
 
@@ -57,6 +74,13 @@ export class ShopComponent implements OnInit {
       next: res => { this.types = [{ id: 0, name: "All" }, ...res]; },
       error: err => { console.log(err); }
     })
+  }
+
+  priceRangeChanged() {
+    this.shopParams.priceFrom = this.minValue;
+    this.shopParams.priceTo = this.maxValue;
+    this.shopParams.pageIndex = 1;
+    this.getProducts();
   }
 
   onBrandSelected(brandId: number) {

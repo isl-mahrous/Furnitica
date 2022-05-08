@@ -130,3 +130,8 @@
 @media screen and (max-width: 990px){
     .product-grid{ margin: 0 0 30px; }
 }
+::ng-deep {
+.carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators {
+  filter: invert(100%) !important;
+}
+}

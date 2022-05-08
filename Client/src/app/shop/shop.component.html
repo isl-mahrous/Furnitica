@@ -21,9 +21,9 @@
                     Latest
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Men</a>
-                    <a class="dropdown-item" href="#">Women</a>
-                    <a class="dropdown-item" href="#">Children</a>
+                    <ng-container *ngFor="let item of this.brands">
+                      <a class="dropdown-item" (click)="onBrandSelected(item.id)">{{item.name}}</a>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="btn-group">
@@ -78,8 +78,9 @@
           <div class="border p-4 rounded mb-4">
             <div class="mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-              <div id="slider-range" class="border-primary"></div>
-              <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+
+              <ngx-slider (userChangeEnd)="priceRangeChanged()" [(value)]="this.minValue" [(highValue)]="this.maxValue"
+                [options]="options"></ngx-slider>
             </div>
 
             <div class="mb-4">
