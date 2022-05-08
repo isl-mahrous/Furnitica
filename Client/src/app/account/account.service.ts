@@ -13,7 +13,9 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<IUser>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    // this.currentUser$ = null
+  }
 
   getCurrentUserValue() {
 
@@ -49,7 +51,8 @@ export class AccountService {
           console.log(user.userId)
           console.log(user.expiration)
           this.currentUserSource.next(user);
-
+          console.log(user)
+          this.router.navigateByUrl('/');
         }
       })
     );
@@ -72,6 +75,7 @@ export class AccountService {
   logout() {
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
+    this.currentUser$ = null;
     this.router.navigateByUrl('/');
   }
 

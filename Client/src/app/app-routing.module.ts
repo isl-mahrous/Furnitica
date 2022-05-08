@@ -1,10 +1,12 @@
+import { AuthAccessGuard } from './core/guards/AuthAccess.guard';
 import { ShopComponent } from './shop/shop.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'basket', loadChildren: () => import('./basket/basket.module')
-  .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } } 
+  {
+    path: 'basket', loadChildren: () => import('./basket/basket.module')
+      .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
   },
   {
     path: "shop",
@@ -13,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: "account",
+    canActivate: [AuthAccessGuard],
     loadChildren: () => import("./account/account.module")
       .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
   }

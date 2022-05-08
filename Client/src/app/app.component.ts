@@ -1,5 +1,6 @@
 import { AccountService } from './account/account.service';
 import { Component, OnInit } from '@angular/core';
+import { IUser } from './shared/models/user';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Client';
+  currentUser$: IUser;
 
   constructor(private accountService: AccountService) {
 
   }
   ngOnInit(): void {
+
     this.loadCurrentUser()
   }
 
