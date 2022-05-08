@@ -22,7 +22,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CarouselModule.forRoot()
   ],
   exports: [
-    ShopComponent
+    ShopComponent,
   ]
 })
 export class ShopModule { }
