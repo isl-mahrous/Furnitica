@@ -18,6 +18,8 @@ namespace Core.Specifications
         {
             AddInclude(p => p.ProductBrand);
             AddInclude(p => p.ProductType);
+            AddInclude(p => p.Pictures);
+
 
             //Default Sorting
             AddOrderBy(p => p.Name);
@@ -39,6 +41,15 @@ namespace Core.Specifications
                     case "priceDesc":
                         AddOrderByDescending(p => p.Price);
                         break;
+                    case "nameDesc":
+                        AddOrderByDescending(p => p.Name);
+                        break;
+                    case "nameAsc":
+                        AddOrderBy(p => p.Name);
+                        break;
+                    default:
+                        AddOrderBy(n => n.Name);
+                        break;
                 }
             }
         }
@@ -47,6 +58,7 @@ namespace Core.Specifications
         {
             AddInclude(p => p.ProductBrand);
             AddInclude(p => p.ProductType);
+            AddInclude(p => p.Pictures);
         }
     }
 }

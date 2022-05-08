@@ -120,6 +120,18 @@ namespace Infrastructure.Data
                     };
                     await userManager.CreateAsync(newCustomer, "Customer@1234");
                     await userManager.AddToRoleAsync(newCustomer, "Customer");
+                if (!context.Medias.Any())
+                {
+                    var mediaData = await
+                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/media.json");
+
+                    var medias = JsonConvert.DeserializeObject<List<Media>>(mediaData);
+
+                    foreach (var media in medias)
+                    {
+                        context.Medias.Add(media);
+                    }
+                    await context.SaveChangesAsync();
                 }
 
             }

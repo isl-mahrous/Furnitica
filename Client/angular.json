@@ -10,7 +10,7 @@
           "style": "scss"
         },
         "@schematics/angular:application": {
-          "strict": true
+          "strict": false
         }
       },
       "root": "",
@@ -31,9 +31,27 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./src/assets/css/magnific-popup.css",
+              "./src/assets/css/jquery-ui.css",
+              "./src/assets/css/owl.carousel.min.css",
+              "./src/assets/css/owl.theme.default.min.css",
+              "./src/assets/css/aos.css",
+              "./src/styles.scss",
+              "./node_modules/bootswatch/dist/pulse/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.3.1.min.js",
+              "src/assets/js/jquery-ui.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/aos.js",
+              "src/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
