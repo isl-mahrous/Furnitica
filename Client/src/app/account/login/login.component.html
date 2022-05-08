@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-md-6 col-sm-10 col-lg-4">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            </div>
+
+            <div class="form-label-group">
+                <input style="height: 40px" formControlName="username" type="text" id="inputusername"
+                    class="form-control" placeholder="Username" required="" autofocus="">
+                <label for="inputusername">Username</label>
+            </div>
+
+            <div class="form-label-group">
+                <input formControlName="password" type="password" id="inputPassword" class="form-control"
+                    placeholder="Password" required="">
+                <label for="inputPassword">Password</label>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>
+        </form>
+    </div>
+</div>
