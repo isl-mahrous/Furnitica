@@ -1,5 +1,7 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NavBarSearchService } from '../core/nav-bar/nav-bar-search.service';
 import { IBrand } from '../shared/models/brand';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
@@ -24,7 +26,7 @@ export class ShopComponent implements OnInit {
     { name: "Price: Low to High", value: "priceAsc" },
     { name: "Price: High to Low", value: "priceDesc" }
   ];
-  @ViewChild("search", { static: false }) searchTerm: ElementRef;
+  search$: Observable<string>;
   minValue = 0;
   maxValue = 10000;
   options: Options = {
@@ -42,9 +44,13 @@ export class ShopComponent implements OnInit {
     }
   };
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService, private searchService: NavBarSearchService) { }
 
   ngOnInit(): void {
+    this.search$ = this.searchService.search$;
+    this.search$.subscribe({
+      next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts() }
+    });
     this.getProducts();
     this.getBrands();
     this.getTypes();
@@ -52,6 +58,7 @@ export class ShopComponent implements OnInit {
 
 
   getProducts() {
+
     this.shopService.getProducts(this.shopParams).subscribe(res => {
       this.products = res.data;
       this.shopParams.pageIndex = res.pageIndex;
@@ -126,17 +133,4 @@ export class ShopComponent implements OnInit {
       this.getProducts();
     }
   }
-
-  onSearch() {
-    this.shopParams.search = this.searchTerm.nativeElement.value;
-    this.shopParams.pageIndex = 1;
-    this.getProducts();
-  }
-
-  onSearchReset() {
-    this.searchTerm.nativeElement.value = "";
-    this.shopParams = new ShopParams();
-    this.getProducts();
-  }
-
 }
