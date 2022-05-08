@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'basket', loadChildren: () => import('./basket/basket.module').then(mod =>
-    mod.BasketModule)}
+  {path: 'basket', loadChildren: () => import('./basket/basket.module')
+  .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } } 
+  },
   {
     path: "shop",
     loadChildren: () => import("./shop/shop.module")

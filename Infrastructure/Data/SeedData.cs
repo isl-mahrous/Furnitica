@@ -120,6 +120,7 @@ namespace Infrastructure.Data
                     };
                     await userManager.CreateAsync(newCustomer, "Customer@1234");
                     await userManager.AddToRoleAsync(newCustomer, "Customer");
+                }
                 if (!context.Medias.Any())
                 {
                     var mediaData = await
