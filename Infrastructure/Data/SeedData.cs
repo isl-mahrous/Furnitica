@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -12,7 +13,8 @@ namespace Infrastructure.Data
 {
     public class SeedData
     {
-        public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
+        public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory,
+            UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             try
             {
@@ -66,6 +68,7 @@ namespace Infrastructure.Data
                     }
                     await context.SaveChangesAsync();
                 }
+                // Seed Reviews
 
                 if (!context.Reviews.Any())
                 {
@@ -79,6 +82,44 @@ namespace Infrastructure.Data
                         context.Reviews.Add(review);
                     }
                     await context.SaveChangesAsync();
+                }
+
+                // Seed Roles
+                if (!await roleManager.RoleExistsAsync("Admin"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole("Admin"));
+                }
+
+                if (!await roleManager.RoleExistsAsync("Customer"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole("Customer"));
+                }
+                var adminEmail = "admin@furnitica.com";
+                var adminUser = await userManager.FindByEmailAsync(adminEmail);
+                if(adminUser == null)
+                {
+                    var newAdmin = new AppUser()
+                    {
+                        Email = adminEmail,
+                        UserName = "Thanos",
+                        ProfilePicture = "https://i.ytimg.com/vi/N2YTmooNR8E/maxresdefault.jpg"
+                    };
+                    var result = await userManager.CreateAsync(newAdmin, "Admin@1234");
+                    await userManager.AddToRoleAsync(newAdmin, "Admin");
+                }
+
+                var customerEmail = "customer@furnitica.com";
+                var customerUser = await userManager.FindByEmailAsync(customerEmail);
+                if (customerUser == null)
+                {
+                    var newCustomer = new AppUser()
+                    {
+                        Email = customerEmail,
+                        UserName = "Wanda",
+                        ProfilePicture = "https://sm.ign.com/ign_me/news/w/wandavisio/wandavision-director-says-theres-a-lot-more-of-scarlet-witch_wyke.jpg"
+                    };
+                    await userManager.CreateAsync(newCustomer, "Customer@1234");
+                    await userManager.AddToRoleAsync(newCustomer, "Customer");
                 }
 
             }

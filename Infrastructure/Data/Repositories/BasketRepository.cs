@@ -17,27 +17,40 @@ namespace Infrastructure.Data.Repositories
         {
             this.context = context;
         }
-        public async Task<CustomerBasket> GetBasketAsync(int basketId)
+        public async Task<Basket> GetBasketAsync(string userId)
         {
-            var basket = await context.Baskets.FindAsync(basketId);
-            return basket != null ? basket : null;
+            var user = await context.Users.FindAsync(userId);
+            if (user == null)
+                return null;
+            var basket = await context.Baskets.SingleOrDefaultAsync(b => b.UserId == userId);
+            if (basket == null)
+            {
+                var newBasket = new Basket()
+                {
+                    User = user,
+                    UserId = userId
+                };
+                await context.Baskets.AddAsync(newBasket);
+                await context.SaveChangesAsync();
+                return newBasket;
+            }
+            else
+                return basket;
         }
-        public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket)
+        public async Task<Basket> UpdateBasketAsync(Basket basket)
         {
             var existingBasket = await context.Baskets.FindAsync(basket.Id);
-            if(existingBasket != null)
+
+            if (existingBasket != null)
             {
                 // TODO: Check if this is the best logic
-                existingBasket.BasketItems = new();
-                existingBasket.BasketItems.AddRange(basket.BasketItems);
+                existingBasket.BasketItems = basket.BasketItems;
                 await context.SaveChangesAsync();
                 return existingBasket;
             }
             else
             {
-                context.Baskets.Add(basket);
-                await context.SaveChangesAsync();
-                return basket;
+                return null;
             }
         }
         public async Task DeleteBasketAsync(int basketId)

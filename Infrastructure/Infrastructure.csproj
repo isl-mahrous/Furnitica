@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Configs\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

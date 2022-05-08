@@ -9,8 +9,8 @@ namespace Core.Interfaces
 {
     public interface IBasketRepository
     {
-        public Task<CustomerBasket> GetBasketAsync(int basketId);
-        public Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket);
+        public Task<Basket> GetBasketAsync(string userId);
+        public Task<Basket> UpdateBasketAsync(Basket basket);
         public Task DeleteBasketAsync(int basketId);
     }
 }

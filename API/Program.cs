@@ -108,12 +108,14 @@ using (var scope = app.Services.CreateScope())
 {
     var service = scope.ServiceProvider;
     var loggerFactory = service.GetRequiredService<ILoggerFactory>();
+    var userManager = service.GetRequiredService <UserManager<AppUser>>();
+    var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
     try
     {
         //Ensure Database Creation and Update to Latest Migration
         var context = service.GetRequiredService<StoreContext>();
         await context.Database.MigrateAsync();
-        await SeedData.SeedAsync(context, loggerFactory);
+        await SeedData.SeedAsync(context, loggerFactory, userManager, roleManager);
     }
     catch (Exception ex)
     {

@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using API.Errors;
+using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,18 +18,24 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CustomerBasket>> GetBasketById(int id)
+        public async Task<ActionResult<Basket>> GetBasketById(string userId)
         {
-            var basket = await basketRepository.GetBasketAsync(id);
-            return Ok(basket ?? new CustomerBasket());
+            var basket = await basketRepository.GetBasketAsync(userId);
+            if (basket == null)
+                return BadRequest(new ApiResponse(400));
+
+            return Ok(basket);
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
+        public async Task<ActionResult<Basket>> UpdateBasket(Basket basket)
         {
             var updatedBasket = await basketRepository.UpdateBasketAsync(basket);
-
-            return Ok(updatedBasket);
+            
+            if (updatedBasket != null)
+                return Ok(updatedBasket);
+            else
+                return BadRequest(new ApiResponse(400));
         }
 
         [HttpDelete]
