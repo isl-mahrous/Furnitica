@@ -215,6 +215,21 @@ namespace API.Controllers
             return Ok(await productTypeRepo.GetAllAsync());
         }
 
+        [HttpGet("types/count")]
+        public async Task<ActionResult<List<TypesDto>>> GetTypesCount()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var count = result.GroupBy(p => p.ProductType).Select(g => new TypesDto{ Id = g.Key.Id, Name=g.Key.Name ,Count = g.Count() }).ToList();
+            count.Add(new()
+            {
+                Name="All",
+                Id = 0,
+                Count = result.Count()
+            });
+            return Ok(count);
+        }
+
 
     }
 }

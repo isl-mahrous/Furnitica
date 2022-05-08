@@ -54,6 +54,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
     this.getBrands();
     this.getTypes();
+    this.getTypesCount()
   }
 
 
@@ -82,6 +83,25 @@ export class ShopComponent implements OnInit {
       error: err => { console.log(err); }
     })
   }
+
+  typesCount: any;
+  getTypesCount() {
+    this.shopService.getTypesCount().subscribe({
+      next: res => { this.typesCount = res; this.typesCountResult = this.typesWithCount() },
+      error: err => { console.log(err); }
+    })
+  }
+
+  typesCountResult: any;
+  typesWithCount() {
+    const map = new Map();
+    this.types.forEach(item => map.set(item.id, item));
+    this.typesCount.forEach(item => map.set(item.id, { ...map.get(item.id), ...item }));
+    let mergedArr = Array.from(map.values());
+    return mergedArr;
+    //return this.types.map((item, i) => Object.assign({}, item, this.typesCount[i]));
+  }
+
 
   priceRangeChanged() {
     this.shopParams.priceFrom = this.minValue;

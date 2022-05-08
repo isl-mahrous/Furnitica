@@ -65,6 +65,10 @@ export class ShopService {
     return this.http.get<IType[]>(this.baseUrl + "products/types");
   }
 
+  getTypesCount() {
+    return this.http.get(this.baseUrl + "products/types/count");
+  }
+
   getProduct(id: number) {
     return this.http.get<IProduct>(this.baseUrl + "products/" + id)
   }

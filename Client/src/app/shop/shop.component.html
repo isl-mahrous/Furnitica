@@ -66,13 +66,13 @@
           <div class="border p-4 rounded mb-4">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">
-              <ng-container *ngFor="let item of this.types">
+              <ng-container *ngFor="let item of this.typesCountResult">
                 <li class="mb-1">
                   <a (click)="onTypeSelected(item.id)"
                     [ngClass]="{'font-weight-bold':item.id === this.shopParams.typeId}" class="d-flex"
                     style="cursor: pointer;">
                     <span>{{item.name}}</span>
-                    <span class="text-black ml-auto">(2,220)</span>
+                    <span class="text-black ml-auto">({{item.count??0}})</span>
                   </a>
                 </li>
               </ng-container>
