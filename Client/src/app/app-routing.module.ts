@@ -3,8 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'basket', loadChildren: () => import('./basket/basket.module')
-  .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } } 
+  {
+    path: "",
+    loadChildren: () => import("./home/home.module")
+      .then(mod => mod.HomeModule), data: { breadcrumb: "Home" }
+  },
+  {
+    path: 'basket', loadChildren: () => import('./basket/basket.module')
+      .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
   },
   {
     path: "shop",
@@ -15,7 +21,8 @@ const routes: Routes = [
     path: "account",
     loadChildren: () => import("./account/account.module")
       .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
-  }
+  },
+  { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({

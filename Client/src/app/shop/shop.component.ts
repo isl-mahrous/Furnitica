@@ -1,5 +1,9 @@
+import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NavBarSearchService } from '../core/nav-bar/nav-bar-search.service';
 import { IBrand } from '../shared/models/brand';
+import { IColor } from '../shared/models/color';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
@@ -23,18 +27,47 @@ export class ShopComponent implements OnInit {
     { name: "Price: Low to High", value: "priceAsc" },
     { name: "Price: High to Low", value: "priceDesc" }
   ];
-  @ViewChild("search", { static: false }) searchTerm: ElementRef;
+  search$: Observable<string>;
+  minValue = 0;
+  maxValue = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: this.maxValue,
+    enforceRange: true,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "$" + value;
+        case LabelType.High:
+          return "$" + value;
+        default:
+          return "$" + value;
+      }
+    }
+  };
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService, private searchService: NavBarSearchService) {
+
+
+
+  }
 
   ngOnInit(): void {
+    this.search$ = this.searchService.search$;
+    this.search$.subscribe({
+      next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts() }
+    });
     this.getProducts();
     this.getBrands();
     this.getTypes();
+    this.getTypesCount();
+    this.getColors();
+    this.getMaxPrice();
   }
 
 
   getProducts() {
+
     this.shopService.getProducts(this.shopParams).subscribe(res => {
       this.products = res.data;
       this.shopParams.pageIndex = res.pageIndex;
@@ -59,8 +92,59 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  colors: IColor[];
+  getColors() {
+    this.shopService.getColors().subscribe({
+      next: res => { this.colors = res },
+      error: err => { console.log(err); }
+    })
+  }
+  typesCount: any;
+  getTypesCount() {
+    this.shopService.getTypesCount().subscribe({
+      next: res => { this.typesCount = res; this.typesCountResult = this.typesWithCount() },
+      error: err => { console.log(err); }
+    })
+  }
+
+  typesCountResult: any;
+  typesWithCount() {
+    const map = new Map();
+    this.types.forEach(item => map.set(item.id, item));
+    this.typesCount.forEach(item => map.set(item.id, { ...map.get(item.id), ...item }));
+    let mergedArr = Array.from(map.values());
+    return mergedArr;
+    //return this.types.map((item, i) => Object.assign({}, item, this.typesCount[i]));
+  }
+
+  getMaxPrice() {
+    this.shopService.getMaxPrice().subscribe({
+      next: res => {
+        this.maxValue = res;
+        const newOptions: Options = Object.assign({}, this.options);
+        newOptions.ceil = this.maxValue;
+        this.options = newOptions;
+      },
+      error: err => { console.log(err); }
+    })
+  }
+
+  /////////////////////
+  priceRangeChanged() {
+    this.shopParams.priceFrom = this.minValue;
+    this.shopParams.priceTo = this.maxValue;
+    this.shopParams.pageIndex = 1;
+    this.getProducts();
+  }
+
   onBrandSelected(brandId: number) {
     this.shopParams.brandId = brandId;
+    this.shopParams.pageIndex = 1;
+    this.getProducts();
+  }
+
+  onColorSelected(color: string) {
+    this.shopParams.color = color;
     this.shopParams.pageIndex = 1;
     this.getProducts();
   }
@@ -102,17 +186,4 @@ export class ShopComponent implements OnInit {
       this.getProducts();
     }
   }
-
-  onSearch() {
-    this.shopParams.search = this.searchTerm.nativeElement.value;
-    this.shopParams.pageIndex = 1;
-    this.getProducts();
-  }
-
-  onSearchReset() {
-    this.searchTerm.nativeElement.value = "";
-    this.shopParams = new ShopParams();
-    this.getProducts();
-  }
-
 }

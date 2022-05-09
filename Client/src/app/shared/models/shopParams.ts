@@ -5,4 +5,7 @@ export class ShopParams {
   pageIndex = 1;
   pageSize = 6;
   search: string;
+  priceFrom: number = 0;
+  priceTo: number = 10000;
+  color = "";
 }

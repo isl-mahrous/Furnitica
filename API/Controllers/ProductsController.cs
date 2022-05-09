@@ -215,6 +215,42 @@ namespace API.Controllers
             return Ok(await productTypeRepo.GetAllAsync());
         }
 
+        [HttpGet("types/count")]
+        public async Task<ActionResult<List<TypesDto>>> GetTypesCount()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var count = result.GroupBy(p => p.ProductType).Select(g => new TypesDto{ Id = g.Key.Id, Name=g.Key.Name ,Count = g.Count() }).ToList();
+            count.Add(new()
+            {
+                Name="All",
+                Id = 0,
+                Count = result.Count()
+            });
+            return Ok(count);
+        }
+
+        [HttpGet("colors")]
+        public async Task<ActionResult<List<ColorDto>>> GetColors()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var count = result.GroupBy(p => p.Color).Select(g => new ColorDto { Color = g.Key, Count = g.Count() }).ToList();
+            
+            return Ok(count);
+        }
+
+        
+        [HttpGet("maxPrice")]
+        public async Task<ActionResult<decimal>> GetMaxPrice()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var maxPrice = result.Max(p => p.Price);
+
+            return Ok(maxPrice);
+        }
+
 
     }
 }

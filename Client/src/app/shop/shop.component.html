@@ -21,14 +21,14 @@
                     Latest
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Men</a>
-                    <a class="dropdown-item" href="#">Women</a>
-                    <a class="dropdown-item" href="#">Children</a>
+                    <ng-container *ngFor="let item of this.brands">
+                      <a class="dropdown-item" (click)="onBrandSelected(item.id)">{{item.name}}</a>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="btn-group">
                   <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
-                    data-toggle="dropdown">Reference</button>
+                    data-toggle="dropdown">Sort</button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                     <a class="dropdown-item" (click)="sortNameAsc()">Name, A to Z</a>
                     <a class="dropdown-item" (click)="sortNameDesc()">Name, Z to A</a>
@@ -66,56 +66,40 @@
           <div class="border p-4 rounded mb-4">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">
-              <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span
-                    class="text-black ml-auto">(2,220)</span></a></li>
-              <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
-                    class="text-black ml-auto">(2,550)</span></a></li>
-              <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span
-                    class="text-black ml-auto">(2,124)</span></a></li>
+              <ng-container *ngFor="let item of this.typesCountResult">
+                <li class="mb-1">
+                  <a (click)="onTypeSelected(item.id)"
+                    [ngClass]="{'font-weight-bold':item.id === this.shopParams.typeId}" class="d-flex"
+                    style="cursor: pointer;">
+                    <span>{{item.name}}</span>
+                    <span class="text-black ml-auto">({{item.count??0}})</span>
+                  </a>
+                </li>
+              </ng-container>
             </ul>
           </div>
 
           <div class="border p-4 rounded mb-4">
             <div class="mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-              <div id="slider-range" class="border-primary"></div>
-              <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+
+              <ngx-slider (userChangeEnd)="priceRangeChanged()" [(value)]="this.minValue" [(highValue)]="this.maxValue"
+                [options]="options"></ngx-slider>
             </div>
 
-            <div class="mb-4">
-              <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
-              <label for="s_sm" class="d-flex">
-                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
-                  (2,319)</span>
-              </label>
-              <label for="s_md" class="d-flex">
-                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
-                  (1,282)</span>
-              </label>
-              <label for="s_lg" class="d-flex">
-                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
-                  (1,392)</span>
-              </label>
-            </div>
+
 
             <div class="mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
-              <a href="#" class="d-flex color-item align-items-center">
-                <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red
-                  (2,429)</span>
-              </a>
-              <a href="#" class="d-flex color-item align-items-center">
-                <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green
-                  (2,298)</span>
-              </a>
-              <a href="#" class="d-flex color-item align-items-center">
-                <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue
-                  (1,075)</span>
-              </a>
-              <a href="#" class="d-flex color-item align-items-center">
-                <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
-                  class="text-black">Purple (1,075)</span>
-              </a>
+
+              <ng-container *ngFor="let item of colors">
+                <a (click)="onColorSelected(item.color)" class="d-flex color-item align-items-center mt-1"
+                  [ngClass]="{'font-weight-bold':item.color === this.shopParams.color}" style="cursor: pointer;">
+                  <span class="color d-inline-block rounded-circle mr-2" [ngStyle]="{'background':item.color.replace(' ', '').toLowerCase()}"></span>
+                  <span class="text-black">{{item.color}} </span>
+                  <span>({{item.count}})</span>
+                </a>
+              </ng-container>
             </div>
 
           </div>
