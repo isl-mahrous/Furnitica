@@ -39,9 +39,6 @@ namespace API.Controllers
                 return BadRequest(new ApiResponse(400, "Problem Creating an order"));
             }
 
-            // Save To database
-            //////////////// here //////////////////
-
             return Ok(order);
         }
     }

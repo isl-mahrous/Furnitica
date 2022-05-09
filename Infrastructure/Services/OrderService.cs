@@ -45,6 +45,8 @@ namespace Infrastructure.Services
 
             var order = new Order(orderItems, buyerEmail, shippingToAddress, deliveryMethod, subTotal);
 
+            await _orderRepo.AddAsync(order);
+
             return order;
         }
 
