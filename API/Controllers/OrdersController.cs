@@ -18,7 +18,7 @@ namespace API.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-
+        string email;
         public OrdersController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
@@ -28,7 +28,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
         {
-            var email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
             var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
 
@@ -40,6 +40,34 @@ namespace API.Controllers
             }
 
             return Ok(order);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<Order>>> GetOrdersForUser()
+        {
+            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            var orders = await _orderService.GetOrdersForUserAsync(email);
+
+            return Ok(orders);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> GetOrderByIdForUser(int id)
+        {
+            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            var order = await _orderService.GetOrderByIdAsync(id, email);
+
+            if (order == null) return NotFound(new ApiResponse(404));
+
+            return order;
+        }
+
+        [HttpGet("deliveryMethods")]
+        public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
+        {
+            return Ok(await _orderService.GetDeliveryMethodAsync());
         }
     }
 }
