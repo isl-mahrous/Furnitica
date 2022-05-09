@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -68,6 +69,7 @@ namespace Infrastructure.Data
                     }
                     await context.SaveChangesAsync();
                 }
+
                 // Seed Reviews
 
                 if (!context.Reviews.Any())
