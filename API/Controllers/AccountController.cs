@@ -55,7 +55,7 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok("Add Success");
+                return Ok(new ApiResponse(200, "User Created Successfully"));
             }
             else
             {

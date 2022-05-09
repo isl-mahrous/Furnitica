@@ -58,12 +58,8 @@ export class AccountService {
   register(values: any) {
 
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
-      map((user: IUser) => {
-
-        if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSource.next(user);
-        }
+      map((response) => {
+        console.log(response)
       })
     );
   }
