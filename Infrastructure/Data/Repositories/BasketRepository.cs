@@ -1,21 +1,20 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
         private readonly StoreContext context;
-        public BasketRepository(StoreContext context)
+        private readonly IGenericRepository<Product> productRepo;
+
+        public BasketRepository(StoreContext context, IGenericRepository<Product> productRepo)
         {
             this.context = context;
+            this.productRepo = productRepo;
         }
         public async Task<Basket> GetBasketAsync(string userId)
         {
@@ -35,23 +34,42 @@ namespace Infrastructure.Data.Repositories
                 return newBasket;
             }
             else
+            {
+                var basketItems = context.BasketItems.Where(i => i.BasketId == basket.Id).ToList();
+                basket.BasketItems = basketItems;
                 return basket;
+            }
         }
         public async Task<Basket> UpdateBasketAsync(Basket basket)
         {
-            var existingBasket = await context.Baskets.FindAsync(basket.Id);
-
-            if (existingBasket != null)
+            var existingBasketItems = context.BasketItems.Where(i =>
+            i.BasketId == basket.Id).ToList();
+            if (basket.BasketItems.Count == existingBasketItems.Count)
             {
-                // TODO: Check if this is the best logic
-                existingBasket.BasketItems = basket.BasketItems;
-                await context.SaveChangesAsync();
-                return existingBasket;
+                foreach (var item in basket.BasketItems)
+                {
+                    if (existingBasketItems.Any(i => i.ProductId == item.ProductId))
+                    {
+                        var foundItem = await context.BasketItems.SingleOrDefaultAsync(
+                            i => i.ProductId == item.ProductId);
+                        foundItem.Quantity = item.Quantity;
+                    }
+                    else
+                    {
+                        context.BasketItems.Add(item);
+                    }
+                }
             }
             else
             {
-                return null;
+                var deletedItem = existingBasketItems.Where(p => !basket.BasketItems
+                .Any(p2 => p2.ProductId == p.ProductId)).SingleOrDefault();
+                context.BasketItems.Remove(deletedItem);
             }
+
+            await context.SaveChangesAsync();
+
+            return basket;
         }
         public async Task DeleteBasketAsync(int basketId)
         {
@@ -63,6 +81,27 @@ namespace Infrastructure.Data.Repositories
                 entityEntry.State = EntityState.Deleted;
                 await context.SaveChangesAsync();
             }
+        }
+        public async Task<List<Product>> GetBasketProducts(int basketId)
+        {
+            var basket = await context.Baskets.FindAsync(basketId);
+
+            if (basket != null)
+            {
+                var products = new List<Product>();
+                var basketItems = context.BasketItems.Where(i =>
+                i.BasketId == basket.Id).ToList();
+                foreach (var item in basketItems)
+                {
+                    var specs = new ProductsWithTypesAndBrandsSpecification(item.ProductId);
+                    var product = await productRepo.GetByIdAsync(item.ProductId, specs);
+                    products.Add(await context.Products.FindAsync(item.ProductId));
+                }
+                return products;
+            }
+            else
+                return null;
+
         }
     }
 }

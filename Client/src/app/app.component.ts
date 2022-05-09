@@ -9,6 +9,7 @@ import { IUser } from './shared/models/user';
 })
 export class AppComponent implements OnInit {
   currentUser$: IUser;
+  title = 'Furnitica';
 
   constructor(private accountService: AccountService) {
 

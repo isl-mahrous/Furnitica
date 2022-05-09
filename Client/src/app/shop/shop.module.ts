@@ -6,6 +6,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ShopRoutingModule } from './shop-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 
@@ -19,10 +21,13 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CommonModule,
     ShopRoutingModule,
     SharedModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    TabsModule.forRoot(),
+    NgxSliderModule
   ],
   exports: [
     ShopComponent,
   ]
 })
+
 export class ShopModule { }
