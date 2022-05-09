@@ -14,6 +14,12 @@ namespace Core.Entities
 
         [JsonIgnore]
         public virtual Product Product { get; set; }
-        public int ProductId { get; set; }
+        public int ProductId { get; set; } 
+        
+        [JsonIgnore]
+        public virtual Basket Basket { get; set; }
+
+        public int BasketId { get; set; }
+
     }
 }
