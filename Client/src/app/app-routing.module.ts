@@ -8,6 +8,14 @@ const routes: Routes = [
   },
   {path: 'checkout', loadChildren: () => import('./checkout/checkout.module')
   .then(mod => mod.CheckoutModule), data: { breadcrumb: "Checkout"  } 
+  {
+    path: "",
+    loadChildren: () => import("./home/home.module")
+      .then(mod => mod.HomeModule), data: { breadcrumb: "Home" }
+  },
+  {
+    path: 'basket', loadChildren: () => import('./basket/basket.module')
+      .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
   },
   {
     path: "shop",
@@ -17,8 +25,14 @@ const routes: Routes = [
   {
     path: "account",
     loadChildren: () => import("./account/account.module")
+<<<<<<< HEAD
       .then(mod => mod.AccountModule), data: { breadcrumb: "{ skip: true }" }
   }
+=======
+      .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
+  },
+  { path: "**", redirectTo: "", pathMatch: "full" }
+>>>>>>> a92b9ae2fc84d29a47417b767c59e4ae499fc840
 ];
 
 @NgModule({

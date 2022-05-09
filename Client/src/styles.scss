@@ -758,3 +758,18 @@ a {
   width: 120px;
   border-radius: 50%;
   margin-bottom: 20px; }
+
+
+.xng-breadcrumb-root {
+  font-weight: bold;
+    border-radius: 0;
+}
+
+label.xng-breadcrumb-trail {
+    margin-bottom: 0;
+    color: #7971ea;
+}
+
+.xng-breadcrumb-separator {
+    padding: 0 0;
+}

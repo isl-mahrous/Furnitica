@@ -12,6 +12,7 @@ using System.Threading.Tasks;
     {
         public string Name { get; set; }
         [JsonIgnore]
+
         public ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }

@@ -3,6 +3,7 @@ using API.Errors;
 using API.Helpers;
 using Core.Entities;
 using JWTAuth.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +58,8 @@ namespace API.Controllers
             }
         }
 
+
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
@@ -98,6 +101,7 @@ namespace API.Controllers
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         userId = user.Id,
+                        username = loginDTO.Username,
                         expiration = token.ValidTo
                     });
                 }
@@ -107,7 +111,67 @@ namespace API.Controllers
                 }
             }
 
-            return BadRequest();
+            return Unauthorized();
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet("getuser")]
+        public async Task<IActionResult> getUser()
+        {
+            // check
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var SecretKey = _config.GetValue<string>("JWT:SecretKey");
+            var key = Encoding.ASCII.GetBytes(SecretKey);
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+            var userId = jwtToken.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                // create token based on claims
+                var claims = new List<Claim>();
+
+                claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                var roles = await _userManager.GetRolesAsync(user);
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+                // jti 
+                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+
+                var newKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SecretKey"]));
+                var newToken = new JwtSecurityToken(
+                    audience: _config["JWT:ValidAudience"],
+                    issuer: _config["JWT:ValidIssuer"],
+                    expires: DateTime.Now.AddHours(1),
+                    claims: claims,
+                    signingCredentials:
+                        new SigningCredentials(newKey, SecurityAlgorithms.HmacSha256)
+                    );
+                return Ok(new
+                {
+                    token = token,
+                    userId = user.Id,
+                    username = user.UserName,
+                });
+
+            }
+
+            return Unauthorized();
         }
 
         [HttpGet("{id}")]
@@ -169,7 +233,7 @@ namespace API.Controllers
                     return Ok(new ApiResponse(200));
                 }
             }
-            
+
             return BadRequest(new ApiResponse(400));
         }
 

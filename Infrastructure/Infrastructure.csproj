@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Configs\**" />
+    <EmbeddedResource Remove="Data\Configs\**" />
+    <None Remove="Data\Configs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
@@ -25,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Configs\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
