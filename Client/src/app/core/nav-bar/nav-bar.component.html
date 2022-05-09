@@ -48,7 +48,7 @@
               <li><a href="#"><span class="icon icon-person fa fa-user"></span></a></li>
               <li><a href="#"><span class="icon icon-heart-o fa fa-heart text-danger"></span></a></li>
               <li>
-                <a href="cart.html" class="site-cart">
+                <a class="site-cart" style="cursor: pointer;">
                   <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
                   <span class="count">2</span>
                 </a>
@@ -66,14 +66,14 @@
     <div class="container">
       <ul class="site-menu js-clone-nav d-none d-md-block">
         <li>
-          <a routerLinkActive="active">Home</a>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
 
         </li>
         <li>
-          <a crouterLinkActive="active">About</a>
+          <a routerLinkActive="active">About</a>
 
         </li>
-        <li><a routerLink="shop" routerLinkActive="active">Shop</a></li>
+        <li><a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Shop</a></li>
         <li><a routerLinkActive="active">Catalogue</a></li>
         <li><a routerLinkActive="active">New Arrivals</a></li>
         <li><a routerLinkActive="active">Contact</a></li>
