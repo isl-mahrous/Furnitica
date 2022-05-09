@@ -71,7 +71,6 @@ namespace Infrastructure.Data
                 }
 
                 //Seed Delivery Methods
-
                 if (!context.DeliveryMethods.Any())
                 {
                     var DeliveryMethodsData = await
