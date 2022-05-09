@@ -22,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PagerComponent,
     PaginationModule,
     PagingHeaderComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
     ReactiveFormsModule
   ]
 })

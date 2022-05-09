@@ -29,4 +29,5 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ShopComponent,
   ]
 })
+
 export class ShopModule { }
