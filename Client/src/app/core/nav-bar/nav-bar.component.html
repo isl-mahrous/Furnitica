@@ -47,9 +47,9 @@
               <li><a href="#"><span class="icon icon-person fa fa-user"></span></a></li>
               <li><a href="#"><span class="icon icon-heart-o fa fa-heart text-danger"></span></a></li>
               <li>
-                <a class="site-cart" style="cursor: pointer;">
+                <a routerLink="/basket" class="site-cart" style="cursor: pointer;">
                   <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
-                  <span class="count">2</span>
+                  <span *ngIf="(basket$ | async) as basket" class="count">{{basket.basketItems.length}}</span>
                 </a>
               </li>
               <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span

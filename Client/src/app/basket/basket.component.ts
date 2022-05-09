@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, switchMap, timer } from 'rxjs';
+import { delay, Observable, switchMap, timer } from 'rxjs';
 import { IBasket, IBasketItem } from '../shared/models/basket';
 import { IProduct } from '../shared/models/product';
 import { productViewModel } from '../shared/viewmodels/product-viewmodel';
@@ -14,11 +14,13 @@ export class BasketComponent implements OnInit {
   basket$: Observable<IBasket>;
   basketProducts: productViewModel[] = [];
 
-  constructor(private basketService: BasketService) { };
+  constructor(private basketService: BasketService) {
+    this.basket$ = this.basketService.basket$;
+   };
  
   ngOnInit(): void {
-    this.basket$ = this.basketService.basket$;
     timer(200).pipe(
+      delay(1000),
       switchMap(() => this.basket$),
       switchMap((data) => this.basketService.getBasketProducts(data.id)),
       switchMap((data) => 
@@ -39,7 +41,6 @@ export class BasketComponent implements OnInit {
   decrementItemQuantity(product: productViewModel){
     this.basketService.decrementItemQuantity(product);
   }
-
 
   private createBasketViewModel(products: IProduct[], basket: IBasket) {
     let product: IProduct;
