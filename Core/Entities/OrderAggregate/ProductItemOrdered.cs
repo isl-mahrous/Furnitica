@@ -14,16 +14,16 @@ namespace Core.Entities.OrderAggregate
         {
 
         }
-        public ProductItemOrdered(int productItemId, string productName, string pictureUrl)
+        public ProductItemOrdered(int productItemId, string productName, ICollection<Media> pictures)
         {
             ProductItemId = productItemId;
             ProductName = productName;
-            PictureUrl = pictureUrl;
+            Pictures = pictures;
         }
 
         public int ProductItemId { get; set; }
         public string ProductName { get; set; }
-        public string PictureUrl { get; set; }
+        public ICollection<Media> Pictures { get; set; }
 
 
     }
