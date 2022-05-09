@@ -70,6 +70,26 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
+                //Seed Delivery Methods
+
+                if (!context.DeliveryMethods.Any())
+                {
+                    var DeliveryMethodsData = await
+                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/delivery.json");
+
+                    //var products = JsonSerializer.Deserialize<List<Product>>(productsData);
+
+                    var deliveyMethods = JsonConvert.DeserializeObject<List<DeliveryMethod>>(DeliveryMethodsData);
+
+                    foreach (var method in deliveyMethods)
+                    {
+                        context.DeliveryMethods.Add(method);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
+
+
                 // Seed Reviews
 
                 if (!context.Reviews.Any())
