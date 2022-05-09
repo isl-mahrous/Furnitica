@@ -47,6 +47,8 @@ namespace Infrastructure.Services
 
             await _orderRepo.AddAsync(order);
 
+            // Do we need to delete the basket here or not?
+
             return order;
         }
 
