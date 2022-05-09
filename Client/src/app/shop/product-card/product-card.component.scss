@@ -130,3 +130,19 @@
 @media screen and (max-width: 990px){
     .product-grid{ margin: 0 0 30px; }
 }
+::ng-deep {
+.carousel-control-next-icon {
+  background-image: url("../../../assets/images/next.svg") !important;
+
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../../../assets/images/prev.svg") !important;
+}
+
+.carousel-indicators{
+  display: none !important;
+}
+}
+
+

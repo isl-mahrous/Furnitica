@@ -17,8 +17,22 @@ namespace Core.Specifications
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
 
+        private decimal? _priceFrom = 0;
+        public decimal? PriceFrom 
+        { 
+            get => _priceFrom;
+            set => _priceFrom = value > PriceTo? PriceTo: value;
+        }
+
+        private decimal? _priceTo = 10000;
+        public decimal? PriceTo
+        {
+            get => _priceTo;
+            set => _priceTo = value < PriceFrom ? PriceFrom : value;
+        }
         public int? BrandId { get; set; }
         public int? TypeId { get; set; }
+        public string Color { get; set; }
         public string? Sort { get; set; }
 
         private string _search;
