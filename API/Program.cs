@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Core.Entities;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,7 +85,7 @@ builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 
 // Order Service
-builder.Services.AddScoped<IOrderService, IOrderService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 
