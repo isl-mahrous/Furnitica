@@ -47,11 +47,7 @@ export class AccountService {
 
         if (user) {
           localStorage.setItem('token', user.token);
-          console.log(user.token)
-          console.log(user.userId)
-          console.log(user.expiration)
           this.currentUserSource.next(user);
-          console.log(user)
           this.router.navigateByUrl('/');
         }
       })
@@ -75,9 +71,6 @@ export class AccountService {
   logout() {
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
-    this.currentUser$ = null;
     this.router.navigateByUrl('/');
   }
-
-
 }
