@@ -12,7 +12,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
     BreadcrumbModule
   ],
   exports: [

@@ -1,166 +1,108 @@
-<!-- <header
-    class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
-    <img src="/assets/images/logo.png" style="max-height: 70px; filter: invert(1);" alt="logo">
-    <nav class="my-2 my-md-0 me-md-3 text-uppercase" style="font-size: larger;">
-        <a class="p-2 text-dark" href="#">Home</a>
-        <a class="p-2 text-dark" href="#">Shop</a>
-        <a class="p-2 text-dark" href="#">Contact</a>
-    </nav>
-    <div class="d-flex align-items-center">
-
-        <a routerLink="/basket" class="position-relative">
-            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-            <div *ngIf="(basket$ | async) as basket" class="cart-no">{{basket.basketItems.length}}</div>
-        </a>
-        <ng-container *ngIf="(currentUser$ | async) === null">
-            <a routerLink="/account/login" class="btn btn-outline-secondary mr-2">Login</a>
-            <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Sign up</a>
-        </ng-container>
-        <ng-container *ngIf="currentUser$ | async">
-            <a href="#">Welcome {{(currentUser$ | async).username}}</a>
-        </ng-container>
-
-    </div>
-</header> -->
-
-  <div class="site-navbar-top">
+<div class="site-navbar-top">
     <div class="container">
-      <div class="row align-items-center">
+        <div class="row align-items-center">
 
-<header class="site-navbar" role="banner">
-    <div class="site-navbar-top">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-                    <form action="" class="site-block-top-search">
-                        <span class="icon icon-search2 fa fa-search"></span>
-                        <input type="text" class="form-control border-0" placeholder="Search">
-                    </form>
+            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                <div class="site-block-top-search">
+                    <span class="icon icon-search2 fa fa-search"></span>
+                    <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0"
+                        placeholder="Search" style="background-color: aliceblue;">
                 </div>
+            </div>
 
-                <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-                    <div class="site-logo">
-                        <img src="/assets/images/logo.png" style="max-height: 70px; filter: invert(1);" alt="logo">
-                    </div>
+            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                <div class="site-logo">
+                    <img src="/assets/images/logo.png" style="max-height: 70px; filter: invert(1);" alt="logo">
                 </div>
+            </div>
 
-                <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-                    <div class="site-top-icons">
-                        <ul>
+            <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                <div class="site-top-icons">
+                    <ul>
 
-                            <ng-container *ngIf="(currentUser$ | async)=== null">
-                                <span class="btn-group" dropdown>
-                                    <li>
-                                        <a dropdownToggle type="button"
-                                            class="icon icon-person fa fa-user dropdown-toggle"
-                                            aria-controls="dropdown-basic">
-                                            <span></span>
-                                        </a>
-                                    </li>
-                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
-                                        aria-labelledby="button-basic">
-                                        <li class="w-100" role="menuitem">
-                                            <a routerLink="/account/login" class="change-color dropdown-item">Login</a>
-                                        </li>
-                                        <li class="w-100" role="menuitem">
-                                            <a routerLink="/account/register"
-                                                class="change-color dropdown-item">Register</a>
-                                        </li>
-                                    </ul>
-                                </span>
-                            </ng-container>
-                            <ng-container *ngIf="(currentUser$ | async)!== null">
-                                <span class="pr-1">Welcome {{(currentUser$ | async).username}}</span>
-                                <span class="btn-group" dropdown>
-                                    <li>
-                                        <img [src]="(currentUser$ | async).profilePicture" dropdownToggle type="button"
-                                            class="img-fluid rounded-circle mr-2" style="width: 40px; height:40px;"
-                                            aria-controls="dropdown-basic" />
-                                        <span></span>
-                                    </li>
-                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
-                                        aria-labelledby="button-basic">
-                                        <li class="w-100" role="menuitem">
-                                            <a routerLink="/account/profile"
-                                                class="change-color dropdown-item">Profile</a>
-                                        </li>
-                                        <li class="w-100" role="menuitem">
-                                            <a (click)="logOut()" class="change-color dropdown-item">Logout</a>
-                                        </li>
-
-                                    </ul>
-                                </span>
-                            </ng-container>
-
-                            <span class="btn-group">
-                                <li><a href="#"><span class="icon icon-heart-o fa fa-heart-o"></span></a></li>
-                            </span>
-                            <span class="btn-group">
+                        <ng-container *ngIf="(currentUser$ | async)=== null">
+                            <span class="btn-group" dropdown>
                                 <li>
-                                    <a routerLink="/basket" class="site-cart">
-                                        <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
-                                        <span class="count">2</span>
+                                    <a dropdownToggle type="button" class="icon icon-person fa fa-user dropdown-toggle"
+                                        aria-controls="dropdown-basic">
+                                        <span></span>
                                     </a>
                                 </li>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                    aria-labelledby="button-basic">
+                                    <li class="w-100" role="menuitem">
+                                        <a routerLink="/account/login" class="change-color dropdown-item">Login</a>
+                                    </li>
+                                    <li class="w-100" role="menuitem">
+                                        <a routerLink="/account/register"
+                                            class="change-color dropdown-item">Register</a>
+                                    </li>
+                                </ul>
                             </span>
+                        </ng-container>
+                        <ng-container *ngIf="(currentUser$ | async)!== null">
+                            <span class="pr-1">Welcome {{(currentUser$ | async).username}}</span>
+                            <span class="btn-group" dropdown>
+                                <li>
+                                    <img [src]="(currentUser$ | async).profilePicture" dropdownToggle type="button"
+                                        class="img-fluid rounded-circle mr-2" style="width: 40px; height:40px;"
+                                        aria-controls="dropdown-basic" />
+                                    <span></span>
+                                </li>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                    aria-labelledby="button-basic">
+                                    <li class="w-100" role="menuitem">
+                                        <a routerLink="/account/profile" class="change-color dropdown-item">Profile</a>
+                                    </li>
+                                    <li class="w-100" role="menuitem">
+                                        <a (click)="logOut()" class="change-color dropdown-item">Logout</a>
+                                    </li>
 
-                            <li class="d-inline-block d-md-none ml-md-0"><a href="#"
-                                    class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
-                        </ul>
-                    </div>
+                                </ul>
+                            </span>
+                        </ng-container>
+
+                        <span class="btn-group">
+                            <li><a href="#"><span class="icon icon-heart-o fa fa-heart-o"></span></a>
+                            </li>
+                        </span>
+                        <span class="btn-group">
+                            <li>
+                                <a routerLink="/basket" class="site-cart">
+                                    <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
+                                    <span class="count">2</span>
+                                </a>
+                            </li>
+                        </span>
+
+                        <li class="d-inline-block d-md-none ml-md-0"><a href="#"
+                                class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                    </ul>
                 </div>
-
             </div>
-        <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="background-color: aliceblue;">
-          <div class="site-block-top-search" style="background-color: aliceblue;">
-            <span class="icon icon-search2 fa fa-search"></span>
-            <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0" placeholder="Search"
-              style="background-color: aliceblue;">
-          </div>
+
         </div>
 
-        <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-          <div class="site-logo">
-            <img src="/assets/images/logo.png" style="max-height: 70px; filter: invert(1);" alt="logo">
-          </div>
-        </div>
 
-        <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-          <div class="site-top-icons">
-            <ul>
-              <li><a href="#"><span class="icon icon-person fa fa-user"></span></a></li>
-              <li><a href="#"><span class="icon icon-heart-o fa fa-heart text-danger"></span></a></li>
-              <li>
-                <a class="site-cart" style="cursor: pointer;">
-                  <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
-                  <span class="count">2</span>
-                </a>
-              </li>
-              <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                    class="icon-menu"></span></a></li>
-            </ul>
-          </div>
-        </div>
 
-    </nav>
-</header>
-      </div>
+
     </div>
-  </div>
-  <nav class="site-navigation text-right text-md-center shadow-sm" role="navigation">
+</div>
+
+
+<nav class="site-navigation text-right text-md-center shadow-sm" role="navigation">
     <div class="container">
-      <ul class="site-menu js-clone-nav d-none d-md-block">
-        <li>
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        </li>
-        <li><a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Shop</a></li>
-        <li>
-          <a routerLinkActive="active">About</a>
-        </li>
-        <li><a routerLinkActive="active">New Arrivals</a></li>
-        <li><a routerLinkActive="active">Contact</a></li>
-      </ul>
+        <ul class="site-menu js-clone-nav d-none d-md-block">
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            </li>
+            <li><a routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Shop</a>
+            </li>
+            <li>
+                <a routerLinkActive="active">About</a>
+            </li>
+            <li><a routerLinkActive="active">New Arrivals</a></li>
+            <li><a routerLinkActive="active">Contact</a></li>
+        </ul>
     </div>
-  </nav>
-
+</nav>

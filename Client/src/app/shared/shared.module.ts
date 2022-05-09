@@ -25,7 +25,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
     PaginationModule,
     PagingHeaderComponent,
     ReactiveFormsModule,
-    BsDropdownModule
+    BsDropdownModule,
     OrderTotalsComponent,
     ReactiveFormsModule
   ]
