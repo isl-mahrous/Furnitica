@@ -22,9 +22,13 @@ namespace API.Helpers
                 .ForMember(d => d.ProductName, o => o.MapFrom(s => s.Product.Name)
                 );
                 
-            
             CreateMap<ProductType, ProductTypeDto>().ReverseMap();
-            
+
+            CreateMap<ProductBrand, ProductBrandDto>().ReverseMap();
+
+            CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
+
+
         }
     }
 }
