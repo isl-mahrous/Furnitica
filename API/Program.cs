@@ -81,6 +81,13 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<S
 //Basket Repository Service
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+
+
+// Order Service
+builder.Services.AddScoped<IOrderService, IOrderService>();
+
+
+
 //How To Use? 
 /// <summary>
 /// In the constructor you just need to specify the types... for example
