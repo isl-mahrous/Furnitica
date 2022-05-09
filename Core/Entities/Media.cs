@@ -14,9 +14,9 @@ namespace Core.Entities
         public string ImageUrl { get; set; }
 
 
-        [JsonIgnore]
-        public virtual OrderItem OrderItem { get; set; }
-        public int OrderItemId { get; set; }
+        //[JsonIgnore]
+        //public virtual OrderItem OrderItem { get; set; }
+        //public int OrderItemId { get; set; }
 
     }
 }

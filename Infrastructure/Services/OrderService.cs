@@ -34,7 +34,7 @@ namespace Infrastructure.Services
             foreach(var basketItem in basket.BasketItems)
             {
                 var productItemFromDB = await _productRepo.GetByIdAsync(basketItem.Id); // To be checked (I think it must be basketItem.productId)
-                var itemOrdered = new ProductItemOrdered(productItemFromDB.Id, productItemFromDB.Name, productItemFromDB.Pictures);
+                var itemOrdered = new ProductItemOrdered(productItemFromDB.Id, productItemFromDB.Name);
                 var orderItem = new OrderItem(itemOrdered, productItemFromDB.Price, basketItem.Quantity);
                 orderItems.Add(orderItem);
             }

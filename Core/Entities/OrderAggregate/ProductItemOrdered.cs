@@ -15,18 +15,18 @@ namespace Core.Entities.OrderAggregate
         {
 
         }
-        public ProductItemOrdered(int productItemId, string productName, ICollection<Media> pictures)
+        public ProductItemOrdered(int productItemId, string productName)
         {
             ProductItemId = productItemId;
             ProductName = productName;
-            Pictures = pictures;
+            //Pictures = pictures;
         }
 
         public int ProductItemId { get; set; }
         public string ProductName { get; set; }
 
-        [JsonIgnore]
-        public ICollection<Media> Pictures { get; set; } = new HashSet<Media>();
+        //[JsonIgnore]
+        //public ICollection<Media> Pictures { get; set; } = new HashSet<Media>();
 
 
     }
