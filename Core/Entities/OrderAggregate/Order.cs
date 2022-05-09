@@ -9,6 +9,10 @@ namespace Core.Entities
 {
     public class Order : BaseEntity
     {
+        public Order()
+        {
+
+        }
         public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress, DeliveryMethod deliveryMethod, decimal subTotal)
         {
             OrderItems = orderItems;
