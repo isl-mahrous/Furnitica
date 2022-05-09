@@ -1,27 +1,32 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Core.Entities.OrderAggregate
 {
+    [Owned]
     public class ProductItemOrdered
     {
         public ProductItemOrdered()
         {
 
         }
-        public ProductItemOrdered(int productItemId, string productName, string pictureUrl)
+        public ProductItemOrdered(int productItemId, string productName)
         {
             ProductItemId = productItemId;
             ProductName = productName;
-            PictureUrl = pictureUrl;
+            //Pictures = pictures;
         }
 
         public int ProductItemId { get; set; }
         public string ProductName { get; set; }
-        public string PictureUrl { get; set; }
+
+        //[JsonIgnore]
+        //public ICollection<Media> Pictures { get; set; } = new HashSet<Media>();
 
 
     }
