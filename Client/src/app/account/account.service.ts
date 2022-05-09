@@ -73,4 +73,15 @@ export class AccountService {
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/');
   }
+
+
+  changeProfileImage(values) {
+
+    return this.http.post(this.baseUrl + 'Account', values).pipe(
+      map((response) => {
+
+        console.log(response)
+      })
+    )
+  }
 }

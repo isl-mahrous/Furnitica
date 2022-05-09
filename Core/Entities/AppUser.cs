@@ -6,5 +6,10 @@ namespace Core.Entities
     public class AppUser: IdentityUser
     {
         public string ProfilePicture { get; set; }
+
+        public virtual WishList WishList { get; set; } = new WishList();
+
+        [ForeignKey("WishList")]
+        public int WishListId { get; set; }
     }
 }

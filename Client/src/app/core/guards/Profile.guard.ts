@@ -7,7 +7,7 @@ import { AccountService } from 'src/app/account/account.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthAccessGuard implements CanActivate {
+export class ProfileGuard implements CanActivate {
     routeURL: string;
     constructor(private accountService: AccountService, private router: Router) {
         this.routeURL = this.router.url;
@@ -27,7 +27,7 @@ export class AuthAccessGuard implements CanActivate {
                 // and routeURL !== '/login'
                 console.log(user)
                 console.log(this.routeURL)
-                if (!user) {
+                if (user) {
                     // // assign '/login' in 'routeURL' to
                     // // avoid get into infinite loop
                     // this.routeURL = 'account/login';

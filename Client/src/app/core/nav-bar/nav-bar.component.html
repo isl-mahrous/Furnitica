@@ -68,19 +68,19 @@
                                 </span>
                             </ng-container>
                             <ng-container *ngIf="(currentUser$ | async)!== null">
-                                <span class="pr-3">Welcome {{(currentUser$ | async).username}}</span>
+                                <span class="pr-1">Welcome {{(currentUser$ | async).username}}</span>
                                 <span class="btn-group" dropdown>
                                     <li>
-                                        <a dropdownToggle type="button"
-                                            class="icon icon-person fa fa-user dropdown-toggle"
-                                            aria-controls="dropdown-basic">
-                                            <span></span>
-                                        </a>
+                                        <img [src]="(currentUser$ | async).profilePicture" dropdownToggle type="button"
+                                            class="img-fluid rounded-circle mr-2" style="width: 40px; height:40px;"
+                                            aria-controls="dropdown-basic" />
+                                        <span></span>
                                     </li>
                                     <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
                                         aria-labelledby="button-basic">
                                         <li class="w-100" role="menuitem">
-                                            <a class="change-color dropdown-item">Profile</a>
+                                            <a routerLink="/account/profile"
+                                                class="change-color dropdown-item">Profile</a>
                                         </li>
                                         <li class="w-100" role="menuitem">
                                             <a (click)="logOut()" class="change-color dropdown-item">Logout</a>
