@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Infrastructure.Services
             
             foreach(var basketItem in basket.BasketItems)
             {
-                var productItemFromDB = await _productRepo.GetByIdAsync(basketItem.Id); // To be checked (I think it must be basketItem.productId)
+                var productItemFromDB = await _productRepo.GetByIdAsync(basketItem.Id); // To be checked (I think it should be basketItem.productId)
                 var itemOrdered = new ProductItemOrdered(productItemFromDB.Id, productItemFromDB.Name);
                 var orderItem = new OrderItem(itemOrdered, productItemFromDB.Price, basketItem.Quantity);
                 orderItems.Add(orderItem);
@@ -52,19 +53,22 @@ namespace Infrastructure.Services
             return order;
         }
 
-        public Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodAsync()
+        public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodAsync()
         {
-            throw new NotImplementedException();
+            return await _dmRepo.GetAllAsync();
         }
 
-        public Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
+        public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
         {
-            throw new NotImplementedException();
+            var spec = new OrdersWithItemsAndOrderingSpecification(id, buyerEmail);
+            return await _orderRepo.GetByIdAsync(id, spec);
+
         }
 
-        public Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
+        public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
         {
-            throw new NotImplementedException();
+            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
+            return await _orderRepo.GetAllAsync(spec);
         }
     }
 }
