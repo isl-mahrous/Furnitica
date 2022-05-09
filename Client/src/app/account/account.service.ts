@@ -13,7 +13,9 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<IUser>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    // this.currentUser$ = null
+  }
 
   getCurrentUserValue() {
 
@@ -45,11 +47,8 @@ export class AccountService {
 
         if (user) {
           localStorage.setItem('token', user.token);
-          console.log(user.token)
-          console.log(user.userId)
-          console.log(user.expiration)
           this.currentUserSource.next(user);
-
+          this.router.navigateByUrl('/');
         }
       })
     );
@@ -59,12 +58,8 @@ export class AccountService {
   register(values: any) {
 
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
-      map((user: IUser) => {
-
-        if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSource.next(user);
-        }
+      map((response) => {
+        console.log(response)
       })
     );
   }
@@ -76,4 +71,13 @@ export class AccountService {
   }
 
 
+  changeProfileImage(values) {
+
+    return this.http.post(this.baseUrl + 'Account', values).pipe(
+      map((response) => {
+
+        console.log(response)
+      })
+    )
+  }
 }

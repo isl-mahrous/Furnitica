@@ -1,8 +1,10 @@
+import { AuthAccessGuard } from './core/guards/AuthAccess.guard';
 import { ShopComponent } from './shop/shop.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+
   {path: 'basket', loadChildren: () => import('./basket/basket.module')
   .then(mod => mod.BasketModule), data: { breadcrumb: "Basket"  } 
   },
@@ -14,10 +16,11 @@ const routes: Routes = [
     loadChildren: () => import("./home/home.module")
       .then(mod => mod.HomeModule), data: { breadcrumb: "Home" }
   },
-  {
-    path: 'basket', loadChildren: () => import('./basket/basket.module')
-      .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
-  },
+
+//   {
+//     path: 'basket', loadChildren: () => import('./basket/basket.module')
+//       .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
+//   },
   {
     path: "shop",
     loadChildren: () => import("./shop/shop.module")

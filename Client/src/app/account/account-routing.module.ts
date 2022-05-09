@@ -1,13 +1,17 @@
+import { AuthAccessGuard } from './../core/guards/AuthAccess.guard';
+import { ProfileGuard } from './../core/guards/Profile.guard';
+import { ProfileComponent } from './profile/profile.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthAccessGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthAccessGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
 ]
 
 @NgModule({

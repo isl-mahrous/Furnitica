@@ -26,6 +26,11 @@ export class NavBarComponent implements OnInit {
   
   @ViewChild("search", { static: false }) searchTerm: ElementRef;
 
+  logOut() {
+
+    this.accountService.logout();
+  }
+
 
   onSearch() {
     this.navBarService.searchSource.next(this.searchTerm.nativeElement.value);
