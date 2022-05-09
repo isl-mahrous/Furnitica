@@ -5,7 +5,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 
 @NgModule({
   declarations: [
@@ -16,12 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
     ReactiveFormsModule
   ],
   exports: [
     PagerComponent,
     PaginationModule,
     PagingHeaderComponent,
+    ReactiveFormsModule,
+    BsDropdownModule,
     OrderTotalsComponent,
     ReactiveFormsModule
   ]

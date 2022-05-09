@@ -16,15 +16,20 @@ export class NavBarComponent implements OnInit {
   basket$: Observable<IBasket>;
   currentUser$: Observable<IUser>;
 
-  constructor(private basketService: BasketService, private accountService: AccountService, 
+  constructor(private basketService: BasketService, private accountService: AccountService,
     private navBarService: NavBarSearchService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
     this.currentUser$ = this.accountService.currentUser$
   }
-  
+
   @ViewChild("search", { static: false }) searchTerm: ElementRef;
+
+  logOut() {
+
+    this.accountService.logout();
+  }
 
 
   onSearch() {
