@@ -77,6 +77,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -86,6 +89,8 @@ namespace Infrastructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("WishListId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -99,7 +104,6 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -117,7 +121,7 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BasketId")
+                    b.Property<int>("BasketId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -135,7 +139,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BasketItem");
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("Core.Entities.Media", b =>
@@ -288,11 +292,16 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WishListId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductBrandId");
 
                     b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("WishListId");
 
                     b.ToTable("Products");
                 });
@@ -358,6 +367,19 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("Core.Entities.WishList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WishList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -493,28 +515,41 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Core.Entities.AppUser", b =>
+                {
+                    b.HasOne("Core.Entities.WishList", "WishList")
+                        .WithMany()
+                        .HasForeignKey("WishListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WishList");
+                });
+
             modelBuilder.Entity("Core.Entities.Basket", b =>
                 {
                     b.HasOne("Core.Entities.AppUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Core.Entities.BasketItem", b =>
                 {
-                    b.HasOne("Core.Entities.Basket", null)
+                    b.HasOne("Core.Entities.Basket", "Basket")
                         .WithMany("BasketItems")
-                        .HasForeignKey("BasketId");
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Core.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Basket");
 
                     b.Navigation("Product");
                 });
@@ -614,6 +649,10 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.WishList", null)
+                        .WithMany("Products")
+                        .HasForeignKey("WishListId");
+
                     b.Navigation("ProductBrand");
 
                     b.Navigation("ProductType");
@@ -704,6 +743,11 @@ namespace Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Core.Entities.ProductType", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Core.Entities.WishList", b =>
                 {
                     b.Navigation("Products");
                 });

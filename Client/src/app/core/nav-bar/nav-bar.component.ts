@@ -1,3 +1,5 @@
+import { BasketService } from 'src/app/basket/basket.service';
+import { IBasket } from 'src/app/shared/models/basket';
 import { AccountService } from './../../account/account.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,19 +11,29 @@ import { NavBarSearchService } from './nav-bar-search.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
+
 export class NavBarComponent implements OnInit {
-
+  basket$: Observable<IBasket>;
   currentUser$: Observable<IUser>;
-  @ViewChild("search", { static: false }) searchTerm: ElementRef;
 
-  constructor(private accountService: AccountService, private navBarService: NavBarSearchService) { }
+  constructor(private basketService: BasketService, private accountService: AccountService,
+    private navBarService: NavBarSearchService) { }
 
   ngOnInit(): void {
-
+    this.basket$ = this.basketService.basket$;
     this.currentUser$ = this.accountService.currentUser$
   }
+
+  @ViewChild("search", { static: false }) searchTerm: ElementRef;
+
+  logOut() {
+
+    this.accountService.logout();
+  }
+
 
   onSearch() {
     this.navBarService.searchSource.next(this.searchTerm.nativeElement.value);
   }
 }
+

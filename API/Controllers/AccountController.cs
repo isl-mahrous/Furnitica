@@ -2,10 +2,13 @@
 using API.Errors;
 using API.Helpers;
 using Core.Entities;
+using Core.Interfaces;
+using Core.Specifications;
 using JWTAuth.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -20,14 +23,20 @@ namespace API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _config;
         private readonly IMediaHandler mediaHandler;
+        private readonly IGenericRepository<WishList> wishListRepo;
+        private readonly IGenericRepository<Product> productsRepo;
         public AccountController(
             UserManager<AppUser> user,
             IConfiguration config,
-            IMediaHandler _mediaHandler)
+            IMediaHandler _mediaHandler,
+            IGenericRepository<WishList> _wishListRepo,
+            IGenericRepository<Product> _productsRepo)
         {
             _userManager = user;
             _config = config;
             mediaHandler = _mediaHandler;
+            wishListRepo = _wishListRepo;
+            productsRepo = _productsRepo;
         }
 
         [HttpPost("register")]
@@ -46,7 +55,7 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok("Add Success");
+                return Ok(new ApiResponse(200, "User Created Successfully"));
             }
             else
             {
@@ -102,6 +111,9 @@ namespace API.Controllers
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         userId = user.Id,
                         username = loginDTO.Username,
+                        profilePicture = user.ProfilePicture,
+                        email = user.Email,
+                        mobileNumber = user.PhoneNumber,
                         expiration = token.ValidTo
                     });
                 }
@@ -166,8 +178,11 @@ namespace API.Controllers
                 {
                     token = token,
                     userId = user.Id,
+                    profilePicture = user.ProfilePicture,
+                    email = user.Email,
+                    mobileNumber = user.PhoneNumber,
                     username = user.UserName,
-                });
+                });;
 
             }
 
@@ -219,14 +234,17 @@ namespace API.Controllers
                     string profilePictureURL = mediaHandler.UploadImage(image);
                     user.ProfilePicture = profilePictureURL;
                     await _userManager.UpdateAsync(user);
-
+                    Console.WriteLine(image);
+                    Console.WriteLine(profilePictureURL);
                     return Ok(new ApiResponse(200));
                 }
                 else if (user.ProfilePicture != null)
                 {
-                    mediaHandler.RemoveImage(user.ProfilePicture);
+                    //mediaHandler.RemoveImage(user.ProfilePicture);
 
                     string profilePictureURL = mediaHandler.UploadImage(image);
+                    Console.WriteLine(image);
+                    Console.WriteLine(profilePictureURL);
                     user.ProfilePicture = profilePictureURL;
                     await _userManager.UpdateAsync(user);
 
@@ -237,6 +255,100 @@ namespace API.Controllers
             return BadRequest(new ApiResponse(400));
         }
 
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet("wishlist")]
+        public async Task<IActionResult> GetUserWishList()
+        {
+            // check
+            string userId = GetUserId();
+
+            if (userId != null)
+            {
+                var user = await _userManager.Users.Include(u => u.WishList.Products).FirstOrDefaultAsync(u => u.Id == userId);
+
+                return Ok(new
+                {
+                    Id = user.WishListId,
+                    Products = user.WishList.Products.ToList(),
+                });
+            }
+            
+            return Unauthorized();
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("wishlist/add")]
+        public async Task<IActionResult> AddToWishList(AddToWishListDto data)
+        {
+            // check
+            string userId = GetUserId();
+
+            if (userId != null)
+            {
+                var user = _userManager.Users.Include(u => u.WishList.Products).FirstOrDefault(u => u.Id == userId);
+                var product = await productsRepo.GetByIdAsync(data.productId);
+
+                if (product != null)
+                {
+                    user.WishList.Products.Add(product);
+                    await _userManager.UpdateAsync(user);
+                    return Ok(new ApiResponse(200, "Product Added to WishList Successfully"));
+                }
+
+                return NotFound(new ApiResponse(404, "Product Not Found"));
+            }
+
+            return Unauthorized();
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("wishlist/remove")]
+        public async Task<IActionResult> RemoveFromWishList(AddToWishListDto data)
+        {
+            // check
+            string userId = GetUserId();
+
+            if (userId != null)
+            {
+                var user = _userManager.Users.Include(u => u.WishList.Products).FirstOrDefault(u => u.Id == userId);
+                var product = await productsRepo.GetByIdAsync(data.productId);
+
+                if (product != null)
+                {
+                    user.WishList.Products.Remove(product);
+                    await _userManager.UpdateAsync(user);
+                    return Ok(new ApiResponse(200, "Product Removed From WishList Successfully"));
+                }
+
+                return NotFound(new ApiResponse(404, "Product Not Found"));
+            }
+
+            return Unauthorized();
+        }
+
+        [NonAction]
+        public string GetUserId()
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var SecretKey = _config.GetValue<string>("JWT:SecretKey");
+            var key = Encoding.ASCII.GetBytes(SecretKey);
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+            var userId = jwtToken.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+            return userId;
+        }
 
     }
 }

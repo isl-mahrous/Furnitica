@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.search$ = this.searchService.search$;
     this.search$.subscribe({
-      next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts() }
+      next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts(); console.log(res) }
     });
     this.getProducts();
     this.getBrands();

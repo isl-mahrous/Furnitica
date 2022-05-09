@@ -12,12 +12,10 @@ namespace Core.Entities
     public class Basket
     {
         public int Id { get; set; }
-        public List<BasketItem> BasketItems { get; set; } = new List<BasketItem>();
+        public List<BasketItem> BasketItems { get; set; } = new();
 
         [JsonIgnore]
-        [Required]
         public virtual AppUser User { get; set; }
-        [Required]
         public string UserId { get; set; }
     }
 }

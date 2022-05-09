@@ -1,6 +1,6 @@
 <div class="product-grid">
   <div class="product-content">
-    <h3 class="title"><a href="#">{{product.name}}</a></h3>
+    <h3 class="title"><a routerLink="{{product.id}}">{{product.name}}</a></h3>
     <div class="price">{{product.price | currency}}</div>
     <!-- TODO Rating : Use NgFor to display nearest number of stars -->
     <ul class="rating">
@@ -11,9 +11,9 @@
       <li class="fa fa-star"></li>
     </ul>
     <ul class="product-links">
-      <li><a><i class="fa fa-shopping-cart"></i></a></li>
+      <li><a (click)="addItemToBasket()"><i class="fa fa-shopping-cart"></i></a></li>
       <li><a><i class="fa fa-heart"></i></a></li>
-      <li><a><i class="fa fa-eye"></i></a></li>
+      <li><a routerLink="{{product.id}}"><i class="fa fa-eye"></i></a></li>
     </ul>
   </div>
   <div class="product-image">

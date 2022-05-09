@@ -1,4 +1,6 @@
-﻿using API.Errors;
+﻿using API.DTOs;
+using API.Errors;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +13,12 @@ namespace API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository basketRepository;
+        private readonly IMapper mapper;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketRepository basketRepository, IMapper mapper)
         {
             this.basketRepository = basketRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -28,12 +32,26 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Basket>> UpdateBasket(Basket basket)
+        public async Task<ActionResult<Basket>> UpdateBasket([FromBody]Basket basket)
         {
             var updatedBasket = await basketRepository.UpdateBasketAsync(basket);
             
             if (updatedBasket != null)
                 return Ok(updatedBasket);
+            else
+                return BadRequest(new ApiResponse(400));
+        }
+
+        [HttpGet]
+        [Route("/api/Basket/{basketId:int}")]
+        public async Task<ActionResult<List<Product>>> GetBasketProducts(int basketId)
+        {
+            var products = await basketRepository.GetBasketProducts(basketId);
+            if (products != null)
+            {
+                var productDtos = mapper.Map<List<Product>, List<ProductDto>>(products);           
+                return Ok(productDtos);
+            }
             else
                 return BadRequest(new ApiResponse(400));
         }
