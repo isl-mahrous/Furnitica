@@ -7,4 +7,5 @@ export class ShopParams {
   search: string;
   priceFrom: number = 0;
   priceTo: number = 10000;
+  color = "";
 }

@@ -15,7 +15,8 @@ namespace Core.Specifications
                 (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
                 (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId) &&
                 (!productParams.PriceFrom.HasValue || x.Price >= productParams.PriceFrom) &&
-                (!productParams.PriceTo.HasValue || x.Price <= productParams.PriceTo)
+                (!productParams.PriceTo.HasValue || x.Price <= productParams.PriceTo) &&
+                (string.IsNullOrEmpty(productParams.Color) || x.Color.ToLower() == productParams.Color.ToLower())
             )
         {
 

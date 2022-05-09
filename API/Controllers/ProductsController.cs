@@ -230,6 +230,27 @@ namespace API.Controllers
             return Ok(count);
         }
 
+        [HttpGet("colors")]
+        public async Task<ActionResult<List<ColorDto>>> GetColors()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var count = result.GroupBy(p => p.Color).Select(g => new ColorDto { Color = g.Key, Count = g.Count() }).ToList();
+            
+            return Ok(count);
+        }
+
+        
+        [HttpGet("maxPrice")]
+        public async Task<ActionResult<decimal>> GetMaxPrice()
+        {
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var maxPrice = result.Max(p => p.Price);
+
+            return Ok(maxPrice);
+        }
+
 
     }
 }

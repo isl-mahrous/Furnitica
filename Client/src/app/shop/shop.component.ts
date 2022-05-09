@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NavBarSearchService } from '../core/nav-bar/nav-bar-search.service';
 import { IBrand } from '../shared/models/brand';
+import { IColor } from '../shared/models/color';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
@@ -31,7 +32,8 @@ export class ShopComponent implements OnInit {
   maxValue = 10000;
   options: Options = {
     floor: 0,
-    ceil: 10000,
+    ceil: this.maxValue,
+    enforceRange: true,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -44,7 +46,11 @@ export class ShopComponent implements OnInit {
     }
   };
 
-  constructor(private shopService: ShopService, private searchService: NavBarSearchService) { }
+  constructor(private shopService: ShopService, private searchService: NavBarSearchService) {
+
+
+
+  }
 
   ngOnInit(): void {
     this.search$ = this.searchService.search$;
@@ -54,7 +60,9 @@ export class ShopComponent implements OnInit {
     this.getProducts();
     this.getBrands();
     this.getTypes();
-    this.getTypesCount()
+    this.getTypesCount();
+    this.getColors();
+    this.getMaxPrice();
   }
 
 
@@ -84,6 +92,13 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  colors: IColor[];
+  getColors() {
+    this.shopService.getColors().subscribe({
+      next: res => { this.colors = res },
+      error: err => { console.log(err); }
+    })
+  }
   typesCount: any;
   getTypesCount() {
     this.shopService.getTypesCount().subscribe({
@@ -102,7 +117,19 @@ export class ShopComponent implements OnInit {
     //return this.types.map((item, i) => Object.assign({}, item, this.typesCount[i]));
   }
 
+  getMaxPrice() {
+    this.shopService.getMaxPrice().subscribe({
+      next: res => {
+        this.maxValue = res;
+        const newOptions: Options = Object.assign({}, this.options);
+        newOptions.ceil = this.maxValue;
+        this.options = newOptions;
+      },
+      error: err => { console.log(err); }
+    })
+  }
 
+  /////////////////////
   priceRangeChanged() {
     this.shopParams.priceFrom = this.minValue;
     this.shopParams.priceTo = this.maxValue;
@@ -112,6 +139,12 @@ export class ShopComponent implements OnInit {
 
   onBrandSelected(brandId: number) {
     this.shopParams.brandId = brandId;
+    this.shopParams.pageIndex = 1;
+    this.getProducts();
+  }
+
+  onColorSelected(color: string) {
+    this.shopParams.color = color;
     this.shopParams.pageIndex = 1;
     this.getProducts();
   }
