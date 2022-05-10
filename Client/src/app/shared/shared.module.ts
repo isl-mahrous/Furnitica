@@ -8,17 +8,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import { StepperComponent } from './components/stepper/stepper.component';
+
 @NgModule({
   declarations: [
     PagerComponent,
     PagingHeaderComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkStepperModule
   ],
   exports: [
     PagerComponent,
@@ -27,7 +32,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
     ReactiveFormsModule,
     BsDropdownModule,
     OrderTotalsComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkStepperModule,
+    StepperComponent
   ]
 })
 export class SharedModule { }

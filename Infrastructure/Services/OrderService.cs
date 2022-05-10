@@ -70,5 +70,15 @@ namespace Infrastructure.Services
             var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
             return await _orderRepo.GetAllAsync(spec);
         }
+
+        public async Task CancelOrderAsync(int id)
+        {
+            await _orderRepo.DeleteAsync(id);
+        }
+
+        public async Task UpdateOrder(int id, Order order)
+        {
+            await _orderRepo.UpdateAsync(id, order);
+        }
     }
 }

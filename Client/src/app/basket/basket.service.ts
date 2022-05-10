@@ -13,9 +13,9 @@ export class BasketService {
   baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
-  basket$ = this.basketSource.asObservable(); 
+  basket$ = this.basketSource.asObservable();
   basketTotal$ = this.basketTotalSource.asObservable();
-  userId = "0ac38eff-ecd0-4bea-9647-f40048cbe7a2"
+  userId = "f965cbfb-cdbe-4822-b76f-8f3ed47ab4c0"
 
   constructor(private http:HttpClient) {
     this.getBasket(this.userId);
@@ -68,7 +68,7 @@ export class BasketService {
   }
 
   decrementItemQuantity (product : productViewModel){
-    const basket = this.getCurrentBasketValue();  
+    const basket = this.getCurrentBasketValue();
     const foundItemIndex = basket.basketItems.findIndex(i => i.productId === product.id);
     if (basket.basketItems[foundItemIndex].quantity > 1){
       basket.basketItems[foundItemIndex].quantity--;
@@ -87,7 +87,7 @@ export class BasketService {
     }
     if (basket.basketItems.length>0){
       this.setBasket(basket);
-    } 
+    }
     else{
       this.deleteBasket(basket);
     }
@@ -128,6 +128,6 @@ export class BasketService {
   {
     return this.http.get<IProduct[]>(`${this.baseUrl}basket/${basketId}`);
   }
- 
-  
+
+
 }

@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] OrderDto orderDto)
         {
             email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
@@ -69,5 +69,46 @@ namespace API.Controllers
         {
             return Ok(await _orderService.GetDeliveryMethodAsync());
         }
+
+
+        [HttpPost("{id}")]
+        public async Task<ActionResult<Basket>> UpdateOrder(int id, [FromBody] OrderDto orderDto)
+        {
+            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            //var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
+
+            var updatedOrder = _mapper.Map<OrderDto, Order>(orderDto);
+
+            var orderToBeUpdated = await _orderService.GetOrderByIdAsync(id, email);
+
+            if (orderToBeUpdated == null)
+            {
+                return BadRequest(new ApiResponse(400));
+            }
+            else
+            {
+                orderToBeUpdated = updatedOrder;
+                await _orderService.UpdateOrder(id, orderToBeUpdated);
+                return Ok();
+            }
+        }
+
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteOrder(int id)
+        {
+            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            if(_orderService.GetOrderByIdAsync(id, email) != null)
+            {
+                await _orderService.CancelOrderAsync(id);
+                return Ok();
+            }
+
+            return BadRequest(new ApiResponse(404, "No Order with this ID"));
+        }
+
+
     }
 }
