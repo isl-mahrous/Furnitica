@@ -17,13 +17,13 @@ export class BasketComponent implements OnInit {
   constructor(private basketService: BasketService) {
     this.basket$ = this.basketService.basket$;
    };
- 
+
   ngOnInit(): void {
     timer(200).pipe(
       delay(1000),
       switchMap(() => this.basket$),
       switchMap((data) => this.basketService.getBasketProducts(data.id)),
-      switchMap((data) => 
+      switchMap((data) =>
       this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
     ).subscribe(data => {
        this.basketProducts = data;
@@ -51,7 +51,7 @@ export class BasketComponent implements OnInit {
       basketItem = basket.basketItems[i];
       let basketProduct = new productViewModel(products[i].id,
         products[i].name, products[i].price, basket.basketItems[i].quantity, products[i].pictures[0],
-        products[i].productBrand, products[i].productType) 
+        products[i].productBrand, products[i].productType)
       basketProducts.push(basketProduct);
     }
     return new Observable <productViewModel[]>(observer => {
