@@ -9,9 +9,14 @@
             <div class="col-md-12 mb-5">
               <div class="float-md-left mb-4">
                 <h2 class="text-black h5">
-                  <app-paging-header [totalCount]="totalCount" [pageIndex]="shopParams.pageIndex"
-                    [pageSize]="shopParams.pageSize">
-                  </app-paging-header>
+                  <div class="d-flex align-content-center align-items-center">
+                    <app-paging-header [totalCount]="totalCount" [pageIndex]="shopParams.pageIndex"
+                      [pageSize]="shopParams.pageSize">
+                    </app-paging-header>
+                    <i (click)="clearFilters()" class="fa fa-times-circle text-danger fa-lg ml-2"
+                      style=" vertical-align: middle; cursor: pointer;"></i>
+                  </div>
+
                 </h2>
               </div>
               <div class="d-flex">
@@ -64,6 +69,7 @@
 
         <div class="col-md-3 order-1 mb-5 mb-md-0">
           <div class="border p-4 rounded mb-4">
+
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">
               <ng-container *ngFor="let item of this.typesCountResult">
@@ -95,7 +101,8 @@
               <ng-container *ngFor="let item of colors">
                 <a (click)="onColorSelected(item.color)" class="d-flex color-item align-items-center mt-1"
                   [ngClass]="{'font-weight-bold':item.color === this.shopParams.color}" style="cursor: pointer;">
-                  <span class="color d-inline-block rounded-circle mr-2" [ngStyle]="{'background':item.color.replace(' ', '').toLowerCase()}"></span>
+                  <span class="color d-inline-block rounded-circle mr-2"
+                    [ngStyle]="{'background':item.color.replace(' ', '').toLowerCase()}"></span>
                   <span class="text-black">{{item.color}} </span>
                   <span>({{item.count}})</span>
                 </a>

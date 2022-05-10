@@ -10,7 +10,6 @@ import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.co
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 
 
-
 @NgModule({
   declarations: [
     CheckoutComponent,

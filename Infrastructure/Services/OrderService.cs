@@ -2,6 +2,7 @@
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Core.Specifications;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,23 +17,29 @@ namespace Infrastructure.Services
         private readonly IGenericRepository<Product> _productRepo;
         private readonly IGenericRepository<DeliveryMethod> _dmRepo;
         private readonly IBasketRepository _basketRepo;
+        private readonly StoreContext context;
 
-
-        public OrderService(IGenericRepository<Order> orderRepo, IGenericRepository<Product> productRepo, IGenericRepository<DeliveryMethod> dmRepo, IBasketRepository basketRepo)
+        public OrderService(IGenericRepository<Order> orderRepo, 
+            IGenericRepository<Product> productRepo, 
+            IGenericRepository<DeliveryMethod> dmRepo, 
+            IBasketRepository basketRepo,
+            StoreContext context)
         {
             _orderRepo = orderRepo;
             _productRepo = productRepo;
             _dmRepo = dmRepo;
             _basketRepo = basketRepo;
+            this.context = context;
         }
 
-        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, Address shippingToAddress)
+        public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, int basketId, Address shippingToAddress)
         {
-            var basket = await _basketRepo.GetBasketAsync(basketId);
+            //var basket = await _basketRepo.GetBasketAsync(basketId);
+            var basketItems = context.BasketItems.Where(i => i.BasketId == basketId).ToList();
 
             var orderItems = new List<OrderItem>();
             
-            foreach(var basketItem in basket.BasketItems)
+            foreach(var basketItem in basketItems)
             {
                 var productItemFromDB = await _productRepo.GetByIdAsync(basketItem.Id); // To be checked (I think it should be basketItem.productId)
                 var itemOrdered = new ProductItemOrdered(productItemFromDB.Id, productItemFromDB.Name);

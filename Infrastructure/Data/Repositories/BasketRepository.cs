@@ -50,7 +50,8 @@ namespace Infrastructure.Data.Repositories
                 {
                     if (existingBasketItems.Any(i => i.ProductId == item.ProductId))
                     {
-                        var foundItem = await context.BasketItems.SingleOrDefaultAsync(
+                        var foundItem = await context.BasketItems
+                            .Where(bi => bi.BasketId == basket.Id).SingleOrDefaultAsync(
                             i => i.ProductId == item.ProductId);
                         foundItem.Quantity = item.Quantity;
                     }

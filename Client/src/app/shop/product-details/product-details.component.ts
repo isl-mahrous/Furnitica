@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/models/product';
+import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -16,7 +17,10 @@ export class ProductDetailsComponent implements OnInit {
   ratingList: boolean[] = [true, true, true, true, true];
   rating: number = 0;
 
-  constructor(private shopService: ShopService, private activeRoute: ActivatedRoute) { }
+
+  constructor(private shopService: ShopService, private activeRoute: ActivatedRoute, private breadCrum: BreadcrumbService) {
+    this.breadCrum.set("@productDetails", " ");
+  }
 
   ngOnInit(): void {
     this.loadProduct();
@@ -27,6 +31,8 @@ export class ProductDetailsComponent implements OnInit {
     this.shopService.getProduct(+this.activeRoute.snapshot.paramMap.get("id")).subscribe(product => {
 
       this.product = product;
+
+      this.breadCrum.set("@productDetails", product.name);
     }, error => {
       console.log(error);
     }
@@ -52,7 +58,6 @@ export class ProductDetailsComponent implements OnInit {
     }
 
   }
-
 
   setStar(data: any) {
     this.rating = data + 1;

@@ -7,11 +7,13 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
 
   {path: 'basket', loadChildren: () => import('./basket/basket.module')
-  .then(mod => mod.BasketModule), data: { breadcrumb: "Basket"  } 
+  .then(mod => mod.BasketModule), data: { breadcrumb: "Basket"  }
   },
+
   {path: 'checkout', loadChildren: () => import('./checkout/checkout.module')
-  .then(mod => mod.CheckoutModule), data: { breadcrumb: "Checkout"  } 
+  .then(mod => mod.CheckoutModule), data: { breadcrumb: "Checkout"  }
   },
+
   {
     path: "", component: HomeComponent, data: { breadcrumb: "Home" }
   },
@@ -30,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import("./account/account.module")
       .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
   },
-  
+
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 

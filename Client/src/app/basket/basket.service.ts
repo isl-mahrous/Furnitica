@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, switchMap, timer } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AccountService } from '../account/account.service';
 import { IBasket, IBasketItem, IBasketTotals } from '../shared/models/basket';
 import { IProduct } from '../shared/models/product';
 import { productViewModel } from '../shared/viewmodels/product-viewmodel';
@@ -10,15 +11,19 @@ import { productViewModel } from '../shared/viewmodels/product-viewmodel';
   providedIn: 'root'
 })
 export class BasketService {
-  baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
   basket$ = this.basketSource.asObservable();
   basketTotal$ = this.basketTotalSource.asObservable();
-  userId = "f965cbfb-cdbe-4822-b76f-8f3ed47ab4c0"
 
-  constructor(private http:HttpClient) {
-    this.getBasket(this.userId);
+  constructor(private http:HttpClient, private accountService : AccountService) {
+    timer(1000).pipe(
+      delay(1000),
+      switchMap(() => this.getUserId()),
+    ).subscribe((userId) => {      
+      this.getBasket(userId);
+    })
   }
 
   getBasket(userId:string){
@@ -127,6 +132,14 @@ export class BasketService {
   getBasketProducts(basketId:number)
   {
     return this.http.get<IProduct[]>(`${this.baseUrl}basket/${basketId}`);
+  }
+
+  private getUserId(){
+    const user = this.accountService.getCurrentUserValue();
+    return new Observable <string>(observer => {
+      observer.next(user.userId);
+      observer.complete();
+    })
   }
 
 
