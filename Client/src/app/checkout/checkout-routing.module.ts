@@ -14,8 +14,6 @@ const routes :Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
 export class CheckoutRoutingModule { }
