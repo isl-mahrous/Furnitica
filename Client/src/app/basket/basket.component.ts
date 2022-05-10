@@ -19,7 +19,7 @@ export class BasketComponent implements OnInit {
    };
 
   ngOnInit(): void {
-    timer(200).pipe(
+    timer(2000).pipe(
       delay(1000),
       switchMap(() => this.basket$),
       switchMap((data) => this.basketService.getBasketProducts(data.id)),
