@@ -10,12 +10,12 @@ import { productViewModel } from '../shared/viewmodels/product-viewmodel';
   providedIn: 'root'
 })
 export class BasketService {
-  baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
+  private userId = "114ea7f4-b4cb-4614-a50f-e23ab17101ef"
   basket$ = this.basketSource.asObservable();
   basketTotal$ = this.basketTotalSource.asObservable();
-  userId = "f965cbfb-cdbe-4822-b76f-8f3ed47ab4c0"
 
   constructor(private http:HttpClient) {
     this.getBasket(this.userId);
