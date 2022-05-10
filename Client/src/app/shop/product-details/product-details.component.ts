@@ -17,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   ratingList: boolean[] = [true, true, true, true, true];
   rating: number = 0;
 
+
   constructor(private shopService: ShopService, private activeRoute: ActivatedRoute, private breadCrum: BreadcrumbService) {
     this.breadCrum.set("@productDetails", " ");
   }
@@ -30,6 +31,7 @@ export class ProductDetailsComponent implements OnInit {
     this.shopService.getProduct(+this.activeRoute.snapshot.paramMap.get("id")).subscribe(product => {
 
       this.product = product;
+
       this.breadCrum.set("@productDetails", product.name);
     }, error => {
       console.log(error);

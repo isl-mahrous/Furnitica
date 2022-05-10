@@ -12,7 +12,12 @@
     </ul>
     <ul class="product-links">
       <li><a (click)="addItemToBasket()"><i class="fa fa-shopping-cart"></i></a></li>
-      <li><a><i class="fa fa-heart"></i></a></li>
+      <ng-container *ngIf="inWishList === true">
+        <li><a (click)="removeFromWishList()"><i class="fa fa-heart" style="color: red;"></i></a></li>
+      </ng-container>
+      <ng-container *ngIf="inWishList === false">
+        <li><a (click)="addToWishList()"><i class="fa fa-heart"></i></a></li>
+      </ng-container>
       <li><a routerLink="{{product.id}}"><i class="fa fa-eye"></i></a></li>
     </ul>
   </div>

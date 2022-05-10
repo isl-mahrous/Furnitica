@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Errors;
 using API.Helpers;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
@@ -25,10 +26,13 @@ namespace API.Controllers
         private readonly IMediaHandler mediaHandler;
         private readonly IGenericRepository<WishList> wishListRepo;
         private readonly IGenericRepository<Product> productsRepo;
+        private readonly IMapper mapper;
+
         public AccountController(
             UserManager<AppUser> user,
             IConfiguration config,
             IMediaHandler _mediaHandler,
+            IMapper _mapper,
             IGenericRepository<WishList> _wishListRepo,
             IGenericRepository<Product> _productsRepo)
         {
@@ -37,6 +41,7 @@ namespace API.Controllers
             mediaHandler = _mediaHandler;
             wishListRepo = _wishListRepo;
             productsRepo = _productsRepo;
+            mapper = _mapper;
         }
 
         [HttpPost("register")]
@@ -270,12 +275,17 @@ namespace API.Controllers
 
             if (userId != null)
             {
-                var user = await _userManager.Users.Include(u => u.WishList.Products).FirstOrDefaultAsync(u => u.Id == userId);
+                var user = await _userManager.Users
+                    .Include(u => u.WishList.Products)
+                    .ThenInclude(p => p.Pictures)
+                    .FirstOrDefaultAsync(u => u.Id == userId);
+
+                var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(user.WishList.Products);
 
                 return Ok(new
                 {
                     Id = user.WishListId,
-                    Products = user.WishList.Products.ToList(),
+                    Products = data
                 });
             }
             
@@ -316,14 +326,21 @@ namespace API.Controllers
 
             if (userId != null)
             {
-                var user = _userManager.Users.Include(u => u.WishList.Products).FirstOrDefault(u => u.Id == userId);
+                var user = _userManager.Users
+                    .Include(u => u.WishList.Products)
+                    .ThenInclude(p => p.Pictures)
+                    .FirstOrDefault(u => u.Id == userId);
                 var product = await productsRepo.GetByIdAsync(data.productId);
 
                 if (product != null)
                 {
                     user.WishList.Products.Remove(product);
                     await _userManager.UpdateAsync(user);
-                    return Ok(new ApiResponse(200, "Product Removed From WishList Successfully"));
+                    return Ok(new
+                    {
+                        Id = user.WishListId,
+                        Products = user.WishList.Products
+                    });
                 }
 
                 return NotFound(new ApiResponse(404, "Product Not Found"));

@@ -1,6 +1,8 @@
 import { AccountService } from './account/account.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from './shared/models/user';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,28 +11,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  currentUser$: IUser;
+  currentUser$: Observable<IUser>;
   title = 'Furnitica';
 
+
   constructor(private accountService: AccountService, public router: Router) {
+
 
   }
   ngOnInit(): void {
 
     this.loadCurrentUser()
+    this.loadWishList()
   }
 
   loadCurrentUser() {
 
     const token = localStorage.getItem('token');
     if (token) {
-      let result = this.accountService.loadCurrentUser(token).subscribe(() => {
-        console.log('loaded user')
-        console.log(this.accountService.getCurrentUserValue())
+      this.accountService.loadCurrentUser(token).subscribe(() => {
       }, error => {
         console.log(error)
       })
-      console.log(result)
+    }
+  }
+
+  loadWishList() {
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.accountService.getWishList(token).subscribe(() => {
+      }, error => {
+        console.log(error)
+      })
     }
   }
 }
