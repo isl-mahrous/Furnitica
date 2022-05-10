@@ -1,6 +1,7 @@
 import { AccountService } from './account/account.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from './shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   currentUser$: IUser;
   title = 'Furnitica';
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, public router: Router) {
 
   }
   ngOnInit(): void {

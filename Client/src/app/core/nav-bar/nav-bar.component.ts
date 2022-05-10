@@ -5,6 +5,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from 'src/app/shared/models/user';
 import { NavBarSearchService } from './nav-bar-search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +18,7 @@ export class NavBarComponent implements OnInit {
   currentUser$: Observable<IUser>;
 
   constructor(private basketService: BasketService, private accountService: AccountService,
-    private navBarService: NavBarSearchService) { }
+    private navBarService: NavBarSearchService, private router: Router) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
@@ -33,6 +34,7 @@ export class NavBarComponent implements OnInit {
 
 
   onSearch() {
+    this.router.navigateByUrl("/shop");
     this.navBarService.searchSource.next(this.searchTerm.nativeElement.value);
   }
 }

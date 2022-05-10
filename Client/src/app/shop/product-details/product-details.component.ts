@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/models/product';
+import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -10,62 +11,65 @@ import { ShopService } from '../shop.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product:IProduct;
-  quantity:number=1;
+  product: IProduct;
+  quantity: number = 1;
 
-  ratingList: boolean[] = [true,true,true,true,true];
-  rating:number=0;
+  ratingList: boolean[] = [true, true, true, true, true];
+  rating: number = 0;
 
-  constructor(private shopService:ShopService,private activeRoute:ActivatedRoute) { }
+  constructor(private shopService: ShopService, private activeRoute: ActivatedRoute, private breadCrum: BreadcrumbService) {
+    this.breadCrum.set("@productDetails", " ");
+  }
 
   ngOnInit(): void {
     this.loadProduct();
 
   }
 
-  loadProduct(){
-      this.shopService.getProduct(+this.activeRoute.snapshot.paramMap.get("id")).subscribe(product=>{
+  loadProduct() {
+    this.shopService.getProduct(+this.activeRoute.snapshot.paramMap.get("id")).subscribe(product => {
 
-        this.product=product;
-      },error=>{
-        console.log(error);
-      }
+      this.product = product;
+      this.breadCrum.set("@productDetails", product.name);
+    }, error => {
+      console.log(error);
+    }
 
-      );
+    );
   }
 
-  increaseQuantity(){
-    if(this.quantity+1>this.product.unitsInStock){
-        this.quantity=this.product.unitsInStock;
+  increaseQuantity() {
+    if (this.quantity + 1 > this.product.unitsInStock) {
+      this.quantity = this.product.unitsInStock;
     }
-    else{
+    else {
       this.quantity++;
     }
   }
-  decreaseQuantity(){
+  decreaseQuantity() {
 
-    if(this.quantity-1==0){
-      this.quantity=1;
+    if (this.quantity - 1 == 0) {
+      this.quantity = 1;
+    }
+    else {
+      this.quantity--;
+    }
+
   }
-  else{
-    this.quantity--;
-  }
-
-  }
 
 
-  setStar(data:any){
-    this.rating=data+1;
-    for(var i=0;i<=4;i++){
-      if(i<=data){
-        this.ratingList[i]=false;
+  setStar(data: any) {
+    this.rating = data + 1;
+    for (var i = 0; i <= 4; i++) {
+      if (i <= data) {
+        this.ratingList[i] = false;
       }
-      else{
-        this.ratingList[i]=true;
+      else {
+        this.ratingList[i] = true;
       }
-   }
-   console.log(this.rating);
-}
+    }
+    console.log(this.rating);
+  }
 
 
 

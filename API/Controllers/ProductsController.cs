@@ -53,6 +53,10 @@ namespace API.Controllers
             var products = await productRepo.GetAllAsync(specs);
             var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
 
+
+
+                // 1-1-2022
+                // 5-10-2022
             var reponse = new Pagination<ProductDto>()
             {
                 Count = totalItems,
@@ -249,6 +253,21 @@ namespace API.Controllers
             var maxPrice = result.Max(p => p.Price);
 
             return Ok(maxPrice);
+        }
+
+        //
+        [HttpGet("trendy")]
+        public async Task<ActionResult<List<ProductDto>>> GetTrendy()
+        {
+
+            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync(specs);
+            var trendy = result.Where(p => DateTime.Now.Subtract(p.ManufactureDate) <= new TimeSpan(30,0,0,0) )
+                    .OrderByDescending(p => p.UnitsSold).Take(5).ToList();
+
+            var data = mapper.Map<List<Product>, List<ProductDto>>(trendy);
+            
+            return data;
         }
 
 
