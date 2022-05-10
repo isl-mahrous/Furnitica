@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
-import { HomeRouterModule } from './home-router.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +11,10 @@ import { HomeRouterModule } from './home-router.module';
   ],
   imports: [
     CommonModule,
-    HomeRouterModule
+    SharedModule
+  ],
+  exports: [
+    HomeComponent
   ]
 })
 export class HomeModule { }

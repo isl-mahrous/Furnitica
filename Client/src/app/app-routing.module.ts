@@ -2,6 +2,7 @@ import { AuthAccessGuard } from './core/guards/AuthAccess.guard';
 import { ShopComponent } from './shop/shop.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 
@@ -12,9 +13,7 @@ const routes: Routes = [
   .then(mod => mod.CheckoutModule), data: { breadcrumb: "Checkout"  } 
   },
   {
-    path: "",
-    loadChildren: () => import("./home/home.module")
-      .then(mod => mod.HomeModule), data: { breadcrumb: "Home" }
+    path: "", component: HomeComponent, data: { breadcrumb: "Home" }
   },
 
 //   {
