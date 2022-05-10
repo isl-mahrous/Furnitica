@@ -49,13 +49,18 @@ namespace API.Controllers
             AppUser newUser = new AppUser();
             newUser.Email = registerDTO.Email;
             newUser.UserName = registerDTO.Username;
+            newUser.ProfilePicture = "https://localhost:7272/images/32190230-20c8-4efa-8a47-9ebb91f3cf0f_ktokatitmir0.jpg";
 
 
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
 
             if (result.Succeeded)
             {
-                return Ok(new ApiResponse(200, "User Created Successfully"));
+                return Ok(new
+                {
+                    result,
+                    userId = (await _userManager.FindByEmailAsync(newUser.Email)).Id,
+                });
             }
             else
             {

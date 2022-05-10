@@ -10,7 +10,7 @@ using System.Net;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
+    //[Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
     [ApiController]
     public class RoleController : ControllerBase
     {
@@ -41,7 +41,7 @@ namespace API.Controllers
         [HttpPost("AssignRole")]
         public async Task<IActionResult> AssignRoleToUser(UserRoleDto userRole)
         {
-            var role = await roleManager.FindByIdAsync(userRole.RoleId);
+            var role = await roleManager.FindByNameAsync(userRole.RoleName);
 
             if (role == null)
             {

@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.accountService.register(this.registerForm.value).subscribe(() => {
+    this.accountService.register(this.registerForm.value).subscribe((user) => {
 
       console.log('sign Up')
       console.log(this.registerForm.value)

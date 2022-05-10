@@ -60,6 +60,25 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
       map((response) => {
         console.log(response)
+        this.assignRoleToUser(
+          {
+            RoleName: 'Customer',
+            UserId: response['userId'],
+            Action: 1
+          }
+        ).subscribe(() => {
+
+          console.log('role assigned');
+        })
+      })
+    );
+  }
+
+  assignRoleToUser(values: any) {
+
+    return this.http.post(this.baseUrl + 'Role/AssignRole', values).pipe(
+      map((response) => {
+        console.log(response)
       })
     );
   }
