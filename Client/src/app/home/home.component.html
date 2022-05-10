@@ -1,19 +1,58 @@
-<div class="site-blocks-cover" style="background-image: url(../../assets/images/hero_1.jpg);" data-aos="fade">
-  <div class="container">
-    <div class="row align-items-start align-items-md-center justify-content-end">
-      <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-        <h1 class="mb-2">Finding Your Comfort</h1>
-        <div class="intro-text text-center text-md-left">
-          <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer
-            accumsan tincidunt fringilla. </p>
-          <p>
-            <a (click)="goToShop()" class="btn btn-sm btn-primary">Shop Now</a>
-          </p>
+<owl-carousel-o [options]="this.bannerOptions">
+  <ng-template carouselSlide>
+    <div class="site-blocks-cover" style="background-image: url(../../assets/images/banner_1.png);" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-start align-items-md-center justify-content-end">
+          <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
+            <h1 class="mb-2">Finding Your Comfort</h1>
+            <div class="intro-text text-center text-md-left">
+              <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
+              <p>
+                <a (click)="goToShop()" class="btn btn-sm btn-primary">Shop Now</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </ng-template>
+  <ng-template carouselSlide>
+    <div class="site-blocks-cover" style="background-image: url(../../assets/images/banner_2.png);" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-start align-items-md-center justify-content-end">
+          <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
+            <h1 class="mb-2">High Quality Service</h1>
+            <div class="intro-text text-center text-md-left">
+              <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
+              <p>
+                <a (click)="goToShop()" class="btn btn-sm btn-primary">Shop Now</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template carouselSlide>
+    <div class="site-blocks-cover" style="background-image: url(../../assets/images/banner_3.jpg);" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-start align-items-md-center justify-content-end">
+          <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
+            <h1 class="mb-2">Guarnteed Success</h1>
+            <div class="intro-text text-center text-md-left">
+              <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
+              <p>
+                <a (click)="goToShop()" class="btn btn-sm btn-primary">Shop Now</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</owl-carousel-o>
+
+
 
 <div class="site-section site-section-sm site-blocks-1">
   <div class="container">

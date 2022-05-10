@@ -14,6 +14,20 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private homeService: HomeService) { }
 
   trendyProducts: IProduct[];
+  bannerOptions: OwlOptions = {
+
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    dotsEach: true,
+    center: true,
+    navSpeed: 600,
+    nav: false,
+    items: 1,
+
+  };
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
