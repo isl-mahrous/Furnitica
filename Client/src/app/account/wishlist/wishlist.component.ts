@@ -12,15 +12,32 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WishlistComponent implements OnInit {
   currentUser$: Observable<IUser>;
-  currentWishList$: Observable<IWishList>;
+  currentWishList$: IWishList;
 
 
-  constructor(private accountService: AccountService, private route: ActivatedRoute,) { }
+  constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.accountService.getCurrentUserValue().userId)
     this.route.data.subscribe(() => {
-      this.currentWishList$ = this.accountService.WishList$;
+      this.currentWishList$ = this.accountService.getCurrentWishListValue();
     });
   }
 
+
+  removeFromWishList(productId: number) {
+
+    let token = localStorage.getItem('token')
+    if (token) {
+      console.log(token)
+      this.accountService.removeFromWishList(token, productId)
+      let newList = this.currentWishList$.products.filter(element => {
+        return element.id !== productId
+      })
+      this.currentWishList$.products = newList
+    }
+    else {
+      console.log('you are not logged in')
+    }
+  }
 }

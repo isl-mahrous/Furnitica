@@ -336,7 +336,11 @@ namespace API.Controllers
                 {
                     user.WishList.Products.Remove(product);
                     await _userManager.UpdateAsync(user);
-                    return Ok(new ApiResponse(200, "Product Removed From WishList Successfully"));
+                    return Ok(new
+                    {
+                        Id = user.WishListId,
+                        Products = user.WishList.Products
+                    });
                 }
 
                 return NotFound(new ApiResponse(404, "Product Not Found"));

@@ -1,3 +1,4 @@
+import { IProduct } from 'src/app/shared/models/product';
 import { IWishList } from './../shared/models/wishlist';
 import { environment } from './../../environments/environment';
 import { IUser } from './../shared/models/user';
@@ -121,5 +122,54 @@ export class AccountService {
         }
       })
     )
+  }
+
+  addToWishList(token, productId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`)
+    let body = {
+      productId: productId
+    }
+    return this.http.post(this.baseUrl + 'Account/wishlist/add', body, { headers })
+      .subscribe({
+        next: (response) => {
+          console.log(response)
+        },
+        error: (errors) => {
+          console.log(errors)
+        }
+      })
+  }
+
+  removeFromWishList(token, productId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`)
+    let body = {
+      productId: productId
+    }
+
+    return this.http.post(this.baseUrl + 'Account/wishlist/remove', body, { headers })
+      .subscribe({
+        next: (response: IWishList) => {
+          console.log(response)
+          this.currentUWishListSource.next(response)
+        },
+        error: (errors) => {
+          console.log(errors)
+        }
+      })
+  }
+
+  checkInWishList(productId) {
+
+    for (let i = 0; i < this.currentUWishListSource.value.products.length; i++) {
+
+      if (productId == this.currentUWishListSource.value.products[i].id) {
+
+        return true
+      }
+    }
+
+    return false
   }
 }

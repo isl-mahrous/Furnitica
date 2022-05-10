@@ -14,7 +14,7 @@
                 </tr>
               </thead>
               <tbody>
-                <ng-container *ngFor="let product of (currentWishList$ | async).products">
+                <ng-container *ngFor="let product of currentWishList$.products">
                   <tr>
                     <td class="product-thumbnail">
                       <img routerLink="shop/{{product.id}}" [src]="product.pictures[0]" alt="Image" class="img-fluid">
@@ -23,19 +23,9 @@
                       <h2 class="h5 text-black ">{{product.name}}</h2>
                     </td>
                     <td>{{product.price}}</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                    <td><a (click)="removeFromWishList(product.id)" class="btn btn-primary btn-sm">X</a></td>
                   </tr>
                 </ng-container>
-                <!-- <tr>
-                  <td class="product-thumbnail">
-                    <img src="/assets/images/cloth_1.jpg" alt="Image" class="img-fluid">
-                  </td>
-                  <td class="product-name">
-                    <h2 class="h5 text-black">Polo Shirt</h2>
-                  </td>
-                  <td>$49.00</td>
-                  <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
-                </tr> -->
               </tbody>
             </table>
           </ng-container>

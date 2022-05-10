@@ -1,4 +1,5 @@
-import { WishListResolver } from './wishlist.resolver';
+import { WishListGuard } from './../core/guards/wishlist.guard';
+import { WishListResolver } from '../core/resolvers/wishlist.resolver';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AuthAccessGuard } from './../core/guards/AuthAccess.guard';
 import { ProfileGuard } from './../core/guards/Profile.guard';
@@ -9,12 +10,13 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserResolver } from '../core/resolvers/user.resolver';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthAccessGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthAccessGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
-  { path: 'wishlist', component: WishlistComponent, resolve: { WishListResolver } },
+  { path: 'wishlist', component: WishlistComponent, resolve: { WishListResolver, UserResolver } },
 ]
 
 @NgModule({
