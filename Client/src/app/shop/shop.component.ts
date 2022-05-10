@@ -186,4 +186,10 @@ export class ShopComponent implements OnInit {
       this.getProducts();
     }
   }
+
+  clearFilters() {
+    this.shopParams = new ShopParams();
+    this.getProducts();
+    this.getMaxPrice();
+  }
 }
