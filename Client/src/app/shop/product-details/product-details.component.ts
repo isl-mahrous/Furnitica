@@ -57,7 +57,6 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-
   setStar(data: any) {
     this.rating = data + 1;
     for (var i = 0; i <= 4; i++) {
