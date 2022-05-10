@@ -44,7 +44,7 @@ namespace Infrastructure.Data.Repositories
         {
             var existingBasketItems = context.BasketItems.Where(i =>
             i.BasketId == basket.Id).ToList();
-            if (basket.BasketItems.Count == existingBasketItems.Count)
+            if (basket.BasketItems.Count >= existingBasketItems.Count)
             {
                 foreach (var item in basket.BasketItems)
                 {
@@ -66,6 +66,7 @@ namespace Infrastructure.Data.Repositories
                 .Any(p2 => p2.ProductId == p.ProductId)).SingleOrDefault();
                 context.BasketItems.Remove(deletedItem);
             }
+
 
             await context.SaveChangesAsync();
 
