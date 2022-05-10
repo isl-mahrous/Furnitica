@@ -1,3 +1,5 @@
+import { WishListResolver } from './wishlist.resolver';
+import { WishlistComponent } from './wishlist/wishlist.component';
 import { AuthAccessGuard } from './../core/guards/AuthAccess.guard';
 import { ProfileGuard } from './../core/guards/Profile.guard';
 import { ProfileComponent } from './profile/profile.component';
@@ -12,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthAccessGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthAccessGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
+  { path: 'wishlist', component: WishlistComponent, resolve: { WishListResolver } },
 ]
 
 @NgModule({

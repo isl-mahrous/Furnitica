@@ -32,12 +32,12 @@
                                     <tr *ngFor="let product of basketProducts">
                                         <th scope="row">
                                             <div class="p-2">
-                                                <img src="{{product.pictureUrl}}"
-                                                class="img-fluid" style="max-height:50px;">
+                                                <img src="{{product.pictureUrl}}" class="img-fluid"
+                                                    style="max-height:50px;">
                                                 <div class="ml-3 d-inline-block align-middle">
                                                     <h5 class="mb-0">
                                                         <a routerLink="/shop/{{product.id}}"
-                                                        class="text-dark">{{product.productName}}</a>
+                                                            class="text-dark">{{product.productName}}</a>
                                                     </h5>
                                                     <span class="text-muted font-weight-normal font-italic d-block">
                                                         Type: {{product.type}}
@@ -50,12 +50,14 @@
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex align-items-center">
-                                                <i (click)="decrementItemQuantity(product)" class="fa fa-minus-circle text-warning mr-2"
-                                                style="cursor:pointer; font-size: 2em;"></i>
+                                                <i (click)="decrementItemQuantity(product)"
+                                                    class="fa fa-minus-circle text-warning mr-2"
+                                                    style="cursor:pointer; font-size: 2em;"></i>
                                                 <span class="font-weight-bold"
-                                                style="font-size:1.5em;">{{product.quantity}}</span>
-                                                <i (click)="incrementItemQuantity(product)" class="fa fa-plus-circle text-warning mx-2"
-                                                style="cursor:pointer; font-size: 2em;"></i>
+                                                    style="font-size:1.5em;">{{product.quantity}}</span>
+                                                <i (click)="incrementItemQuantity(product)"
+                                                    class="fa fa-plus-circle text-warning mx-2"
+                                                    style="cursor:pointer; font-size: 2em;"></i>
                                             </div>
                                         </td>
                                         <td class="align-middle">
@@ -64,7 +66,7 @@
                                         <td class="align-middle text-center">
                                             <a class="text-danger">
                                                 <i (click)="removeBasketItem(product)" class="fa fa-trash"
-                                                 style="font-size:2em;cursor:pointer;"></i>
+                                                    style="font-size:2em;cursor:pointer;"></i>
                                             </a>
                                         </td>
                                     </tr>

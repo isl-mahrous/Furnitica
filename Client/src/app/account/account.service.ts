@@ -1,3 +1,4 @@
+import { IWishList } from './../shared/models/wishlist';
 import { environment } from './../../environments/environment';
 import { IUser } from './../shared/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,6 +13,8 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<IUser>(null);
   currentUser$ = this.currentUserSource.asObservable();
+  private currentUWishListSource = new BehaviorSubject<IWishList>(null);
+  WishList$ = this.currentUWishListSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
     // this.currentUser$ = null
@@ -20,6 +23,11 @@ export class AccountService {
   getCurrentUserValue() {
 
     return this.currentUserSource.value;
+  }
+
+  getCurrentWishListValue() {
+
+    return this.currentUWishListSource.value;
   }
 
   loadCurrentUser(token: string) {
@@ -96,6 +104,21 @@ export class AccountService {
       map((response) => {
 
         console.log(response)
+      })
+    )
+  }
+
+
+  getWishList(token) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`)
+
+    return this.http.get(this.baseUrl + 'Account/wishlist', { headers }).pipe(
+      map((wishList: IWishList) => {
+
+        if (wishList) {
+          this.currentUWishListSource.next(wishList)
+        }
       })
     )
   }
