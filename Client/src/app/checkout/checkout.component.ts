@@ -20,20 +20,20 @@ export class CheckoutComponent implements OnInit {
     this.checkoutForm = this.fb.group({
     addressForm : this.fb.group(
       {
-        firstName : [null, Validators.required],
-        lastName : [null, Validators.required],
-        street : [null, Validators.required],
-        cirt : [null, Validators.required],
-        state : [null, Validators.required],
-        zipcode : [null, Validators.required],
+        firstName : ['', [Validators.required]],
+        lastName : ['', [Validators.required]],
+        street : ['', [Validators.required]],
+        city : ['', [Validators.required]],
+        state : ['', [Validators.required]],
+        zipcode : ['', [Validators.required]],
       }),
 
       deliveryForm : this.fb.group({
-        deliveryMethod : [null, Validators.required]
+        deliveryMethod : ['', [Validators.required]],
       }),
 
       paymentForm : this.fb.group({
-        nameOnCard : [null, Validators.required]
+        nameOnCard : ['', [Validators.required]],
       }),
 
     });
