@@ -25,33 +25,33 @@ export class BasketComponent implements OnInit {
       switchMap(() => this.basket$),
       switchMap((data) => this.basketService.getBasketProducts(data.id)),
       switchMap((data) =>
-      this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
+        this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
     ).subscribe(data => {
-       this.basketProducts = data;
+      this.basketProducts = data;
     })
   }
 
   createBasketViewModel(data: import("../shared/models/product").IProduct[], arg1: IBasket): any {
     throw new Error('Method not implemented.');
   }
-;
+  ;
 
   // removeBasketItem(product: productViewModel){
   //   this.basketService.removeItemFromBasket(product);
   // }
 
   removeBasketItem(basketItem: IBasketItem) {
-    var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
+    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
     this.basketService.removeItemFromBasket(item);
   }
 
   incrementItemQuantity(basketItem: IBasketItem) {
-    var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
+    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
     this.basketService.incrementItemQuantity(item);
   }
 
   decrementItemQuantity(basketItem: IBasketItem) {
-    var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
+    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
     this.basketService.decrementItemQuantity(item);
   }
 }
