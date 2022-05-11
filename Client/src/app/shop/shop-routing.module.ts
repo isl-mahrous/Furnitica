@@ -6,7 +6,7 @@ import { WishListResolver } from '../core/resolvers/wishlist.resolver';
 
 const routes: Routes = [
   { path: "", component: ShopComponent },
-  { path: ":id", component: ProductDetailsComponent, resolve: [WishListResolver], data: { breadcrumb: { alias: "productDetails" } } },
+  { path: ":id", component: ProductDetailsComponent, data: { breadcrumb: { alias: "productDetails" } } },
 ]
 
 @NgModule({

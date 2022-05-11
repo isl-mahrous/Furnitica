@@ -6,10 +6,12 @@
       <div class="col-md-6">
 
         <carousel>
-          <ng-container *ngFor="let item of product.pictures">
-            <slide>
-              <img src="{{item}}" alt="{{product.name}}"style="display: block; width: 100%;">
-            </slide>
+          <ng-container *ngIf="product !== null">
+            <ng-container *ngFor="let item of product?.pictures">
+              <slide>
+                <img src="{{item}}" alt="{{product?.name}}" style="display: block; width: 100%;">
+              </slide>
+            </ng-container>
           </ng-container>
 
         </carousel>
@@ -17,35 +19,40 @@
 
 
       <div class="col-md-6">
-        <h2 class="text-black">{{product.name}}</h2>
-        <p>{{product.description}}</p>
+        <h2 class="text-black">{{product?.name}}</h2>
+        <p>{{product?.description}}</p>
 
-        <p><strong class="text-primary h4">{{product.price|currency}}</strong></p>
-        <p><strong>Type: <span  class="text-primary">{{product.productType}}</span></strong></p>
-        <p><strong>Brand: <span  class="text-primary">{{product.productBrand}}</span></strong></p>
+        <p><strong class="text-primary h4">{{product?.price|currency}}</strong></p>
+        <p><strong>Type: <span class="text-primary">{{product?.productType}}</span></strong></p>
+        <p><strong>Brand: <span class="text-primary">{{product?.productBrand}}</span></strong></p>
 
         <p><strong>
-          Availibility: <span class="text-primary" *ngIf="product.unitsInStock!=0;else showOutStock ">In Stock</span>
-          <ng-template #showOutStock> <span class="text-danger">Out Stock</span> </ng-template>
-        </strong> </p>
+            Availibility: <span class="text-primary" *ngIf="product?.unitsInStock!=0;else showOutStock ">In Stock</span>
+            <ng-template #showOutStock> <span class="text-danger">Out Stock</span> </ng-template>
+          </strong> </p>
 
 
         <div class="mb-5">
 
           <div class="input-group mb-3" style="max-width: 120px;">
 
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-primary js-btn-minus" type="button" (click)="decreaseQuantity()">&minus;</button>
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-primary js-btn-minus" type="button"
+                (click)="decreaseQuantity()">&minus;</button>
+            </div>
+            <input type="text" class="form-control text-center" [value]="quantity" placeholder=""
+              aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary js-btn-plus" type="button"
+                (click)="increaseQuantity()">&plus;</button>
+            </div>
           </div>
-          <input type="text" class="form-control text-center" [value]="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary js-btn-plus" type="button" (click)="increaseQuantity()">&plus;</button>
-          </div>
-        </div>
 
         </div>
-        <p *ngIf="product.unitsInStock!=0"><a href="cart.html" class="buy-now btn btn-sm btn-primary ">Add To Cart</a></p>
-        <p *ngIf="product.unitsInStock==0"><a href="cart.html" class="buy-now btn btn-sm btn-primary disabled">Add To Cart</a></p>
+        <p *ngIf="product?.unitsInStock!=0"><a href="cart.html" class="buy-now btn btn-sm btn-primary ">Add To Cart</a>
+        </p>
+        <p *ngIf="product?.unitsInStock==0"><a href="cart.html" class="buy-now btn btn-sm btn-primary disabled">Add To
+            Cart</a></p>
 
       </div>
     </div>
@@ -57,7 +64,7 @@
   <tabset>
     <tab heading="Specification" id="tab1">
 
-      <div >
+      <div>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -67,7 +74,7 @@
                   <h5>Width</h5>
                 </td>
                 <td>
-                  <h5>{{product.width}}</h5>
+                  <h5>{{product?.width}}</h5>
                 </td>
               </tr>
               <tr>
@@ -75,7 +82,7 @@
                   <h5>Height</h5>
                 </td>
                 <td>
-                  <h5>{{product.height}}</h5>
+                  <h5>{{product?.height}}</h5>
                 </td>
               </tr>
               <tr>
@@ -83,7 +90,7 @@
                   <h5>Length</h5>
                 </td>
                 <td>
-                  <h5>{{product.length}}</h5>
+                  <h5>{{product?.length}}</h5>
                 </td>
               </tr>
               <tr>
@@ -91,7 +98,7 @@
                   <h5>Weight</h5>
                 </td>
                 <td>
-                  <h5>{{product.weight}}</h5>
+                  <h5>{{product?.weight}}</h5>
                 </td>
               </tr>
               <tr>
@@ -99,7 +106,7 @@
                   <h5>Color</h5>
                 </td>
                 <td>
-                  <h5>{{product.color}}</h5>
+                  <h5>{{product?.color}}</h5>
                 </td>
               </tr>
               <tr>
@@ -107,7 +114,7 @@
                   <h5>Manufacture Date</h5>
                 </td>
                 <td>
-                  <h5>{{product.manufactureDate|date}}</h5>
+                  <h5>{{product?.manufactureDate|date}}</h5>
                 </td>
               </tr>
 
@@ -122,178 +129,131 @@
 
 
 
-    <tab heading="Reviews" >
+    <tab heading="Reviews">
 
 
-      <div >
+      <div>
         <div class="row">
           <div class="col-lg-6">
             <div class="row ">
               <div class="col-6">
-                <div >
+                <div>
                   <p><strong class="text-primary h5">Overall</strong></p>
-                  <p><strong class="text-primary h5">4.0</strong></p>
-                  <p class="h6" >(03 Reviews)</p>
+                  <p><strong class="text-primary h5">{{(Reviews$ | async)?.rating}} Stars</strong></p>
+                  <p class="h6">({{(Reviews$ | async)?.reviews.length}} Reviews) </p>
 
                 </div>
               </div>
               <div class="col-6">
-                <div >
-                  <h3>Based on 3 Reviews</h3>
+                <div>
+                  <h3>Based on {{productReviews?.reviews.length}} Reviews</h3>
                   <ul class="list">
+
                     <li>
-                      <a href="#">5 Star
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i> 01</a>
+                      <a>5 Star
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i> {{(Reviews$ | async)?.stars[4]}}</a>
                     </li>
                     <li>
-                      <a href="#">4 Star
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i> 01</a>
+                      <a>4 Star
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[3]}}</a>
                     </li>
                     <li>
-                      <a href="#">3 Star
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i> 01</a>
+                      <a>3 Star
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[2]}}</a>
                     </li>
                     <li>
-                      <a href="#">2 Star
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i> 01</a>
+                      <a>2 Star
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[1]}}</a>
                     </li>
                     <li>
-                      <a href="#">1 Star
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i>
-                        <i class="fa fa-star" style="color:yellow"></i> 01</a>
+                      <a>1 Star
+                        <i class="fa fa-star" style="color:purple"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[0]}}</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div >
-              <div >
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="img/product/single-product/review-1.png" alt="" />
+            <div>
+              <ng-container *ngIf="productReviews !== null">
+                <ng-container *ngFor="let review of (Reviews$ | async)?.reviews">
+                  <div class="review_item">
+                    <div class="media">
+                      <!-- <div class="d-flex">
+                        <img src="/assets/images/banner_1.png" alt="" />
+                      </div> -->
+                      <div class="media-body">
+                        <h4>{{review?.userName}}</h4>
+                        <ng-container *ngFor="let star of [1,2,3,4,5]">
+                          <ng-container *ngIf="star <= review?.stars">
+                            <i class="fa fa-star" style="color:purple"></i>
+                          </ng-container>
+                          <ng-container *ngIf="star > review?.stars">
+                            <i class="fa fa-star-o"></i>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <p>
+                      {{review?.body}}
+                    </p>
                   </div>
-                  <div class="media-body">
-                    <h4>Blake Ruiz</h4>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                  </div>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo
-                </p>
-              </div>
-              <div >
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="img/product/single-product/review-2.png" alt="" />
-                  </div>
-                  <div class="media-body">
-                    <h4>Blake Ruiz</h4>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                    <i class="fa fa-star" style="color:yellow"></i>
-                  </div>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo
-                </p>
-              </div>
-              <div class="review_item">
-                <div class="media">
-                  <div class="d-flex">
-                    <img src="img/product/single-product/review-3.png" alt="" />
-                  </div>
-                  <div class="media-body">
-                    <h4>Blake Ruiz</h4>
-                    <i class="fa fa-star " style="color:yellow"></i>
-                    <i class="fa fa-star"  style="color:yellow"></i>
-                    <i class="fa fa-star"  style="color:yellow"></i>
-                    <i class="fa fa-star"  style="color:yellow"></i>
-                    <i class="fa fa-star"  style="color:yellow"></i>
-                  </div>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo
-                </p>
-              </div>
+                </ng-container>
+              </ng-container>
             </div>
           </div>
           <div class="col-lg-6">
 
             <div class="review_box">
-              <h4>Add a Review</h4>
-              <p class="d-inline">Your Rating:   </p>
-              <ul class="list-inline d-inline">
-                <li class="list-inline-item">
-                <a *ngFor="let item of ratingList; let i=index " (click)="setStar(i)">
-                  <i *ngIf="item" class="fa fa-star-o" ></i>
-                  <i *ngIf="!item" class="fa fa-star" style="color:yellow"></i>
-                 </a>
-                </li>
-              </ul>
-              <p class="d-inline">    Outstanding</p>
+              <ng-container *ngIf="currentUser !== null">
+                <h4>Add a Review</h4>
+                <p class="d-inline">Your Rating: </p>
+                <ul class="list-inline d-inline">
+                  <li class="list-inline-item">
+                    <a *ngFor="let item of ratingList; let i=index " (click)="setStar(i)">
+                      <i *ngIf="item" class="fa fa-star-o"></i>
+                      <i *ngIf="!item" class="fa fa-star" style="color:purple"></i>
+                    </a>
+                  </li>
+                </ul>
+                <p class="d-inline"> Outstanding</p>
+                <div class=" mt-1 row ">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea [(ngModel)]="reviewBody" class="form-control" name="message" rows="1" cols="5"
+                        placeholder="Review"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-right">
+                    <button (click)="submitReview()" type="submit" value="submit" class="btn btn-sm btn-primary">
+                      Submit Now
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="currentUser === null">
+                Please Login To Add Your Review
+              </ng-container>
 
-
-              <form class=" mt-1 row " >
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Your Full name" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email Address" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="number" placeholder="Phone Number" />
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <textarea class="form-control" name="message" rows="1" placeholder="Review"></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12 text-right">
-                  <button type="submit" value="submit" class="btn btn-sm btn-primary">
-                    Submit Now
-                  </button>
-                </div>
-              </form>
             </div>
           </div>
         </div>
@@ -302,6 +262,3 @@
     </tab>
   </tabset>
 </div>
-
-
-

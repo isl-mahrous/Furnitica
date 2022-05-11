@@ -18,8 +18,11 @@ export class ProductCardComponent implements OnInit {
   constructor(private basketService: BasketService, private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.wishListItems = this.accountService.getCurrentWishListValue()
-    this.checkInWishList()
+    if (localStorage.getItem('token') !== null) {
+      this.wishListItems = this.accountService.getCurrentWishListValue()
+      this.checkInWishList()
+    }
+
   }
 
   addItemToBasket() {
@@ -52,8 +55,10 @@ export class ProductCardComponent implements OnInit {
   }
 
   checkInWishList() {
+    if (localStorage.getItem('token') !== null) {
 
-    this.inWishList = this.accountService.checkInWishList(this.product.id)
-    console.log(this.inWishList)
+      this.inWishList = this.accountService.checkInWishList(this.product.id)
+      console.log(this.inWishList)
+    }
   }
 }

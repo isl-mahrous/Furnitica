@@ -20,8 +20,8 @@ namespace API.Helpers
                 ;
 
             CreateMap<Review, ReviewDto>()
-                .ForMember(d => d.ProductName, o => o.MapFrom(s => s.Product.Name)
-                );
+                .ForMember(d => d.ProductName, o => o.MapFrom(s => s.Product.Name))
+                .ForMember(d => d.UserName, o => o.MapFrom(s => s.User.UserName));
                 
             CreateMap<ProductType, ProductTypeDto>().ReverseMap();
 
