@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 
@@ -14,7 +15,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    WishlistComponent
 
   ],
   imports: [

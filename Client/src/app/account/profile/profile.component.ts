@@ -21,43 +21,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser$ = this.accountService.currentUser$
-    // this.createImageForm();
   }
 
-  // createImageForm() {
 
-  //   this.changeImageForm = new FormGroup({
-  //     id: new FormControl(this.accountService.getCurrentUserValue().userId, [Validators.required]),
-  //     image: new FormControl('', [Validators.required])
-  //   });
-  // }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-
-  // uploadFile(event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.changeImageForm.patchValue({
-  //     avatar: file
-  //   });
-  //   this.changeImageForm.get('image').updateValueAndValidity()
-  // }
-
-  // onSubmit() {
-
-  //   var formData: any = new FormData();
-  //   console.log(this.changeImageForm.value);
-  //   formData.append("id", this.changeImageForm.get('id').value);
-  //   formData.append("image", this.changeImageForm.get('image').value);
-  //   console.log(formData);
-  //   this.http
-  //     .post('https://localhost:7272/api/account', formData)
-  //     .subscribe({
-  //       next: (response) => console.log(response),
-  //       error: (error) => console.log(error),
-  //     });
-  // }
 
   uploadFile(files) {
 
