@@ -36,14 +36,14 @@ export class BasketComponent implements OnInit {
   }
 ;
 
-  removeBasketItem(product: productViewModel){
-    this.basketService.removeItemFromBasket(product);
-  }
-
-  // removeBasketItem(basketItem: IBasketItem) {
-  //   var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
-  //   this.basketService.removeItemFromBasket(item);
+  // removeBasketItem(product: productViewModel){
+  //   this.basketService.removeItemFromBasket(product);
   // }
+
+  removeBasketItem(basketItem: IBasketItem) {
+    var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
+    this.basketService.removeItemFromBasket(item);
+  }
 
   incrementItemQuantity(basketItem: IBasketItem) {
     var item  = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity , "Picture Url", "Brand Name", "Type");
