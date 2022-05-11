@@ -3,7 +3,6 @@ using API.Errors;
 using API.Helpers;
 using Core.Entities;
 using Core.Interfaces;
-using Core.Specifications;
 using JWTAuth.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +24,7 @@ namespace API.Controllers
         private readonly IMediaHandler mediaHandler;
         private readonly IGenericRepository<WishList> wishListRepo;
         private readonly IGenericRepository<Product> productsRepo;
+
         public AccountController(
             UserManager<AppUser> user,
             IConfiguration config,
@@ -354,6 +354,5 @@ namespace API.Controllers
 
             return userId;
         }
-
     }
 }

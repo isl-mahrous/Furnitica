@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IBasket, IBasketItem, IBasketTotals } from '../shared/models/basket';
+import { IDeliveryMethod } from '../shared/models/deliveryMethod';
 import { IProduct } from '../shared/models/product';
 import { productViewModel } from '../shared/viewmodels/product-viewmodel';
 
@@ -13,9 +14,11 @@ export class BasketService {
   private baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket>(null);
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
-  private userId = "114ea7f4-b4cb-4614-a50f-e23ab17101ef"
+  private userId = "d54b4448-50e0-47d1-a3a3-c4d07610e759"
   basket$ = this.basketSource.asObservable();
   basketTotal$ = this.basketTotalSource.asObservable();
+  shipping = 0;
+
 
   constructor(private http:HttpClient) {
     this.getBasket(this.userId);
@@ -127,6 +130,11 @@ export class BasketService {
   getBasketProducts(basketId:number)
   {
     return this.http.get<IProduct[]>(`${this.baseUrl}basket/${basketId}`);
+  }
+
+  setShippingPrice(deliveryMethod: IDeliveryMethod) {
+    this.shipping = deliveryMethod.price;
+    this.calculateTotals();
   }
 
 

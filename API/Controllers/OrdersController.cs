@@ -30,7 +30,7 @@ namespace API.Controllers
         {
             email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
-            var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
+            var address = _mapper.Map<AddressDto, Core.Entities.OrderAggregate.Address>(orderDto.ShipToAddress);
 
             var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, int.Parse(orderDto.BasketId), address);
 

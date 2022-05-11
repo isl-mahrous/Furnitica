@@ -99,4 +99,12 @@ export class AccountService {
       })
     )
   }
+
+  // getUserAddress(){
+  //   return this.http.get<IAddress>(this.baseUrl + "/account/address");
+  // }
+
+  // updateUserAddress(address : IAddress){
+  //   return this.http.put<IAddress>(this.baseUrl + "account/address", address);
+  // }
 }
