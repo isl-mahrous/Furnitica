@@ -18,27 +18,27 @@
       <ng-container *ngIf="inWishList === false">
         <li><a (click)="addToWishList()"><i class="fa fa-heart"></i></a></li>
       </ng-container>
-      <li><a routerLink="{{product.id}}"><i class="fa fa-eye"></i></a></li>
+      <li><a routerLink="{{product?.id}}"><i class="fa fa-eye"></i></a></li>
     </ul>
   </div>
   <div class="product-image">
     <div class="image">
-      <ng-container *ngIf="product.pictures"></ng-container>
+      <ng-container *ngIf="product?.pictures"></ng-container>
       <carousel>
-        <ng-container *ngFor="let item of product.pictures">
+        <ng-container *ngFor="let item of product?.pictures">
           <slide>
-            <img src="{{item}}" alt="{{product.name}}" style="display: block; width: 100%;">
+            <img src="{{item}}" alt="{{product?.name}}" style="display: block; width: 100%;">
           </slide>
         </ng-container>
 
       </carousel>
 
-      <ng-container *ngIf="product.pictures.length === 0">
+      <ng-container *ngIf="product?.pictures.length === 0">
         <img
           src="https://wuxiaworldsite.com/wp-content/uploads/2020/02/although-its-the-weakest-an-unprofitable-occupation%E3%80%8Eblacksmith%E3%80%8F-has-become-the-strongest-realized-he-can-make-anything-he-wants-the-man-started-his-leisurely-life.jpg"
           alt="Image placeholder" class="img-fluid">
       </ng-container>
     </div>
-    <span class="product-sale-label">{{product.productBrand}}</span>
+    <span class="product-sale-label">{{product?.productBrand}}</span>
   </div>
 </div>

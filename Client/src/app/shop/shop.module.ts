@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     SharedModule,
     CarouselModule.forRoot(),
     TabsModule.forRoot(),
-    NgxSliderModule
+    NgxSliderModule,
+    FormsModule
   ],
   exports: [
     ShopComponent,

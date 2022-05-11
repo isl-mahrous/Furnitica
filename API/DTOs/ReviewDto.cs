@@ -10,5 +10,7 @@
         public int Stars { get; set; }
 
         public string ProductName { get; set; }
+
+        public string UserName { get; set; }
     }
 }

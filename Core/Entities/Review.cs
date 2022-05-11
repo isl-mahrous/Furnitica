@@ -32,6 +32,10 @@ namespace Core.Entities
         [JsonIgnore]
         public Product Product { get; set; }
 
+        public string UserId { get; set; }
 
+        [ForeignKey("UserId")]
+        [JsonIgnore]
+        public AppUser User { get; set; }
     }
 }

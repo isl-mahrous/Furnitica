@@ -24,7 +24,7 @@ namespace Core.Entities
         public string Color { get; set; }
 
         [JsonIgnore]
-        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
 
         [JsonIgnore]
         public virtual ICollection<Media> Pictures { get; set; }

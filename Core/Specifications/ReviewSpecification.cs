@@ -17,6 +17,7 @@ namespace Core.Specifications
 
         public ReviewSpecification(int productId = -1) : base()
         {
+            Stars = new int[5];
             // Default Ordering
             AddOrderByDescending(r => r.Date);
 
@@ -26,6 +27,12 @@ namespace Core.Specifications
             }
 
             AddInclude(r => r.Product);
+            AddInclude(r => r.User);
+        }
+
+        public int[] getStars()
+        {
+            return Stars;
         }
 
         public void GetTotalReviews(IReadOnlyList<Review> reviews)
