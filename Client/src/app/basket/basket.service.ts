@@ -113,7 +113,7 @@ export class BasketService {
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     // TODO : Change this later
-    const shipping = 0;
+    const shipping = this.shipping;
     const subtotal = basket.basketItems.reduce((a,b) => (b.price * b.quantity) + a, 0);
     const total = subtotal + shipping;
     this.basketTotalSource.next({
@@ -142,7 +142,6 @@ export class BasketService {
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
     this.shipping = deliveryMethod.price;
     this.calculateTotals();
-
   }
 
   private getUserId(){

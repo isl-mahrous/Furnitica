@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account/account.service';
+import { BasketService } from '../basket/basket.service';
+import { IDeliveryMethod } from '../shared/models/deliveryMethod';
 
 @Component({
   selector: 'app-checkout',
@@ -11,7 +13,7 @@ export class CheckoutComponent implements OnInit {
 
   checkoutForm : FormGroup;
 
-  constructor(private fb : FormBuilder, private accountService : AccountService) { }
+  constructor(private fb : FormBuilder, private basketService : BasketService) { }
 
   ngOnInit(): void {
     this.createCheckoutForm();
@@ -40,5 +42,4 @@ export class CheckoutComponent implements OnInit {
 
     });
   }
-
 }
