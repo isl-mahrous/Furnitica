@@ -82,6 +82,9 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<S
 //Basket Repository Service
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+//Payment Service
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 
 
 // Order Service

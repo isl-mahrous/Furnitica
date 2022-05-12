@@ -17,5 +17,10 @@ namespace Core.Entities
         [JsonIgnore]
         public virtual AppUser User { get; set; }
         public string UserId { get; set; }
+        public int? DeliveryMethodId { get; set; }
+        public string ClientSecret { get; set; }
+        public string PaymentIntentId { get; set; }
+        public decimal? ShippingPrice { get; set; }
+
     }
 }

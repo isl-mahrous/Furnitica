@@ -68,6 +68,13 @@ namespace Infrastructure.Data.Repositories
                 context.BasketItems.Remove(deletedItem);
             }
 
+            // Update existing basket with payment information
+
+            var existingBasket = context.Baskets.Find(basket.Id);
+            existingBasket.ClientSecret = basket.ClientSecret;
+            existingBasket.DeliveryMethodId = basket.DeliveryMethodId;
+            existingBasket.PaymentIntentId = basket.PaymentIntentId;
+            existingBasket.ShippingPrice = basket.ShippingPrice;
 
             await context.SaveChangesAsync();
 
