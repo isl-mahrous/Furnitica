@@ -16,7 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,6 @@ import { ToastrModule } from 'ngx-toastr';
     NgxSpinnerModule,
     HomeModule,
     ToastrModule,
-    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
