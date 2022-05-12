@@ -13,7 +13,6 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { HomeModule } from './home/home.module';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent

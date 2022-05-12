@@ -40,7 +40,7 @@ export class BasketComponent implements OnInit {
   //   this.basketService.removeItemFromBasket(product);
   // }
 
-  removeBasketItem(basketItem: IBasketItem) {
+removeBasketItem(basketItem: IBasketItem) {
     var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
     this.basketService.removeItemFromBasket(item);
   }
