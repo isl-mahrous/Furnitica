@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/account/account.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { BasketService } from 'src/app/basket/basket.service';
@@ -12,14 +13,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
-  wishListItems: IWishList;
+  wishListItems: Observable<IWishList>;
   currentWishList$: any;
   inWishList: boolean = false;
   constructor(private basketService: BasketService, private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('token') !== null) {
-      this.wishListItems = this.accountService.getCurrentWishListValue()
+      this.wishListItems = this.accountService.WishList$
       this.checkInWishList()
     }
 
@@ -65,8 +66,8 @@ export class ProductCardComponent implements OnInit {
       .subscribe({
         next: ((response) => {
 
-          this.accountService.removeFromWishList(localStorage.getItem('token'), this.product.id)
-          this.inWishList = false
+
+          this.inWishList = this.accountService.checkInWishList(this.product.id)
         }),
         error: ((error) => {
           console.log('you are not logged in')

@@ -12,16 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WishlistComponent implements OnInit {
   currentUser$: Observable<IUser>;
-  currentWishList$: IWishList;
+  currentWishList$: Observable<IWishList>;
 
 
   constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // console.log(this.accountService.getCurrentUserValue().userId)
-    this.route.data.subscribe(() => {
-      this.currentWishList$ = this.accountService.getCurrentWishListValue();
-    });
+    this.currentWishList$ = this.accountService.WishList$;
   }
 
 
@@ -34,10 +32,10 @@ export class WishlistComponent implements OnInit {
 
           console.log(response)
           this.accountService.removeFromWishList(token, productId)
-          let newList = this.currentWishList$.products.filter(element => {
-            return element.id !== productId
-          })
-          this.currentWishList$.products = newList
+          // let newList = this.currentWishList$.products.filter(element => {
+          //   return element.id !== productId
+          // })
+          // this.currentWishList$.products = newList
         }),
         error: ((error) => {
           console.log('you are not logged in')

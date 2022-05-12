@@ -148,8 +148,9 @@ export class AccountService {
     }
     return this.http.post(this.baseUrl + 'Account/wishlist/add', body, { headers })
       .subscribe({
-        next: (response) => {
+        next: (response: IWishList) => {
           // console.log(response)
+          this.currentUWishListSource.next(response)
         },
         error: (errors) => {
           // console.log(errors)

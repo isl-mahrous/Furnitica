@@ -307,7 +307,20 @@ namespace API.Controllers
                 {
                     user.WishList.Products.Add(product);
                     await _userManager.UpdateAsync(user);
-                    return Ok(new ApiResponse(200, "Product Added to WishList Successfully"));
+
+                    var userData = await _userManager.Users
+                        .Include(u => u.WishList.Products)
+                        .ThenInclude(p => p.Pictures)
+                        .FirstOrDefaultAsync(u => u.Id == userId);
+
+                    var productsData = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(user.WishList.Products);
+
+                    return Ok(new {
+                        response = new ApiResponse(200, "Product Added to WishList Successfully"),
+                        Id = user.WishListId,
+                        Products = productsData
+                    });
+
                 }
 
                 return NotFound(new ApiResponse(404, "Product Not Found"));
@@ -335,10 +348,18 @@ namespace API.Controllers
                 {
                     user.WishList.Products.Remove(product);
                     await _userManager.UpdateAsync(user);
+
+                    var userData = await _userManager.Users
+                        .Include(u => u.WishList.Products)
+                        .ThenInclude(p => p.Pictures)
+                        .FirstOrDefaultAsync(u => u.Id == userId);
+
+                    var productsData = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(user.WishList.Products);
+
                     return Ok(new
                     {
                         Id = user.WishListId,
-                        Products = user.WishList.Products
+                        Products = productsData
                     });
                 }
 
