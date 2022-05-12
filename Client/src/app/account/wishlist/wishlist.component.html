@@ -3,7 +3,7 @@
     <div class="row mb-5">
       <form class="col-md-12">
         <div class="site-blocks-table">
-          <ng-container>
+          <ng-container *ngIf="currentWishList$?.products !== null">
             <table class="table">
               <thead>
                 <tr>
@@ -14,20 +14,23 @@
                 </tr>
               </thead>
               <tbody>
-                <ng-container *ngFor="let product of currentWishList$.products">
+                <ng-container *ngFor="let product of currentWishList$?.products">
                   <tr>
                     <td class="product-thumbnail">
-                      <img routerLink="shop/{{product.id}}" [src]="product.pictures[0]" alt="Image" class="img-fluid">
+                      <img routerLink="shop/{{product?.id}}" [src]="product?.pictures[0]" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
-                      <h2 class="h5 text-black ">{{product.name}}</h2>
+                      <h2 class="h5 text-black ">{{product?.name}}</h2>
                     </td>
-                    <td>{{product.price}}</td>
-                    <td><a (click)="removeFromWishList(product.id)" class="btn btn-primary btn-sm">X</a></td>
+                    <td>{{product?.price}}</td>
+                    <td><a (click)="removeFromWishList(product?.id)" class="btn btn-primary btn-sm">X</a></td>
                   </tr>
                 </ng-container>
               </tbody>
             </table>
+          </ng-container>
+          <ng-container *ngIf="currentWishList$?.products === null">
+            Add Something to the wishlist
           </ng-container>
         </div>
       </form>
