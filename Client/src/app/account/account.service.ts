@@ -149,10 +149,10 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'Account/wishlist/add', body, { headers })
       .subscribe({
         next: (response) => {
-          console.log(response)
+          // console.log(response)
         },
         error: (errors) => {
-          console.log(errors)
+          // console.log(errors)
         }
       })
   }
@@ -167,11 +167,11 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'Account/wishlist/remove', body, { headers })
       .subscribe({
         next: (response: IWishList) => {
-          console.log(response)
+          // console.log(response)
           this.currentUWishListSource.next(response)
         },
         error: (errors) => {
-          console.log(errors)
+          // console.log(errors)
         }
       })
   }

@@ -18,7 +18,7 @@ export class WishlistComponent implements OnInit {
   constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.accountService.getCurrentUserValue().userId)
+    // console.log(this.accountService.getCurrentUserValue().userId)
     this.route.data.subscribe(() => {
       this.currentWishList$ = this.accountService.getCurrentWishListValue();
     });
@@ -28,16 +28,20 @@ export class WishlistComponent implements OnInit {
   removeFromWishList(productId: number) {
 
     let token = localStorage.getItem('token')
-    if (token) {
-      console.log(token)
-      this.accountService.removeFromWishList(token, productId)
-      let newList = this.currentWishList$.products.filter(element => {
-        return element.id !== productId
+    this.accountService.loadCurrentUser(token)
+      .subscribe({
+        next: ((response) => {
+
+          console.log(response)
+          this.accountService.removeFromWishList(token, productId)
+          let newList = this.currentWishList$.products.filter(element => {
+            return element.id !== productId
+          })
+          this.currentWishList$.products = newList
+        }),
+        error: ((error) => {
+          console.log('you are not logged in')
+        })
       })
-      this.currentWishList$.products = newList
-    }
-    else {
-      console.log('you are not logged in')
-    }
   }
 }
