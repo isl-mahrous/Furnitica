@@ -18,7 +18,6 @@ export class CheckoutPaymentComponent implements OnInit {
   constructor(private basketService : BasketService,
     private checkoutService : CheckoutService,
     private toastrService : ToastrService) {
-
   }
 
   submitOrder() {

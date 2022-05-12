@@ -32,7 +32,7 @@ namespace API.Controllers
 
             var address = _mapper.Map<AddressDto, Core.Entities.OrderAggregate.Address>(orderDto.ShipToAddress);
 
-            var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, int.Parse(orderDto.BasketId), address);
+            var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, address);
 
             if(order == null)
             {

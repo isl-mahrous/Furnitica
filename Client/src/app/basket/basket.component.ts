@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { delay, Observable, switchMap, timer } from 'rxjs';
 import { IBasket, IBasketItem } from '../shared/models/basket';
+import { IProduct } from '../shared/models/product';
 import { productViewModel } from '../shared/viewmodels/product-viewmodel';
 import { BasketService } from './basket.service';
 
@@ -11,13 +12,13 @@ import { BasketService } from './basket.service';
 })
 export class BasketComponent implements OnInit {
   basket$: Observable<IBasket>;
-  basketProducts: any;
+  basketProducts: productViewModel[] = [];
 
-  constructor(private basketService: BasketService) { }
+  // productVMs : productViewModel[];
 
-  // ngOnInit() {
-  //   this.basket$ = this.basketService.basket$;
-  //  };
+  constructor(private basketService: BasketService) {
+    this.basket$ = this.basketService.basket$;
+   };
 
   ngOnInit(): void {
     timer(2000).pipe(
@@ -25,33 +26,65 @@ export class BasketComponent implements OnInit {
       switchMap(() => this.basket$),
       switchMap((data) => this.basketService.getBasketProducts(data.id)),
       switchMap((data) =>
-        this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
+      this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
     ).subscribe(data => {
-      this.basketProducts = data;
-    })
+       this.basketProducts = data;
+    });
+
+    // mapping from basketProducts to productViewModels
+
+    // for(let prd of this.basketProducts) {
+
+    //   var prdVm = new productViewModel(prd.id, prd.productName, prd.price, prd.quantity, prd.pictureUrl, prd.brand, prd.type);
+
+    //   this.productVMs.push(prdVm);
+    // }
+
+
+  };
+
+  removeBasketItem(product: productViewModel){
+    this.basketService.removeItemFromBasket(product);
   }
 
-  createBasketViewModel(data: import("../shared/models/product").IProduct[], arg1: IBasket): any {
-    throw new Error('Method not implemented.');
+  incrementItemQuantity(product: productViewModel){
+    this.basketService.incrementItemQuantity(product);
   }
-  ;
 
-  // removeBasketItem(product: productViewModel){
+  decrementItemQuantity(product: productViewModel){
+    this.basketService.decrementItemQuantity(product);
+  }
+
+  /// added by hiso for checking
+
+  // removeBasketItem2(product: productViewModel){
   //   this.basketService.removeItemFromBasket(product);
   // }
 
-removeBasketItem(basketItem: IBasketItem) {
-    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
-    this.basketService.removeItemFromBasket(item);
-  }
+  // incrementItemQuantity2(product: productViewModel){
+  //   this.basketService.incrementItemQuantity(product);
+  // }
 
-  incrementItemQuantity(basketItem: IBasketItem) {
-    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
-    this.basketService.incrementItemQuantity(item);
-  }
+  // decrementItemQuantity2(product: productViewModel){
+  //   this.basketService.decrementItemQuantity(product);
+  // }
 
-  decrementItemQuantity(basketItem: IBasketItem) {
-    var item = new productViewModel(basketItem.productId, "product Name", basketItem.price, basketItem.quantity, "Picture Url", "Brand Name", "Type");
-    this.basketService.decrementItemQuantity(item);
+
+  private createBasketViewModel(products: IProduct[], basket: IBasket) {
+    let product: IProduct;
+    let basketItem: IBasketItem;
+    let basketProducts: productViewModel[] = [];
+    for (let i = 0; i < products.length; i++) {
+      product = products[i];
+      basketItem = basket.basketItems[i];
+      let basketProduct = new productViewModel(products[i].id,
+        products[i].name, products[i].price, basket.basketItems[i].quantity, products[i].pictures[0],
+        products[i].productBrand, products[i].productType)
+      basketProducts.push(basketProduct);
+    }
+    return new Observable <productViewModel[]>(observer => {
+      observer.next(basketProducts);
+      observer.complete();
+    })
   }
 }

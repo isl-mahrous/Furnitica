@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { BasketRoutingModule } from 'src/app/basket/basket-routing.module';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasket, IBasketItem } from '../models/basket';
+import { IProduct } from '../models/product';
+import { productViewModel } from '../viewmodels/product-viewmodel';
 
 @Component({
   selector: 'app-basket-summary',
@@ -14,9 +16,12 @@ export class BasketSummaryComponent implements OnInit {
 
   basket$ : Observable<IBasket>;
 
-  @Output() decrement : EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
-  @Output() increment : EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
-  @Output() remove : EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
+  @Input() basketProducts : productViewModel[];
+
+
+  @Output() decrement : EventEmitter<productViewModel> = new EventEmitter<productViewModel>();
+  @Output() increment : EventEmitter<productViewModel> = new EventEmitter<productViewModel>();
+  @Output() remove : EventEmitter<productViewModel> = new EventEmitter<productViewModel>();
 
   @Input() isBasket = true;
 
@@ -26,17 +31,17 @@ export class BasketSummaryComponent implements OnInit {
     this.basket$ = this.basketService.basket$;
   }
 
-  decrementItemQuantity(item : IBasketItem)
+  decrementItemQuantity(item : productViewModel)
   {
     this.decrement.emit(item);
   }
 
-  incrementItemQuantity(item : IBasketItem)
+  incrementItemQuantity(item : productViewModel)
   {
     this.increment.emit(item);
   }
 
-  removeBasketItem(item : IBasketItem)
+  removeBasketItem(item : productViewModel)
   {
     this.remove.emit(item);
   }

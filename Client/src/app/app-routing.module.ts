@@ -17,11 +17,6 @@ const routes: Routes = [
   {
     path: "", component: HomeComponent, data: { breadcrumb: "Home" }
   },
-
-//   {
-//     path: 'basket', loadChildren: () => import('./basket/basket.module')
-//       .then(mod => mod.BasketModule), data: { breadcrumb: { skip: true } }
-//   },
   {
     path: "shop",
     loadChildren: () => import("./shop/shop.module")

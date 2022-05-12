@@ -12,7 +12,7 @@ export class CheckoutAddressComponent implements OnInit {
 
   @Input() checkoutForm : FormGroup;
 
-  constructor(private accountService : AccountService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
