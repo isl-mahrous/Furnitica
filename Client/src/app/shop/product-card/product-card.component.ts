@@ -31,34 +31,51 @@ export class ProductCardComponent implements OnInit {
 
   addToWishList() {
     let token = localStorage.getItem('token')
-    if (token) {
+    this.accountService.loadCurrentUser(token)
+      .subscribe({
+        next: ((response) => {
 
-      this.accountService.addToWishList(token, this.product.id)
-      this.inWishList = true
-    }
-    else {
-      console.log('you are not logged in')
-    }
+          this.accountService.addToWishList(token, this.product.id)
+          this.inWishList = true
+        }),
+        error: ((error) => {
+          console.log('you are not logged in')
+        })
+      })
   }
 
   removeFromWishList() {
 
     let token = localStorage.getItem('token')
-    if (token) {
-      console.log(token)
-      this.accountService.removeFromWishList(token, this.product.id)
-      this.inWishList = false
-    }
-    else {
-      console.log('you are not logged in')
-    }
+    this.accountService.loadCurrentUser(token)
+      .subscribe({
+        next: ((response) => {
+
+          this.accountService.removeFromWishList(token, this.product.id)
+          this.inWishList = false
+        }),
+        error: ((error) => {
+          console.log('you are not logged in')
+        })
+      })
   }
 
   checkInWishList() {
-    if (localStorage.getItem('token') !== null) {
+    this.accountService.loadCurrentUser(localStorage.getItem('token'))
+      .subscribe({
+        next: ((response) => {
 
-      this.inWishList = this.accountService.checkInWishList(this.product.id)
-      console.log(this.inWishList)
-    }
+          this.accountService.removeFromWishList(localStorage.getItem('token'), this.product.id)
+          this.inWishList = false
+        }),
+        error: ((error) => {
+          console.log('you are not logged in')
+        })
+      })
+    // if ( !== null) {
+
+    //   this.inWishList = this.accountService.checkInWishList(this.product.id)
+    //   console.log(this.inWishList)
+    // }
   }
 }
