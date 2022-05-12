@@ -14,6 +14,7 @@ import { HomeModule } from './home/home.module';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { OrdersModule } from './orders/orders.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OrdersModule } from './orders/orders.module';
     CoreModule,
     ShopModule,
     AccountModule,
+    AdminModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HomeModule,
