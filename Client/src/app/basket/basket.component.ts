@@ -18,17 +18,18 @@ export class BasketComponent implements OnInit {
 
   constructor(private basketService: BasketService) {
     this.basket$ = this.basketService.basket$;
-   };
+  };
 
   ngOnInit(): void {
     timer(2000).pipe(
       delay(1000),
       switchMap(() => this.basket$),
-      switchMap((data) => this.basketService.getBasketProducts(data.id)),
+      switchMap((data) => this.basketService.getBasketProducts(data?.id)),
       switchMap((data) =>
-      this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
+        this.createBasketViewModel(data, this.basketService.getCurrentBasketValue()))
     ).subscribe(data => {
-       this.basketProducts = data;
+      if (data)
+        this.basketProducts = data;
     });
 
     // mapping from basketProducts to productViewModels
@@ -43,15 +44,15 @@ export class BasketComponent implements OnInit {
 
   };
 
-  removeBasketItem(product: productViewModel){
+  removeBasketItem(product: productViewModel) {
     this.basketService.removeItemFromBasket(product);
   }
 
-  incrementItemQuantity(product: productViewModel){
+  incrementItemQuantity(product: productViewModel) {
     this.basketService.incrementItemQuantity(product);
   }
 
-  decrementItemQuantity(product: productViewModel){
+  decrementItemQuantity(product: productViewModel) {
     this.basketService.decrementItemQuantity(product);
   }
 
@@ -71,20 +72,24 @@ export class BasketComponent implements OnInit {
 
 
   private createBasketViewModel(products: IProduct[], basket: IBasket) {
-    let product: IProduct;
-    let basketItem: IBasketItem;
-    let basketProducts: productViewModel[] = [];
-    for (let i = 0; i < products.length; i++) {
-      product = products[i];
-      basketItem = basket.basketItems[i];
-      let basketProduct = new productViewModel(products[i].id,
-        products[i].name, products[i].price, basket.basketItems[i].quantity, products[i].pictures[0],
-        products[i].productBrand, products[i].productType)
-      basketProducts.push(basketProduct);
+    if (products) {
+      let product: IProduct;
+      let basketItem: IBasketItem;
+      let basketProducts: productViewModel[] = [];
+      for (let i = 0; i < products.length; i++) {
+        product = products[i];
+        basketItem = basket.basketItems[i];
+        let basketProduct = new productViewModel(products[i].id,
+          products[i].name, products[i].price, basket.basketItems[i].quantity, products[i].pictures[0],
+          products[i].productBrand, products[i].productType)
+        basketProducts.push(basketProduct);
+      }
+      return new Observable<productViewModel[]>(observer => {
+        observer.next(basketProducts);
+        observer.complete();
+      })
     }
-    return new Observable <productViewModel[]>(observer => {
-      observer.next(basketProducts);
-      observer.complete();
-    })
+    else
+      return null;
   }
 }

@@ -3,9 +3,10 @@ import { IWishList } from './../shared/models/wishlist';
 import { environment } from './../../environments/environment';
 import { IUser } from './../shared/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { BasketService } from '../basket/basket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AccountService {
   private currentUWishListSource = new BehaviorSubject<IWishList>(null);
   WishList$ = this.currentUWishListSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,
+    private injector: Injector) {
     // this.currentUser$ = null
   }
 
@@ -57,6 +59,8 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
+          // Get user basket after a successful login
+          this.injector.get(BasketService).initializeBasket();
           this.router.navigateByUrl('/');
         }
       })
@@ -97,6 +101,9 @@ export class AccountService {
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/');
     localStorage.removeItem('token')
+
+    // Remove local basket on user logout
+    this.injector.get(BasketService).deleteLocalBasket();
   }
 
 
