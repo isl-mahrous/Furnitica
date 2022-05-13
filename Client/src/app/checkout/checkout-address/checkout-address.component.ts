@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AccountService } from 'src/app/account/account.service';
+import { IAddress } from 'src/app/shared/models/address';
 
 
 @Component({
@@ -12,15 +13,16 @@ export class CheckoutAddressComponent implements OnInit {
 
   @Input() checkoutForm : FormGroup;
 
-  constructor() { }
+  constructor(private accountService : AccountService) { }
 
   ngOnInit(): void {
   }
 
   // saveUserAddress(){
   //   this.accountService.updateUserAddress(this.checkoutForm.get('addressForm').value).subscribe({
-  //     next : (address) => {
-  //       this.toastr.success("Address Saved");
+  //     next : (address : IAddress) => {
+  //       this.toastr.success("Address Saved")
+  //       this.checkoutForm.get('addressForm').reset(address);
   //     },
   //     error : (err) => {
   //       this.toastr.error("Error Occured, Address is not Saved");

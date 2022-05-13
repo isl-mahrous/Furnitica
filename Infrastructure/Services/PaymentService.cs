@@ -33,6 +33,13 @@ namespace Infrastructure.Services
             StripeConfiguration.ApiKey = configuration["StripeSettings:SecretKey"];
 
             var basket = await basketRepository.GetBasketAsync(userId);
+
+            if(basket == null)
+            {
+                return null;
+            }
+
+
             var shippingPrice = 0M;
 
             if (basket.DeliveryMethodId.HasValue)

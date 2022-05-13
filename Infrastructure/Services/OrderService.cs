@@ -18,24 +18,29 @@ namespace Infrastructure.Services
         private readonly IGenericRepository<DeliveryMethod> _dmRepo;
         private readonly IBasketRepository _basketRepo;
         private readonly StoreContext context;
+        private readonly IPaymentService _paymentService;
 
         public OrderService(IGenericRepository<Order> orderRepo, 
             IGenericRepository<Product> productRepo, 
             IGenericRepository<DeliveryMethod> dmRepo, 
             IBasketRepository basketRepo,
-            StoreContext context)
+            StoreContext context,
+            IPaymentService paymentService)
         {
             _orderRepo = orderRepo;
             _productRepo = productRepo;
             _dmRepo = dmRepo;
             _basketRepo = basketRepo;
             this.context = context;
+            _paymentService = paymentService;
         }
 
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, int basketId, Address shippingToAddress)
         {
             //var basket = await _basketRepo.GetBasketAsync(basketId);
             var basketItems = context.BasketItems.Where(i => i.BasketId == basketId).ToList();
+
+            var basket = context.Baskets.Where(b => b.Id == basketId).FirstOrDefault();
 
             var orderItems = new List<OrderItem>();
             
@@ -51,7 +56,18 @@ namespace Infrastructure.Services
 
             var subTotal = orderItems.Sum(oi => oi.Price * oi.Qunatity);
 
-            var order = new Order(orderItems, buyerEmail, shippingToAddress, deliveryMethod, subTotal);
+            // check to see if order exists
+
+            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntentId);
+            var existingOrder = await _orderRepo.GetEntityWithSpec(spec);
+            
+            if (existingOrder != null)
+            {
+                await _orderRepo.DeleteAsync(existingOrder.Id);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+            }
+
+            var order = new Order(orderItems, buyerEmail, shippingToAddress, deliveryMethod, subTotal, basket.PaymentIntentId);
 
             await _orderRepo.AddAsync(order);
 
