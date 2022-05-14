@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.Extensions.Configuration;
 using Stripe;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Order = Core.Entities.Order;
 
 namespace Infrastructure.Services
 {
@@ -17,16 +19,19 @@ namespace Infrastructure.Services
         private readonly IConfiguration configuration;
         private readonly IGenericRepository<DeliveryMethod> dmRepo;
         private readonly IGenericRepository<Core.Entities.Product> productRepo;
+        private readonly IGenericRepository<Order> orderRepo;
 
         public PaymentService(IBasketRepository basketRepository,
             IConfiguration configuration,
             IGenericRepository<DeliveryMethod> dmRepo,
-            IGenericRepository<Core.Entities.Product> productRepo)
+            IGenericRepository<Core.Entities.Product> productRepo,
+            IGenericRepository<Order> orderRepo)
         {
             this.basketRepository = basketRepository;
             this.configuration = configuration;
             this.dmRepo = dmRepo;
             this.productRepo = productRepo;
+            this.orderRepo = orderRepo;
         }
         public async Task<Basket> CreateOrUpdatePaymentIntent(string userId)
         {
@@ -92,6 +97,32 @@ namespace Infrastructure.Services
             await basketRepository.UpdateBasketAsync(basket);
 
             return basket;
+        }
+
+        public async Task<Core.Entities.Order> UpdateOrderPaymentFailed(string paymentIntentId)
+        {
+            var spec = new OrderByPaymentIntentIdWithItemsSpecification(paymentIntentId);
+            var order = await orderRepo.GetEntityWithSpec(spec);
+
+            if (order == null) return null;
+            order.Status = OrderStatus.PaymentFailed;
+
+            await orderRepo.UpdateAsync(order.Id, order);
+            
+            return order;
+        }
+
+        public async Task<Core.Entities.Order> UpdateOrderPaymentSucceeded(string paymentIntentId)
+        {
+            var spec = new OrderByPaymentIntentIdWithItemsSpecification(paymentIntentId);
+            var order = await orderRepo.GetEntityWithSpec(spec);
+
+            if (order == null) return null;
+
+            order.Status = OrderStatus.PaymentRecieved;
+            await orderRepo.UpdateAsync(order.Id, order);
+
+            return null;
         }
     }
 }

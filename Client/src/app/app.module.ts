@@ -15,6 +15,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { OrdersModule } from './orders/orders.module';
 
+import { StripeModule } from "stripe-angular"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { OrdersModule } from './orders/orders.module';
     HomeModule,
     ToastrModule,
     ToastrModule.forRoot(),
+    StripeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
