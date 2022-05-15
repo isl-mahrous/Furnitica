@@ -136,8 +136,9 @@ namespace API.Controllers
                    
                     await this.mediaRepo.AddAsync(picture);
                 }
+                product.Id= id;
                 await this.productRepo.UpdateAsync(id, product);
-                return NoContent();
+                return Ok();
 
 
             }

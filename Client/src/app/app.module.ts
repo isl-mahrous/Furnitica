@@ -15,12 +15,17 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { OrdersModule } from './orders/orders.module';
 import { AdminModule } from './admin/admin.module';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+
+
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
