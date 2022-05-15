@@ -128,11 +128,11 @@ namespace API.Controllers
                 }
                 else
                 {
-                    return Unauthorized();
+                    return BadRequest(new ApiResponse(400));
                 }
             }
 
-            return Unauthorized();
+            return BadRequest(new ApiResponse(400));
         }
 
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -195,7 +195,7 @@ namespace API.Controllers
 
             }
 
-            return Unauthorized();
+            return Unauthorized(new ApiResponse(401));
         }
 
         [HttpGet("{id}")]
@@ -288,7 +288,7 @@ namespace API.Controllers
                 });
             }
 
-            return Unauthorized();
+            return Unauthorized(new ApiResponse(401));
         }
 
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -326,7 +326,7 @@ namespace API.Controllers
                 return NotFound(new ApiResponse(404, "Product Not Found"));
             }
 
-            return Unauthorized();
+            return Unauthorized(new ApiResponse(401));
         }
 
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -366,7 +366,7 @@ namespace API.Controllers
                 return NotFound(new ApiResponse(404, "Product Not Found"));
             }
 
-            return Unauthorized();
+            return Unauthorized(new ApiResponse(401));
         }
 
         [NonAction]

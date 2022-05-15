@@ -18,11 +18,13 @@ import { AdminModule } from './admin/admin.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
-import { StripeModule } from "stripe-angular"
+import { StripeModule } from "stripe-angular";
+import { MainLayoutComponent } from './main-layout/main-layout.component'
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainLayoutComponent,
   ],
   imports: [
 
