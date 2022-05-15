@@ -3,6 +3,7 @@ import { ShopComponent } from './shop/shop.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 const routes: Routes = [
 
@@ -31,6 +32,12 @@ const routes: Routes = [
     loadChildren: () => import("./account/account.module")
       .then(mod => mod.AccountModule), data: { breadcrumb: { skip: true } }
   },
+  {
+    path: "admin",component:AdminHomeComponent,
+    loadChildren: () => import("./admin/admin.module")
+      .then(mod => mod.AdminModule), data: { breadcrumb: { skip: true } }
+  },
+
 
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
