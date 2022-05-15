@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthAccessGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthAccessGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
-  { path: 'wishlist', component: WishlistComponent, },
+  { path: 'wishlist', component: WishlistComponent, canActivate: [WishListGuard] },
 ]
 
 @NgModule({

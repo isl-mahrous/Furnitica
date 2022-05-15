@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from './../account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
 
-  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private accountService: AccountService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     // if (this.accountService.getCurrentUserValue() !== null) {

@@ -1,3 +1,4 @@
+import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './../shared/shared.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     CommonModule,
     RouterModule,
     SharedModule,
-    BreadcrumbModule
+    BreadcrumbModule,
   ],
   exports: [
     NavBarComponent,

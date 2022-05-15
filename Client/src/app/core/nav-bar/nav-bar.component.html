@@ -39,10 +39,10 @@
               </span>
             </ng-container>
             <ng-container *ngIf="(currentUser$ | async)!== null">
-              <span class="pr-1">Welcome {{(currentUser$ | async).username}}</span>
+              <span class="pr-1">Welcome {{(currentUser$ | async)?.username}}</span>
               <span class="btn-group" dropdown>
                 <li>
-                  <img [src]="(currentUser$ | async).profilePicture" dropdownToggle type="button"
+                  <img [src]="(currentUser$ | async)?.profilePicture" dropdownToggle type="button"
                     class="img-fluid rounded-circle mr-2" style="width: 40px; height:40px;"
                     aria-controls="dropdown-basic" />
                   <span></span>
@@ -67,7 +67,7 @@
               <li>
                 <a routerLink="/basket" class="site-cart">
                   <span class="icon icon-shopping_cart fa fa-shopping-cart"></span>
-                  <span *ngIf="(basket$ | async) as basket" class="count">{{basket.basketItems.length}}</span>
+                  <span *ngIf="(basket$ | async) as basket" class="count">{{basket?.basketItems?.length}}</span>
                 </a>
               </li>
             </span>
