@@ -4,6 +4,7 @@ using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using JWTAuth.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -138,6 +140,33 @@ namespace API.Controllers
 
             return BadRequest(new ApiResponse(400));
         }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet("getallusers")]
+        public async Task<IActionResult> GetAll([FromQuery] UserSpecs userSpecs)
+        {
+            var role = await _roleManager.FindByNameAsync("Customer");
+            if (role != null)
+            {
+                //var users = await _userManager.GetUsersInRoleAsync(role.Name);
+                var usersList = (List<AppUser>) await _userManager.GetUsersInRoleAsync(role.Name);
+                var users = usersList.AsQueryable();
+                if (!string.IsNullOrEmpty(userSpecs.Search)) users = users.Where(u => u.UserName.ToLower().Contains(userSpecs.Search.ToLower()));
+                users = users.Skip(userSpecs.PageSize * (userSpecs.PageIndex - 1)).Take(userSpecs.PageSize);
+
+                return Ok(new Pagination<UserDto>()
+                {
+                    Count = users.Count(),
+                    PageSize = userSpecs.PageSize,
+                    PageIndex = userSpecs.PageIndex,
+                    Data = mapper.Map<IReadOnlyList<AppUser>, IReadOnlyList<UserDto>>(users.ToList())
+                });
+            }
+
+            return BadRequest(new ApiResponse(400));
+        }
+
+
 
         [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("getuser")]

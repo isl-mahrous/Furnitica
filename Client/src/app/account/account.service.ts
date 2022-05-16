@@ -15,6 +15,8 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<IUser>(null);
   currentUser$ = this.currentUserSource.asObservable();
+  private currentCustomerUsersSource = new BehaviorSubject<IUser[]>(null);
+  currentCustomerUsers$ = this.currentCustomerUsersSource.asObservable();
   private currentUWishListSource = new BehaviorSubject<IWishList>(null);
   WishList$ = this.currentUWishListSource.asObservable();
 
@@ -45,6 +47,24 @@ export class AccountService {
 
           // localStorage.setItem('token', user.token);
           this.currentUserSource.next(user)
+        }
+      })
+    )
+  }
+
+
+  loadCustomerUsers() {
+
+
+
+    return this.http.get(this.baseUrl + 'account/getallusers').pipe(
+      map((users: IUser[]) => {
+
+        if (users) {
+
+          // localStorage.setItem('token', user.token);
+          this.currentCustomerUsersSource.next(users)
+          console.log(users)
         }
       })
     )

@@ -6,17 +6,17 @@ import { BrandsComponent } from './brands/brands.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
-import { UesersComponent } from './uesers/uesers.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
 
-  { path: '', redirectTo:'dashboard',pathMatch:'full'},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'products', component:ProductsComponent},
-  { path: 'brands', component: BrandsComponent},
-  { path: 'categories', component: CategoriesComponent},
-  { path: 'adminOrders', component: AdminOrdersComponent},
-  { path: 'users', component: UesersComponent}
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'brands', component: BrandsComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'adminOrders', component: AdminOrdersComponent },
+  { path: 'users', component: UsersComponent }
 
 ];
 

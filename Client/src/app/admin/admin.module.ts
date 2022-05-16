@@ -11,29 +11,29 @@ import { CategoriesComponent } from './categories/categories.component';
 import { BodyComponent } from './body/body.component';
 import { BrandsComponent } from './brands/brands.component';
 
-import { UesersComponent } from './uesers/uesers.component';
+import { UsersComponent } from './users/users.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -49,7 +49,7 @@ import {MatSortModule} from '@angular/material/sort';
     CategoriesComponent,
     BodyComponent,
     BrandsComponent,
-    UesersComponent,
+    UsersComponent,
     AdminOrdersComponent,
     DialogComponent,
 
