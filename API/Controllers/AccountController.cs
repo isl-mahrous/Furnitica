@@ -60,11 +60,11 @@ namespace API.Controllers
             newUser.UserName = registerDTO.Username;
             newUser.ProfilePicture = "https://localhost:7272/images/32190230-20c8-4efa-8a47-9ebb91f3cf0f_ktokatitmir0.jpg";
 
-
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(newUser, "Customer");
                 return Ok(new
                 {
                     result,
