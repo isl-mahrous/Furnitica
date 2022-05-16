@@ -9,35 +9,35 @@
   },
   {
     "ProductId": 2,
-    "ImageUrl": "https://localhost:7272/images/2cc68f10-5053-412f-8778-7887ce2f5a45_product_1.png"
+    "ImageUrl": "https://localhost:7272/images/16581ecd-18ad-42db-823b-37bcdbcadf12_chair.jpg"
   },
   {
     "ProductId": 2,
-    "ImageUrl": "https://localhost:7272/images/67fb76b3-fafb-441d-886d-6589099b4098_product_7.png"
+    "ImageUrl": "https://localhost:7272/images/16581ecd-18ad-42db-823b-37bcdbcadf12_chair.jpg"
   },
   {
     "ProductId": 3,
-    "ImageUrl": "https://localhost:7272/images/a76d201b-deb4-4a2e-90c4-30397a79c730_product_4.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 3,
-    "ImageUrl": "https://localhost:7272/images/c3dcb0eb-6c7c-4d15-91fb-28783f3348e2_product_5.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 4,
-    "ImageUrl": "https://localhost:7272/images/c9fbc816-8223-4516-b667-eda1f8649d99_product_2.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 4,
-    "ImageUrl": "https://localhost:7272/images/c3dcb0eb-6c7c-4d15-91fb-28783f3348e2_product_5.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 5,
-    "ImageUrl": "https://localhost:7272/images/67fb76b3-fafb-441d-886d-6589099b4098_product_7.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 5,
-    "ImageUrl": "https://localhost:7272/images/a76d201b-deb4-4a2e-90c4-30397a79c730_product_4.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 6,
@@ -49,11 +49,11 @@
   },
   {
     "ProductId": 7,
-    "ImageUrl": "https://localhost:7272/images/c3dcb0eb-6c7c-4d15-91fb-28783f3348e2_product_5.png"
+    "ImageUrl": "https://localhost:7272/images/0c0db662-fdd0-4403-9423-fde44588b211_product_3.png"
   },
   {
     "ProductId": 7,
-    "ImageUrl": "https://localhost:7272/images/c3dcb0eb-6c7c-4d15-91fb-28783f3348e2_product_5.png"
+    "ImageUrl": "https://localhost:7272/images/16581ecd-18ad-42db-823b-37bcdbcadf12_chair.jpg"
   },
   {
     "ProductId": 8,
@@ -61,6 +61,6 @@
   },
   {
     "ProductId": 8,
-    "ImageUrl": "https://localhost:7272/images/c9fbc816-8223-4516-b667-eda1f8649d99_product_2.png"
+    "ImageUrl": "https://localhost:7272/images/16581ecd-18ad-42db-823b-37bcdbcadf12_chair.jpg"
   }
 ]

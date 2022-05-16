@@ -95,7 +95,9 @@
         <a routerLinkActive="active">About</a>
       </li>
       <li><a routerLinkActive="active">New Arrivals</a></li>
-      <li><a routerLinkActive="active">Contact</a></li>
+      <li><a routerLink="/admin" *ngIf="(currentUser$ | async)?.roles[0] === 'Admin'" routerLinkActive="active">Admin
+          Dashboard</a>
+      </li>
     </ul>
   </div>
 </nav>

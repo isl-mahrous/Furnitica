@@ -59,6 +59,7 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
+          console.log(user)
           // Get user basket after a successful login
           this.injector.get(BasketService).initializeBasket();
           this.router.navigateByUrl('/');
@@ -179,7 +180,7 @@ export class AccountService {
 
   checkInWishList(productId) {
 
-    for (let i = 0; i < this.currentUWishListSource.value.products.length; i++) {
+    for (let i = 0; i < this.currentUWishListSource.value.products.length ?? 0; i++) {
 
       if (productId == this.currentUWishListSource.value.products[i].id) {
 

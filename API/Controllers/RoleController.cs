@@ -23,6 +23,7 @@ namespace API.Controllers
             userManager = _userManager;
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddRole(RoleDto role)
         {
@@ -38,6 +39,7 @@ namespace API.Controllers
             return BadRequest(new ApiResponse(400));
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         [HttpPost("AssignRole")]
         public async Task<IActionResult> AssignRoleToUser(UserRoleDto userRole)
         {
@@ -66,7 +68,7 @@ namespace API.Controllers
                 return Ok(new ApiResponse(200));
             }
 
-            return BadRequest(new ApiResponse(400));
+            return Unauthorized(new ApiResponse(401));
         }
     }
 }

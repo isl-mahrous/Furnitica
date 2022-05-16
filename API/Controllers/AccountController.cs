@@ -21,6 +21,7 @@ namespace API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
+        public RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _config;
         private readonly IMediaHandler mediaHandler;
         private readonly IGenericRepository<WishList> wishListRepo;
@@ -33,9 +34,11 @@ namespace API.Controllers
             IMediaHandler _mediaHandler,
             IMapper _mapper,
             IGenericRepository<WishList> _wishListRepo,
-            IGenericRepository<Product> _productsRepo)
+            IGenericRepository<Product> _productsRepo,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = user;
+            _roleManager = roleManager;
             _config = config;
             mediaHandler = _mediaHandler;
             wishListRepo = _wishListRepo;
@@ -123,7 +126,8 @@ namespace API.Controllers
                         profilePicture = user.ProfilePicture,
                         email = user.Email,
                         mobileNumber = user.PhoneNumber,
-                        expiration = token.ValidTo
+                        expiration = token.ValidTo,
+                        roles = roles,
                     });
                 }
                 else
@@ -156,9 +160,8 @@ namespace API.Controllers
 
             var jwtToken = (JwtSecurityToken)validatedToken;
             var userId = jwtToken.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-
-
             AppUser user = await _userManager.FindByIdAsync(userId);
+
             if (user != null)
             {
                 // create token based on claims
@@ -189,6 +192,7 @@ namespace API.Controllers
                     userId = user.Id,
                     profilePicture = user.ProfilePicture,
                     email = user.Email,
+                    roles = roles,
                     mobileNumber = user.PhoneNumber,
                     username = user.UserName,
                 }); ;

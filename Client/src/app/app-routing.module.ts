@@ -1,3 +1,4 @@
+import { AdminGuard } from './core/guards/admin.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthAccessGuard } from './core/guards/AuthAccess.guard';
 import { ShopComponent } from './shop/shop.component';
@@ -41,7 +42,9 @@ const routes: Routes = [
   ,
 
   {
-    path: "admin", component: AdminHomeComponent,
+    path: "admin",
+    canActivate: [AdminGuard],
+    component: AdminHomeComponent,
     loadChildren: () => import("./admin/admin.module")
       .then(mod => mod.AdminModule), data: { breadcrumb: { skip: true } }
   },
