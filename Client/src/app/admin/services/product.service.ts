@@ -7,6 +7,8 @@ import { IBrand } from 'src/app/shared/models/brand';
 import { IType } from 'src/app/shared/models/productType';
 import { IPagination } from 'src/app/shared/models/pagination';
 import { ShopParams } from 'src/app/shared/models/shopParams';
+import { IBrandPagination } from 'src/app/shared/models/brandPagination';
+
 import { map } from 'rxjs';
 
 @Injectable({
