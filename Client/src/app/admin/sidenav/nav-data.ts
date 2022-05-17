@@ -34,6 +34,4 @@ export const navnarData=[
   }
 
 
-
-
 ];
