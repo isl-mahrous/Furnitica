@@ -1,4 +1,3 @@
-
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
@@ -6,7 +5,6 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">Name</th>
-            <!-- <th scope="col">Description</th> -->
             <th scope="col">Profile Picture</th>
             <th scope="col">Email</th>
             <th scope="col">Mobile Number</th>
@@ -15,40 +13,16 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of currentCustomerUsers">
-              <td>{{item.username}}</td>
+            <td>{{item.username}}</td>
 
-              <td>{{item.profilePicture}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.mobileNumber}}</td>
-            </tr>
+            <td><img class="img-fluid rounded-circle mr-2" style="width: 60px; height: 60px;" src={{item.profilePicture}}></td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobileNumber}}</td>
+          </tr>
 
-<!--
-              <button mat-icon-button color="primary">
-                <mat-icon (click)="showDetails(item)">visibility</mat-icon>
-
-            </button>
-                <button (click)="editProduct(item)" mat-icon-button color="primary">
-                    <mat-icon>edit</mat-icon>
-
-                </button>
-
-                <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
-                  <mat-icon>delete</mat-icon>
-
-                 </button>
-
-
-              </td>
-            </tr>
-
-
--->
-</tbody>
-</table>
-</div>
-</div>
-  <mat-paginator [length]="count"
-  [pageSize]="6"
-  (page)="onPageChanged($event)"
-  aria-label="Select page">
-</mat-paginator>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-paginator [length]="count" [pageSize]="6" (page)="onPageChanged($event)" aria-label="Select page">
+  </mat-paginator>
