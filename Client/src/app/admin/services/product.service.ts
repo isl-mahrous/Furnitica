@@ -33,6 +33,11 @@ export class ProductService {
     params = params.append("pageSize", shopParams.pageSize);
 
 
+    if (shopParams.search) {
+      params = params.append("search", shopParams.search);
+    }
+
+
     return this.http.get<IPagination>(this.baseUrl + "products", {
       observe: "response",
       params: params

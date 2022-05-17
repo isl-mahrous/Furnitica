@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 
@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit {
 
 
 
+
   displayedColumns: string[] = ['Name', 'Price', 'Quantity', 'Product Type','Product Brand'
 
 
@@ -52,6 +53,7 @@ export class ProductsComponent implements OnInit {
     this.getBrands();
     this.getTypes();
   }
+  @ViewChild("search", { static: false }) searchTerm: ElementRef;
 
 
 
@@ -210,6 +212,12 @@ getTypes() {
     next: res => { this.types = res; },
     error: err => { console.log(err); }
   })
+}
+onSearch(){
+
+  this.shopParams.search=this.searchTerm.nativeElement.value;
+  this.getProducts();
+
 }
 
 
