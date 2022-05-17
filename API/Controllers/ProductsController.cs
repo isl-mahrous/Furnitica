@@ -81,8 +81,6 @@ namespace API.Controllers
                 return NotFound(new ApiResponse(404));
             }
 
-
-
             return Ok(mapper.Map<Product, ProductDto>(product));
 
         }
@@ -170,8 +168,8 @@ namespace API.Controllers
 
         }
 
-        [HttpDelete("{id}")]
 
+        [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
 
@@ -199,12 +197,7 @@ namespace API.Controllers
                 }
                 return NoContent();
             }
-            
-
-
         }
-
-
 
         //////////////////////// TO BE DELETED ///////////////////
         
