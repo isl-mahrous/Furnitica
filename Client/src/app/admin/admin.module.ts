@@ -36,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { BrandDialogComponent } from './brand-dialog/brand-dialog.component';
+import { TypeDialogComponent } from './type-dialog/type-dialog.component';
 
 
 
@@ -56,6 +57,7 @@ import { BrandDialogComponent } from './brand-dialog/brand-dialog.component';
     DialogComponent,
 
     BrandDialogComponent,
+      TypeDialogComponent,
 
   ],
   imports: [

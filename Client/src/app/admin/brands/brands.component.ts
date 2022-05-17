@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
 
-
-import { ProductService } from '../services/product.service';
-
-import { IProduct } from 'src/app/shared/models/product';
-import { ShopParams } from 'src/app/shared/models/shopParams';
 
 import { PageEvent} from '@angular/material/paginator';
 
-import {MatTableDataSource} from '@angular/material/table';
 import { IBrand } from 'src/app/shared/models/brand';
-import { IType } from 'src/app/shared/models/productType';
+
 import { BrandService } from '../services/brand.service';
 import { BrandDialogComponent } from '../brand-dialog/brand-dialog.component';
 
