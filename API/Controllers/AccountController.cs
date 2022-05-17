@@ -151,12 +151,13 @@ namespace API.Controllers
                 //var users = await _userManager.GetUsersInRoleAsync(role.Name);
                 var usersList = (List<AppUser>) await _userManager.GetUsersInRoleAsync(role.Name);
                 var users = usersList.AsQueryable();
+                var total = users.Count();
                 if (!string.IsNullOrEmpty(userSpecs.Search)) users = users.Where(u => u.UserName.ToLower().Contains(userSpecs.Search.ToLower()));
                 users = users.Skip(userSpecs.PageSize * (userSpecs.PageIndex - 1)).Take(userSpecs.PageSize);
 
                 return Ok(new Pagination<UserDto>()
                 {
-                    Count = users.Count(),
+                    Count = total,
                     PageSize = userSpecs.PageSize,
                     PageIndex = userSpecs.PageIndex,
                     Data = mapper.Map<IReadOnlyList<AppUser>, IReadOnlyList<UserDto>>(users.ToList())

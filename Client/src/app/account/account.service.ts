@@ -2,11 +2,13 @@ import { IProduct } from 'src/app/shared/models/product';
 import { IWishList } from './../shared/models/wishlist';
 import { environment } from './../../environments/environment';
 import { IUser } from './../shared/models/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { BasketService } from '../basket/basket.service';
+import { IUserPagination } from 'src/app/shared/models/userPagination';
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,19 +55,23 @@ export class AccountService {
   }
 
 
-  loadCustomerUsers() {
+  loadCustomerUsers(paginationData:any) {
+
+    let params = new HttpParams();
 
 
 
-    return this.http.get(this.baseUrl + 'account/getallusers').pipe(
-      map((users: IUser[]) => {
+    params = params.append("pageIndex", paginationData.pageIndex);
+    params = params.append("pageSize", paginationData.pageSize);
 
-        if (users) {
 
-          // localStorage.setItem('token', user.token);
-          this.currentCustomerUsersSource.next(users)
-          console.log(users)
-        }
+    return this.http.get<IUserPagination>(this.baseUrl + "account/getallusers", {
+      observe: "response",
+      params: params
+
+    }).pipe(
+      map(response => {
+        return response.body;
       })
     )
   }

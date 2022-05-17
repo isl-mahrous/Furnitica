@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 import { HttpClient,HttpHeaders ,HttpParams } from '@angular/common/http';
-import {  Observable, throwError } from 'rxjs';
+
 import { IBrand } from 'src/app/shared/models/brand';
 import { IType } from 'src/app/shared/models/productType';
 import { IPagination } from 'src/app/shared/models/pagination';
