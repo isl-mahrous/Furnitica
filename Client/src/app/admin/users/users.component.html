@@ -15,9 +15,15 @@
           <tr *ngFor="let item of currentCustomerUsers">
             <td>{{item.username}}</td>
 
-            <td><img class="img-fluid rounded-circle mr-2" style="width: 60px; height: 60px;" src={{item.profilePicture}}></td>
+            <td><img class="img-fluid rounded-circle mr-2" style="width: 60px; height: 60px;"
+                src={{item.profilePicture}}></td>
             <td>{{item.email}}</td>
             <td>{{item.mobileNumber}}</td>
+            <td>
+              <button class="btn-primary" (click)="confirm(item.userId)">
+               Assign Admin
+              </button>
+            </td>
           </tr>
 
         </tbody>

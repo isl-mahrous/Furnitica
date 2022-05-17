@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   pageIndex:number;
   pageSize:number;
   count:number;
+  userId:string;
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -44,6 +45,40 @@ export class UsersComponent implements OnInit {
 
       }
     })
+  }
+
+  confirm(userId:string){
+    if(confirm("Are you sure want to make this user admin")) {
+      this.assginRole(userId);
+  }
+}
+
+  assginRole(userId:string){
+
+
+    this.accountService.assignRoleToUser({UserId:userId,RoleName:"Customer",Action:0}).subscribe({
+      next:(res)=>{
+        this.accountService.assignRoleToUser({UserId:userId,RoleName:"Admin",Action:1}).subscribe({
+          next:(res)=>{
+            this.pageIndex=1;
+            this.pageSize=6;
+            this.getUsers();
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+
+        });
+
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+
+
+
+    });
+
   }
 
 }
