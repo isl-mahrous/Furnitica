@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild  } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 
 
@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   pageIndex:number;
   pageSize:number;
+  search:string;
   count:number;
   types: IType[];
   constructor(private dialog:MatDialog,private typeService:TypeService) { }
@@ -27,10 +28,11 @@ export class CategoriesComponent implements OnInit {
 
     this.pageIndex=1;
     this.pageSize=6;
+
     this.getTypes();
 
   }
-
+  @ViewChild("search", { static: false }) searchTerm: ElementRef;
 
 
   AddDialog(){
@@ -72,7 +74,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getTypes(){
-    this.typeService.getTypesPagination({pageIndex:this.pageIndex,pageSize:this.pageSize}).subscribe({
+    this.typeService.getTypesPagination({pageIndex:this.pageIndex,pageSize:this.pageSize,search:this.search}).subscribe({
       next:(res)=>{
 
         this.types = res.data;
@@ -156,6 +158,11 @@ export class CategoriesComponent implements OnInit {
     if(confirm("Are you sure to delete ")) {
       this.deleteType(id);
     }
+  }
+  onSearch(){
+    this.search=this.searchTerm.nativeElement.value;
+    this.getTypes();
+
   }
 
 }

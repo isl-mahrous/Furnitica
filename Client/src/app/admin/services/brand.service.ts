@@ -27,6 +27,11 @@ export class BrandService {
     params = params.append("pageIndex", paginationData.pageIndex);
     params = params.append("pageSize", paginationData.pageSize);
 
+
+    if (paginationData.search) {
+      params = params.append("search", paginationData.search);
+    }
+
     return this.http.get<IBrandPagination>(this.baseUrl + "ProductBrands/", {
       observe: "response",
       params: params

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild  } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 
 
@@ -17,6 +17,7 @@ import { BrandDialogComponent } from '../brand-dialog/brand-dialog.component';
 export class BrandsComponent implements OnInit {
   pageIndex:number;
   pageSize:number;
+  search:string;
   count:number;
   brands: IBrand[];
 
@@ -27,6 +28,7 @@ export class BrandsComponent implements OnInit {
     this.pageSize=6;
     this.getBrands();
   }
+  @ViewChild("search", { static: false }) searchTerm: ElementRef;
 
   AddDialog(){
     const dialogRef =this.dialog.open(BrandDialogComponent, {
@@ -66,7 +68,7 @@ export class BrandsComponent implements OnInit {
 
   }
   getBrands(){
-    this.brandService.getBrandsPagination({pageIndex:this.pageIndex,pageSize:this.pageSize}).subscribe({
+    this.brandService.getBrandsPagination({pageIndex:this.pageIndex,pageSize:this.pageSize,search:this.search}).subscribe({
       next:(res)=>{
 
         this.brands = res.data;
@@ -150,5 +152,11 @@ export class BrandsComponent implements OnInit {
     if(confirm("Are you sure to delete ")) {
       this.deleteBrand(id);
     }
+  }
+
+  onSearch(){
+    this.search=this.searchTerm.nativeElement.value;
+    this.getBrands();
+
   }
 }

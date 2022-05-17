@@ -24,6 +24,11 @@ export class TypeService {
     params = params.append("pageIndex", paginationData.pageIndex);
     params = params.append("pageSize", paginationData.pageSize);
 
+
+    if (paginationData.search) {
+      params = params.append("search", paginationData.search);
+    }
+
     return this.http.get<ITypePagination>(this.baseUrl + "ProductTypes/", {
       observe: "response",
       params: params
