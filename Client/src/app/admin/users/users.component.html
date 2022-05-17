@@ -1,3 +1,11 @@
+<div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+  <div class="site-block-top-search">
+    <span class="icon icon-search2 fa fa-search"></span>
+    <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0" placeholder="Search"
+      style="background-color: aliceblue;">
+  </div>
+</div>
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
@@ -21,7 +29,7 @@
             <td>{{item.mobileNumber}}</td>
             <td>
               <button class="btn-primary" (click)="confirm(item.userId)">
-               Assign Admin
+                Assign Admin
               </button>
             </td>
           </tr>

@@ -64,6 +64,10 @@ export class AccountService {
     params = params.append("pageIndex", paginationData.pageIndex);
     params = params.append("pageSize", paginationData.pageSize);
 
+    if (paginationData.search) {
+      params = params.append("search", paginationData.search);
+    }
+
 
     return this.http.get<IUserPagination>(this.baseUrl + "account/getallusers", {
       observe: "response",

@@ -1,5 +1,5 @@
 import { AccountService } from 'src/app/account/account.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { IUser } from 'src/app/shared/models/user';
 import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   pageSize:number;
   count:number;
   userId:string;
+  search:string;
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class UsersComponent implements OnInit {
    this.getUsers();
 
   }
+  @ViewChild("search", { static: false }) searchTerm: ElementRef;
   onPageChanged(event: PageEvent){
     this.pageIndex = event.pageIndex+1;
     this.getUsers();
@@ -32,7 +34,7 @@ export class UsersComponent implements OnInit {
 
 
   getUsers(){
-    this.accountService.loadCustomerUsers({pageIndex:this.pageIndex,pageSize:this.pageSize}).subscribe({
+    this.accountService.loadCustomerUsers({pageIndex:this.pageIndex,pageSize:this.pageSize,search:this.search}).subscribe({
       next: (response) => {
         this.currentCustomerUsers = response.data;
         this.pageIndex=response.pageIndex;
@@ -78,6 +80,12 @@ export class UsersComponent implements OnInit {
 
 
     });
+
+  }
+
+  onSearch(){
+    this.search=this.searchTerm.nativeElement.value;
+    this.getUsers();
 
   }
 
