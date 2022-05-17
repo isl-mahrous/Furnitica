@@ -10,6 +10,7 @@ namespace Core.Specifications
     {
         private const int MaxPageSize = 50;
         public int PageIndex { get; set; } = 1;
+
         private int _pageSize = 9;
         public int PageSize
         {
@@ -25,6 +26,7 @@ namespace Core.Specifications
         }
 
         private decimal? _priceTo = 10000;
+
         public decimal? PriceTo
         {
             get => _priceTo;

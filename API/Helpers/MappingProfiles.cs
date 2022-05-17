@@ -15,7 +15,7 @@ namespace API.Helpers
             CreateMap<Product, ProductDto>()
                 .ForMember(d => d.ProductBrand, o => o.MapFrom(s => s.ProductBrand.Name))
                 .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
-                   .ForMember(d => d.Pictures, o => o.MapFrom(s => s.Pictures.Select(x => x.ImageUrl)));
+                .ForMember(d => d.Pictures, o => o.MapFrom(s => s.Pictures.Select(x => x.ImageUrl)));
 
 
             CreateMap<AppUser, UserDto>()
@@ -35,7 +35,9 @@ namespace API.Helpers
 
             CreateMap<Order, OrderToReturnDto>()
                 .ForMember(d => d.DeliveryMethod, o => o.MapFrom(s => s.DeliveryMethod.ShortName))
-                .ForMember(d => d.ShippingPrice, o => o.MapFrom(s => s.DeliveryMethod.Price));
+                .ForMember(d => d.ShippingPrice, o => o.MapFrom(s => s.DeliveryMethod.Price))
+                .ForMember(d => d.BuyerEmail, o => o.MapFrom(s => s.BuyerEmail))
+                .ForMember(d => d.OrderItems, o => o.MapFrom(s => s.OrderItems.ToList()));
 
             CreateMap<OrderItem, OrderItemDto>()
                 .ForMember(d => d.ProductId, o => o.MapFrom(s => s.ItemOrdered.ProductItemId))

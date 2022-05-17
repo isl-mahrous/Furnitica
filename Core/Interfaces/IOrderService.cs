@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Entities.OrderAggregate;
+using Core.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,11 @@ namespace Core.Interfaces
         Task CancelOrderAsync(int id);
 
         Task UpdateOrder(int id, Order order);
+
+        Task<IReadOnlyList<Order>> GetAllOrdersAsync();
+
+        Task<IReadOnlyList<Order>> GetAllOrdersAsync(ISpecification<Order> spec);
+
+        Task<int> CountAsync(ISpecification<Order> spec);
     }
 }

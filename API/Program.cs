@@ -72,6 +72,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     };
 });
 
+
 //Auto Mapper
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
@@ -82,14 +83,13 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<S
 //Basket Repository Service
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
-//Payment Service
-builder.Services.AddScoped<IPaymentService, PaymentService>();
-
-
 
 // Order Service
 builder.Services.AddScoped<IOrderService, OrderService>();
 
+
+//Payment Service
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 
 //How To Use? 
