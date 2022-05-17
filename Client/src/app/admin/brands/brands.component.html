@@ -1,3 +1,6 @@
+<button mat-raised-button color="primary" style="float:right;" (click)="AddDialog()">Add Brand</button>
+
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
@@ -6,6 +9,7 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Origin</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -13,6 +17,19 @@
             <td>{{item.name}}</td>
 
             <td>{{item.origin}}</td>
+
+            <td>
+
+                <button (click)="editBrand(item)" mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+
+                </button>
+
+                <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+
+                 </button>
+              </td>
 
           </tr>
 

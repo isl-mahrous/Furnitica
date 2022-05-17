@@ -39,5 +39,20 @@ export class BrandService {
 
   }
 
+  postBrand(data:any){
+    console.log(data);
+    return this.http.post<any>(this.baseUrl+ "ProductBrands",data);
+
+  }
+
+  deleteBrand(id:number){
+    return this.http.delete<any>(this.baseUrl+ "ProductBrands/"+id);
+
+  }
+
+  updateBrand(id:number,data:any){
+    return this.http.put<any>(this.baseUrl+ "ProductBrands/"+id,data);
+  }
+
 
 }

@@ -14,6 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { IBrand } from 'src/app/shared/models/brand';
 import { IType } from 'src/app/shared/models/productType';
 import { BrandService } from '../services/brand.service';
+import { BrandDialogComponent } from '../brand-dialog/brand-dialog.component';
 
 @Component({
   selector: 'app-brands',
@@ -34,6 +35,43 @@ export class BrandsComponent implements OnInit {
     this.getBrands();
   }
 
+  AddDialog(){
+    const dialogRef =this.dialog.open(BrandDialogComponent, {
+
+      width:'35%',
+      data: {
+        action:"add"
+      }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if(result.event=='add')
+      this.addBrand(result.data);
+
+
+  });
+
+  }
+
+  addBrand(brand:any){
+    this.brandService.postBrand(brand)
+      .subscribe(
+
+        {
+          next:(res)=>{
+
+            alert("Brand added successfuly");
+            this.getBrands();
+
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        }
+
+      )
+
+  }
   getBrands(){
     this.brandService.getBrandsPagination({pageIndex:this.pageIndex,pageSize:this.pageSize}).subscribe({
       next:(res)=>{
@@ -53,9 +91,71 @@ export class BrandsComponent implements OnInit {
 
   }
 
+  updateBrand(id:number,data:any){
+    this.brandService.updateBrand(id,data)
+        .subscribe(
+
+          {
+            next:(res)=>{
+
+              alert("Brand updated successfuly");
+              this.getBrands();
+
+            },
+            error:(err)=>{
+              console.log(err);
+            }
+          }
+
+        )
+  }
+
+  deleteBrand(id:number){
+
+    this.brandService.deleteBrand(id)
+    .subscribe({
+      next:(res)=>{
+        alert("Product Deleted Successfully")
+        this.getBrands();
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+
+
+    })
+  }
+
   onPageChanged(event: PageEvent){
     this.pageIndex = event.pageIndex+1;
     this.getBrands();
 
+  }
+
+  editBrand(brand:any){
+
+    const dialogRef =this.dialog.open(BrandDialogComponent, {
+
+      width:'35%',
+      data: {
+        brand:brand,
+        action:"edit"
+
+      }
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if(result.event=='edit')
+      result.data.id=brand.id;
+      this.updateBrand(brand.id,result.data);
+
+
+  })
+
+  }
+
+  confrimDelete(id:number) {
+    if(confirm("Are you sure to delete ")) {
+      this.deleteBrand(id);
+    }
   }
 }
