@@ -87,6 +87,1045 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
+                //Seed Orders
+                if (!context.Orders.Any())
+                {
+                    /*
+                        public string BuyerEmail { get; set; }
+                        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
+                        public Address ShipToAddress { get; set; }
+                        public DeliveryMethod DeliveryMethod { get; set; }
+                        public IReadOnlyList<OrderItem> OrderItems { get; set; }
+                        public decimal Subtotal { get; set; }
+                        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+                        public string PaymentIntentId { get; set; }
+                     */
+                    /*
+                        FirstName = firstName;
+                        LastName = lastName;
+                        Street = street;
+                        City = city;
+                        State = state;
+                        Zipcode = zipcode;
+                     */
+
+                    /*
+                        public string ShortName { get; set; }
+                        public string DeliveryTime { get; set; }
+                        public string Description { get; set; }
+                        public decimal Price { get; set; }
+                     */
+                    /* (Order Item)
+                        public ProductItemOrdered ItemOrdered { get; set; }
+                        public decimal Price { get; set; }
+                        public int Quantity { get; set; }
+                     */
+                    /*
+                        public int ProductItemId { get; set; }
+                        public string ProductName { get; set; }
+                     */
+
+                    var ordersData = new List<Order>()
+                    {
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentRecieved,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentRecieved,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentFailed,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentRecieved,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentRecieved,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.Pending,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Hiso",
+                                LastName = "Hoso",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Sofa"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "molla"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 7920,
+                            Status = OrderStatus.PaymentFailed,
+                            PaymentIntentId = "53454nskjdfb"
+                        }
+                    };
+
+                    context.Orders.AddRange(ordersData);
+
+                    await context.SaveChangesAsync();
+                }
 
 
                 // Seed Reviews

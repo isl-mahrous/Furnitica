@@ -17,13 +17,13 @@ namespace Core.Entities.OrderAggregate
         {
             ItemOrdered = itemOrdered;
             Price = price;
-            Qunatity = quantity;
+            Quantity = quantity;
 
         }
 
         public ProductItemOrdered ItemOrdered { get; set; }
         public decimal Price { get; set; }
-        public int Qunatity { get; set; }
+        public int Quantity { get; set; }
 
     }
 }

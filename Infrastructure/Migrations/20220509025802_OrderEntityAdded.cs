@@ -65,7 +65,7 @@ namespace Infrastructure.Migrations
                     ItemOrdered_ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ItemOrdered_PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Qunatity = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

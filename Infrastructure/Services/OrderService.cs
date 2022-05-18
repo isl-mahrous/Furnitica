@@ -54,7 +54,7 @@ namespace Infrastructure.Services
 
             var deliveryMethod = await _dmRepo.GetByIdAsync(deliveryMethodId);
 
-            var subTotal = orderItems.Sum(oi => oi.Price * oi.Qunatity);
+            var subTotal = orderItems.Sum(oi => oi.Price * oi.Quantity);
 
             // check to see if order exists
 
