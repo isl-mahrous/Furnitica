@@ -45,5 +45,15 @@ namespace API.Controllers
             return Ok(response);
 
         }
+
+        [HttpGet("maxPrice")]
+        public async Task<ActionResult<decimal>> GetMaxPrice()
+        {
+            var specs = new OrdersSpecification(new OrderSpecParams());
+            var result = await _orderService.GetAllOrdersAsync(specs);
+            var maxPrice = result.Max(p => p.Subtotal);
+
+            return Ok(maxPrice);
+        }
     }
 }

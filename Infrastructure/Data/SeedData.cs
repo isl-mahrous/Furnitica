@@ -227,8 +227,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 3,
                                         ProductName = "Chair"
                                     },
-                                    Price = 100,
-                                    Quantity = 4,
+                                    Price = 34,
+                                    Quantity =5,
                                 },
 
                                 new OrderItem()
@@ -238,8 +238,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 1,
                                         ProductName = "Sofa"
                                     },
-                                    Price = 40,
-                                    Quantity = 3,
+                                    Price = 67,
+                                    Quantity = 7,
                                 },
 
                                 new OrderItem()
@@ -249,8 +249,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 7,
                                         ProductName = "table"
                                     },
-                                    Price = 200,
-                                    Quantity = 1,
+                                    Price = 76,
+                                    Quantity = 3,
                                 },
 
                                 new OrderItem()
@@ -369,8 +369,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 3,
                                         ProductName = "Chair"
                                     },
-                                    Price = 100,
-                                    Quantity = 4,
+                                    Price = 34,
+                                    Quantity = 6,
                                 },
 
                                 new OrderItem()
@@ -380,8 +380,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 1,
                                         ProductName = "Sofa"
                                     },
-                                    Price = 40,
-                                    Quantity = 3,
+                                    Price = 677,
+                                    Quantity = 6,
                                 },
 
                                 new OrderItem()
@@ -402,8 +402,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 5,
                                         ProductName = "molla"
                                     },
-                                    Price = 900,
-                                    Quantity = 8,
+                                    Price = 122,
+                                    Quantity = 3,
                                 },
                             },
                             Subtotal = 7920,
@@ -473,8 +473,8 @@ namespace Infrastructure.Data
                                         ProductItemId = 5,
                                         ProductName = "molla"
                                     },
-                                    Price = 900,
-                                    Quantity = 8,
+                                    Price = 66,
+                                    Quantity = 2,
                                 },
                             },
                             Subtotal = 7920,
@@ -512,7 +512,7 @@ namespace Infrastructure.Data
                                         ProductName = "Chair"
                                     },
                                     Price = 100,
-                                    Quantity = 4,
+                                    Quantity = 12,
                                 },
 
                                 new OrderItem()
@@ -523,7 +523,7 @@ namespace Infrastructure.Data
                                         ProductName = "Sofa"
                                     },
                                     Price = 40,
-                                    Quantity = 3,
+                                    Quantity = 7,
                                 },
 
                                 new OrderItem()
@@ -545,7 +545,7 @@ namespace Infrastructure.Data
                                         ProductName = "molla"
                                     },
                                     Price = 900,
-                                    Quantity = 8,
+                                    Quantity = 5,
                                 },
                             },
                             Subtotal = 7920,
@@ -583,7 +583,7 @@ namespace Infrastructure.Data
                                         ProductName = "Chair"
                                     },
                                     Price = 100,
-                                    Quantity = 4,
+                                    Quantity = 7,
                                 },
 
                                 new OrderItem()
@@ -616,7 +616,7 @@ namespace Infrastructure.Data
                                         ProductName = "molla"
                                     },
                                     Price = 900,
-                                    Quantity = 8,
+                                    Quantity = 10,
                                 },
                             },
                             Subtotal = 7920,
@@ -654,7 +654,7 @@ namespace Infrastructure.Data
                                         ProductName = "Chair"
                                     },
                                     Price = 100,
-                                    Quantity = 4,
+                                    Quantity = 14,
                                 },
 
                                 new OrderItem()
@@ -687,7 +687,7 @@ namespace Infrastructure.Data
                                         ProductName = "molla"
                                     },
                                     Price = 900,
-                                    Quantity = 8,
+                                    Quantity = 16,
                                 },
                             },
                             Subtotal = 7920,
@@ -796,7 +796,7 @@ namespace Infrastructure.Data
                                         ProductName = "Chair"
                                     },
                                     Price = 100,
-                                    Quantity = 4,
+                                    Quantity = 3,
                                 },
 
                                 new OrderItem()
@@ -829,7 +829,7 @@ namespace Infrastructure.Data
                                         ProductName = "molla"
                                     },
                                     Price = 900,
-                                    Quantity = 8,
+                                    Quantity = 2,
                                 },
                             },
                             Subtotal = 7920,
@@ -867,7 +867,7 @@ namespace Infrastructure.Data
                                         ProductName = "Chair"
                                     },
                                     Price = 100,
-                                    Quantity = 4,
+                                    Quantity = 1,
                                 },
 
                                 new OrderItem()
@@ -878,7 +878,7 @@ namespace Infrastructure.Data
                                         ProductName = "Sofa"
                                     },
                                     Price = 40,
-                                    Quantity = 3,
+                                    Quantity = 1,
                                 },
 
                                 new OrderItem()
@@ -900,7 +900,7 @@ namespace Infrastructure.Data
                                         ProductName = "molla"
                                     },
                                     Price = 900,
-                                    Quantity = 8,
+                                    Quantity = 1,
                                 },
                             },
                             Subtotal = 7920,

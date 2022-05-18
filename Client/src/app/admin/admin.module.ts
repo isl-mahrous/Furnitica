@@ -37,6 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
 
 import { BrandDialogComponent } from './brand-dialog/brand-dialog.component';
 import { TypeDialogComponent } from './type-dialog/type-dialog.component';
+import { ShopModule } from '../shop/shop.module';
 
 
 
@@ -77,7 +78,8 @@ import { TypeDialogComponent } from './type-dialog/type-dialog.component';
     CarouselModule.forRoot(),
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ShopModule
 
 
   ]

@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     ShopComponent,
+    NgxSliderModule
   ]
 })
 
