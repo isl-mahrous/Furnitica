@@ -88,6 +88,11 @@ namespace Infrastructure.Services
 
         }
 
+        public async Task<Order> GetOrderById(int id)
+        {
+            return await _orderRepo.GetByIdAsync(id);
+        }
+
         public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
         {
             var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);

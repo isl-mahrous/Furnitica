@@ -1,12 +1,12 @@
 <div class="col-8 order-2 order-md-1 text-left">
   <div class="site-block-top-search row">
     <div class="col-7">
-      <select class="custom-select mb-4" (change)="onFilterSelected($event)">
-        <option value="3">All</option>
-        <option *ngFor="let opt of searchOption" [value]="opt.value">
-          {{ opt.name }}
+      <!-- <select class="custom-select mb-4" (change)="onFilterSelected($event)">
+        <option value="all">All</option>
+        <option *ngFor="let opt of searchOption" [value]="opt">
+          {{ opt }}
         </option>
-      </select>
+      </select> -->
       <select class="custom-select mb-4" (change)="onSortSelected($event)">
         <option *ngFor="let sort of sortOptions" [value]="sort.value">
           {{ sort.name }}
@@ -48,7 +48,7 @@
             <th scope="col">Shipping Address</th>
             <th scope="col">Delivery Method</th>
             <th scope="col">Order Items</th>
-            <th scope="col">total</th>
+            <th scope="col">Total</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
@@ -75,7 +75,7 @@
             <th class="align-middle" scope="col">{{ order.status }}</th>
             <td class="align-middle">
               <button mat-icon-button color="primary">
-                <mat-icon (click)="showDetails(order)">visibility</mat-icon>
+                <mat-icon (click)="showDetails(order.id)">visibility</mat-icon>
               </button>
               <button
                 (click)="editOrder(order)"

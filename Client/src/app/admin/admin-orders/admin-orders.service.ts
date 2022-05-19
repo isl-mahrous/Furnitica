@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { orderParams } from 'src/app/shared/models/order';
+import { IOrder, orderParams } from 'src/app/shared/models/order';
 import { IOrdersPagination } from 'src/app/shared/models/pagination';
 import { environment } from 'src/environments/environment';
 
@@ -31,7 +31,7 @@ export class AdminOrdersService {
     }
 
     if (orderParamsToSend.search) {
-      params = params.append("Search", orderParamsToSend.search.toString());
+      params = params.append("Search", orderParamsToSend.search);
     }
 
     params = params.append("PageIndex", orderParamsToSend.pageIndex);
@@ -50,5 +50,18 @@ export class AdminOrdersService {
 
   getMaxPrice() {
     return this.http.get<number>(this.baseUrl + "AdminOrders/maxPrice");
+  }
+
+  deleteOrder(id){
+    let params = new HttpParams();
+    params = params.append("id", id.toString());
+    return this.http.delete<IOrder>(this.baseUrl + "Orders", {
+      observe: "response",
+      params: params,
+    });
+  }
+
+  getOrder(id : number) {
+    return this.http.get<IOrder>(this.baseUrl + "AdminOrders/" + id);
   }
 }
