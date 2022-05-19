@@ -11,7 +11,7 @@ namespace Core.Specifications
         private const int MaxPageSize = 50;
         public int PageIndex { get; set; } = 1;
 
-        private int _pageSize = 9;
+        private int _pageSize = 6;
         public int PageSize
         {
             get => _pageSize;
@@ -25,7 +25,7 @@ namespace Core.Specifications
             set => subTotalFrom = value > SubTotalTo ? SubTotalTo : value;
         }
 
-        private decimal? subTotalTo;
+        private decimal? subTotalTo = 100000;
 
         public decimal? SubTotalTo
         {
@@ -35,8 +35,8 @@ namespace Core.Specifications
 
         public string Sort { get; set; }
 
-        private int? _search;
-        public int? Search
+        private string _search;
+        public string Search
         {
             get => _search;
             set => _search = value;

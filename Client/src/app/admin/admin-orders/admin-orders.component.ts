@@ -16,10 +16,13 @@ export class AdminOrdersComponent implements OnInit {
   orders : IOrder[];
   length : number;
   totalCount: number;
-  searchOption = [{name: "Pending", value: "0"}, {name: "Payment Recieved", value: "1"}, {name: "Payment Failed", value: "2"}];
+  searchOption = ["Pending", "Payment Recieved", "Payment Failed"];
   sortOptions = [{name: "Lower Cost To Higher", value: "subTotalAsc"}, {name: "Higher Cost To Lower", value: "subTotalDesc"}];
   orderParamsToSend : orderParams;
   pageSize : number = 6;
+
+
+
 
   minValue = 0;
   maxValue = 100000;
@@ -39,6 +42,7 @@ export class AdminOrdersComponent implements OnInit {
       }
     }
   };
+  orderDetails: IOrder;
 
 
   constructor(private adminOrdersService : AdminOrdersService) { }
@@ -48,9 +52,10 @@ export class AdminOrdersComponent implements OnInit {
     this.orderParamsToSend.pageIndex = 1;
     this.orderParamsToSend.pageSize = 6;
     this.orderParamsToSend.sort = "subTotalAsc";
+    this.orderParamsToSend.search;
+    this.getMaxPrice();
     this.orderParamsToSend.subTotalFrom = 0;
     this.getOrders();
-    this.getMaxPrice();
   }
 
   private getOrders() {
@@ -93,7 +98,7 @@ export class AdminOrdersComponent implements OnInit {
 
   }
 
-  showDetails(order : IOrder) {
+  showDetails(orderId : number) {
 
   }
 
@@ -101,8 +106,17 @@ export class AdminOrdersComponent implements OnInit {
 
   }
 
-  confrimDelete(orderId : number) {
+  confrimDelete(id:number) {
+    if(confirm("Are you sure to delete ")) {
+      this.deleteOrder(id);
+    }
+  }
 
+  private deleteOrder(id:number){
+    this.adminOrdersService.deleteOrder(id).subscribe({
+      next: response => console.log(response)
+    });
+    this.getOrders();
   }
 
   onSortSelected(e : Event) {
@@ -112,15 +126,16 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   onFilterSelected(e : Event) {
-    let searchIndex = +(e.target as HTMLSelectElement).value;
-    if(searchIndex == 3)
+    let filterValue = (e.target as HTMLSelectElement).value;
+    if(filterValue === "all")
     {
-      this.clearFilters()
+      this.clearFilters();
     }
     else {
-      this.orderParamsToSend.search = searchIndex;
+      this.orderParamsToSend.search = filterValue;
       this.orderParamsToSend.pageIndex = 1;
     }
+    console.log(filterValue);
     this.getOrders();
   }
 
@@ -133,9 +148,9 @@ export class AdminOrdersComponent implements OnInit {
     this.orderParamsToSend = new orderParams();
     this.orderParamsToSend.pageIndex = 1;
     this.orderParamsToSend.pageSize = 6;
+    this.getMaxPrice();
     this.orderParamsToSend.subTotalFrom = 0;
     this.getOrders();
-    this.getMaxPrice();
   }
 
 }

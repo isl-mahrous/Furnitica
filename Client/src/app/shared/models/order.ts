@@ -35,5 +35,5 @@ export class orderParams {
   subTotalFrom : number;
   subTotalTo : number;
   sort : string;
-  search: number;
+  search: string;
 }
