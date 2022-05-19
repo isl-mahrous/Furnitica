@@ -1,22 +1,30 @@
-<div class="col-6 col-md-4 order-2 order-md-1 text-left">
-  <div class="site-block-top-search">
-    <select class="custom-select mb-4" (change)="onFilterSelected($event)">
-      <option value="3">All</option>
-      <option *ngFor="let opt of searchOption" [value]="opt.value">
-        {{ opt.name }}
-      </option>
-    </select>
-    <select class="custom-select mb-4" (change)="onSortSelected($event)">
-      <option *ngFor="let sort of sortOptions" [value]="sort.value">
-        {{ sort.name }}
-      </option>
-    </select>
-    <ngx-slider
-      (userChangeEnd)="priceRangeChanged()"
-      [(value)]="this.orderParamsToSend.subTotalFrom"
-      [(highValue)]="this.orderParamsToSend.subTotalTo"
-      [options]="options"
-    ></ngx-slider>
+<div class="col-8 order-2 order-md-1 text-left">
+  <div class="site-block-top-search row">
+    <div class="col-7">
+      <select class="custom-select mb-4" (change)="onFilterSelected($event)">
+        <option value="3">All</option>
+        <option *ngFor="let opt of searchOption" [value]="opt.value">
+          {{ opt.name }}
+        </option>
+      </select>
+      <select class="custom-select mb-4" (change)="onSortSelected($event)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col-5">
+      <h3 class="mb-3 h6 text-uppercase text-black d-block">
+        Filter by Order Total Cost
+      </h3>
+
+      <ngx-slider
+        (userChangeEnd)="priceRangeChanged()"
+        [(value)]="this.minValue"
+        [(highValue)]="this.maxValue"
+        [options]="options"
+      ></ngx-slider>
+    </div>
   </div>
 </div>
 <button

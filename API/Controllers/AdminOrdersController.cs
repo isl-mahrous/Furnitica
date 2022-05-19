@@ -36,6 +36,8 @@ namespace API.Controllers
 
             var data = _mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders);
 
+            data = data.Where(o => o.Total >= orderParams.SubTotalFrom || o.Total <= orderParams.SubTotalTo).ToList();
+
             var response = new Pagination<OrderToReturnDto>
             {
                 Count = totalItems,

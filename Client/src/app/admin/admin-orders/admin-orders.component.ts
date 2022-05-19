@@ -22,7 +22,7 @@ export class AdminOrdersComponent implements OnInit {
   pageSize : number = 6;
 
   minValue = 0;
-  maxValue = 1000000000;
+  maxValue = 100000;
 
   options: Options = {
     floor: 0,
@@ -50,6 +50,7 @@ export class AdminOrdersComponent implements OnInit {
     this.orderParamsToSend.sort = "subTotalAsc";
     this.orderParamsToSend.subTotalFrom = 0;
     this.getOrders();
+    this.getMaxPrice();
   }
 
   private getOrders() {
@@ -82,6 +83,7 @@ export class AdminOrdersComponent implements OnInit {
         const newOptions: Options = Object.assign({}, this.options);
         newOptions.ceil = this.maxValue;
         this.options = newOptions;
+        console.log(this.maxValue);
       },
       error: err => { console.log(err); }
     })
@@ -105,6 +107,7 @@ export class AdminOrdersComponent implements OnInit {
 
   onSortSelected(e : Event) {
     this.orderParamsToSend.sort = (e.target as HTMLSelectElement).value;
+    this.orderParamsToSend.pageIndex = 1;
     this.getOrders();
   }
 
@@ -116,6 +119,7 @@ export class AdminOrdersComponent implements OnInit {
     }
     else {
       this.orderParamsToSend.search = searchIndex;
+      this.orderParamsToSend.pageIndex = 1;
     }
     this.getOrders();
   }
