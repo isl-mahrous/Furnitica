@@ -42,6 +42,7 @@ export class AdminOrdersService {
       params: params
     }).pipe(
       map(response => {
+        console.log(response);
         return response.body;
       })
     )

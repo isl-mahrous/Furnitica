@@ -129,7 +129,7 @@ namespace Infrastructure.Data
                     {
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter1@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -142,8 +142,8 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
+                                ShortName = "Car",
+                                DeliveryTime = "two day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
                             },
@@ -176,7 +176,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -187,25 +187,25 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 11111,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter2@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
                                 FirstName = "Hiso",
-                                LastName = "Hoso",
+                                LastName = "Hossam",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -213,8 +213,8 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
+                                ShortName = "Van",
+                                DeliveryTime = "three day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
                             },
@@ -247,7 +247,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 76,
                                     Quantity = 3,
@@ -258,25 +258,25 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 12,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter4@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
+                                FirstName = "Sayed",
+                                LastName = "Ahmed",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -284,8 +284,8 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
+                                ShortName = "Metro",
+                                DeliveryTime = "Four day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
                             },
@@ -318,7 +318,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -329,25 +329,25 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 5443,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter7@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
+                                FirstName = "Ramadan",
+                                LastName = "Hossam",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -355,8 +355,8 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
+                                ShortName = "Van",
+                                DeliveryTime = "Five day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
                             },
@@ -378,7 +378,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Mraya"
                                     },
                                     Price = 677,
                                     Quantity = 6,
@@ -389,7 +389,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -400,24 +400,24 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Sreer"
                                     },
                                     Price = 122,
                                     Quantity = 3,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 4553,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter7@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
+                                FirstName = "Mahroos",
                                 LastName = "Hoso",
                                 Street = "street1",
                                 City = "cairo",
@@ -426,8 +426,8 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
+                                ShortName = "Uber",
+                                DeliveryTime = "Seven day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
                             },
@@ -460,7 +460,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Komodino"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -471,24 +471,24 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 66,
                                     Quantity = 2,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 4637,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter8@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
+                                FirstName = "Fathy",
                                 LastName = "Hoso",
                                 Street = "street1",
                                 City = "cairo",
@@ -497,9 +497,9 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
+                                ShortName = "Microbas",
+                                DeliveryTime = "10 day",
+                                Description = "Microbas mahatet misr",
                                 Price = 2434
                             },
                             OrderItems = new List<OrderItem>()
@@ -520,7 +520,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Abajora"
                                     },
                                     Price = 40,
                                     Quantity = 7,
@@ -531,7 +531,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -542,24 +542,24 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 5,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 37637,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter54@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
+                                FirstName = "Sayed",
                                 LastName = "Hoso",
                                 Street = "street1",
                                 City = "cairo",
@@ -568,9 +568,9 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
+                                ShortName = "Bus",
                                 DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
+                                Description = "isa gaya 3la tool fel el 3arabya",
                                 Price = 2434
                             },
                             OrderItems = new List<OrderItem>()
@@ -591,7 +591,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Segada"
                                     },
                                     Price = 40,
                                     Quantity = 3,
@@ -602,7 +602,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -613,24 +613,24 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 10,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 464,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter32@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
+                                FirstName = "Ramadan",
                                 LastName = "Hoso",
                                 Street = "street1",
                                 City = "cairo",
@@ -639,9 +639,9 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
+                                ShortName = "Fedex",
+                                DeliveryTime = "Twent days",
+                                Description = "مفيش حد عاوز يجبها إن شاء الله",
                                 Price = 2434
                             },
                             OrderItems = new List<OrderItem>()
@@ -673,7 +673,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Sa5an"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -684,25 +684,25 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 16,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 424,
                             Status = OrderStatus.PaymentRecieved,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "Cusomter22@1234",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
                                 FirstName = "Hiso",
-                                LastName = "Hoso",
+                                LastName = "Ramadan",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -710,9 +710,9 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
+                                ShortName = "Wester unioin",
+                                DeliveryTime = "one month",
+                                Description = "eb2a 2ablny lw weslet",
                                 Price = 2434
                             },
                             OrderItems = new List<OrderItem>()
@@ -744,7 +744,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -755,13 +755,13 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 32,
                             Status = OrderStatus.PaymentRecieved,
                             PaymentIntentId = "53454nskjdfb"
                         },
@@ -773,7 +773,7 @@ namespace Infrastructure.Data
                             ShipToAddress = new Address()
                             {
                                 FirstName = "Hiso",
-                                LastName = "Hoso",
+                                LastName = "Mahroooos",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -781,7 +781,7 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
+                                ShortName = "Car",
                                 DeliveryTime = "one day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
@@ -793,7 +793,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Chair"
+                                        ProductName = "Kanaba"
                                     },
                                     Price = 100,
                                     Quantity = 3,
@@ -815,7 +815,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -826,13 +826,13 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Alamotal"
                                     },
                                     Price = 900,
                                     Quantity = 2,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 6465,
                             Status = OrderStatus.PaymentFailed,
                             PaymentIntentId = "53454nskjdfb"
                         },
@@ -843,8 +843,8 @@ namespace Infrastructure.Data
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
+                                FirstName = "Eslam",
+                                LastName = "Mahroos",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -852,7 +852,7 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
+                                ShortName = "Car",
                                 DeliveryTime = "one day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
@@ -875,7 +875,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Dolap"
                                     },
                                     Price = 40,
                                     Quantity = 1,
@@ -886,7 +886,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -897,13 +897,13 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 1,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 8797,
                             Status = OrderStatus.PaymentRecieved,
                             PaymentIntentId = "53454nskjdfb"
                         },
@@ -914,8 +914,8 @@ namespace Infrastructure.Data
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
+                                FirstName = "Ahmed",
+                                LastName = "Sayed",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -924,6 +924,77 @@ namespace Infrastructure.Data
                             DeliveryMethod = new DeliveryMethod()
                             {
                                 ShortName = "by Car",
+                                DeliveryTime = "one day",
+                                Description = "هتوصل إن شاء الله",
+                                Price = 2434
+                            },
+                            OrderItems = new List<OrderItem>()
+                            {
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 3,
+                                        ProductName = "Chair"
+                                    },
+                                    Price = 100,
+                                    Quantity = 4,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 1,
+                                        ProductName = "Door"
+                                    },
+                                    Price = 40,
+                                    Quantity = 3,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 7,
+                                        ProductName = "Table"
+                                    },
+                                    Price = 200,
+                                    Quantity = 1,
+                                },
+
+                                new OrderItem()
+                                {
+                                    ItemOrdered = new ProductItemOrdered()
+                                    {
+                                        ProductItemId = 5,
+                                        ProductName = "Fota"
+                                    },
+                                    Price = 900,
+                                    Quantity = 8,
+                                },
+                            },
+                            Subtotal = 12456,
+                            Status = OrderStatus.PaymentRecieved,
+                            PaymentIntentId = "53454nskjdfb"
+                        },
+
+                        new Order()
+                        {
+                            BuyerEmail = "Cusomter@1234",
+                            OrderDate = DateTime.Now,
+                            ShipToAddress = new Address()
+                            {
+                                FirstName = "Ahmed",
+                                LastName = "Ramadan",
+                                Street = "street1",
+                                City = "cairo",
+                                State = "NY",
+                                Zipcode = "1234"
+                            },
+                            DeliveryMethod = new DeliveryMethod()
+                            {
+                                ShortName = "Car",
                                 DeliveryTime = "one day",
                                 Description = "هتوصل إن شاء الله",
                                 Price = 2434
@@ -957,7 +1028,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Counter"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -968,84 +1039,13 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
-                            Status = OrderStatus.PaymentRecieved,
-                            PaymentIntentId = "53454nskjdfb"
-                        },
-
-                        new Order()
-                        {
-                            BuyerEmail = "Cusomter@1234",
-                            OrderDate = DateTime.Now,
-                            ShipToAddress = new Address()
-                            {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
-                                Street = "street1",
-                                City = "cairo",
-                                State = "NY",
-                                Zipcode = "1234"
-                            },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
-                            OrderItems = new List<OrderItem>()
-                            {
-                                new OrderItem()
-                                {
-                                    ItemOrdered = new ProductItemOrdered()
-                                    {
-                                        ProductItemId = 3,
-                                        ProductName = "Chair"
-                                    },
-                                    Price = 100,
-                                    Quantity = 4,
-                                },
-
-                                new OrderItem()
-                                {
-                                    ItemOrdered = new ProductItemOrdered()
-                                    {
-                                        ProductItemId = 1,
-                                        ProductName = "Sofa"
-                                    },
-                                    Price = 40,
-                                    Quantity = 3,
-                                },
-
-                                new OrderItem()
-                                {
-                                    ItemOrdered = new ProductItemOrdered()
-                                    {
-                                        ProductItemId = 7,
-                                        ProductName = "table"
-                                    },
-                                    Price = 200,
-                                    Quantity = 1,
-                                },
-
-                                new OrderItem()
-                                {
-                                    ItemOrdered = new ProductItemOrdered()
-                                    {
-                                        ProductItemId = 5,
-                                        ProductName = "molla"
-                                    },
-                                    Price = 900,
-                                    Quantity = 8,
-                                },
-                            },
-                            Subtotal = 7920,
+                            Subtotal = 543,
                             Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
@@ -1056,8 +1056,8 @@ namespace Infrastructure.Data
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hoso",
+                                FirstName = "Mohamed",
+                                LastName = "Fathy",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",
@@ -1065,9 +1065,9 @@ namespace Infrastructure.Data
                             },
                             DeliveryMethod = new DeliveryMethod()
                             {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
+                                ShortName = "Sha7n saree3",
+                                DeliveryTime = "one year",
+                                Description = "لما نوصل تحت هنرنلك تنزل تاخد الحاجة",
                                 Price = 2434
                             },
                             OrderItems = new List<OrderItem>()
@@ -1077,7 +1077,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Chair"
+                                        ProductName = "Wing"
                                     },
                                     Price = 100,
                                     Quantity = 4,
@@ -1099,7 +1099,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "table"
+                                        ProductName = "Desk"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -1110,13 +1110,13 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "molla"
+                                        ProductName = "Molla"
                                     },
                                     Price = 900,
                                     Quantity = 8,
                                 },
                             },
-                            Subtotal = 7920,
+                            Subtotal = 122,
                             Status = OrderStatus.PaymentFailed,
                             PaymentIntentId = "53454nskjdfb"
                         }

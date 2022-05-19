@@ -13,10 +13,11 @@ import { AdminOrdersService } from './admin-orders.service';
 export class AdminOrdersComponent implements OnInit {
 
 
-  orders : IOrder[] = [];
+  orders : IOrder[];
+  length : number;
   totalCount: number;
   searchOption = [{name: "Pending", value: "0"}, {name: "Payment Recieved", value: "1"}, {name: "Payment Failed", value: "2"}];
-  sortOptions = [{name: "lower subtotal to higher subtotal", value: "subTotalAsc"}, {name: "higher subtotal to lower subtotal", value: "subTotalDesc"}];
+  sortOptions = [{name: "Lower Cost To Higher", value: "subTotalAsc"}, {name: "Higher Cost To Lower", value: "subTotalDesc"}];
   orderParamsToSend : orderParams;
   pageSize : number = 6;
 
@@ -56,8 +57,10 @@ export class AdminOrdersComponent implements OnInit {
     this.adminOrdersService.getAllOrders(this.orderParamsToSend).subscribe(
       {
         next : (response : IOrdersPagination) => {
-          console.log(response);
           this.orders = response.data;
+          this.orderParamsToSend.pageIndex = response.pageIndex;
+          this.orderParamsToSend.pageSize = response.pageSize;
+          this.totalCount = response.count;
         },
         error : err => console.log(err)
       }

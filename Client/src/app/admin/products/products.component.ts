@@ -86,8 +86,6 @@ export class ProductsComponent implements OnInit {
 
 }
 
-
-
 editProduct(product:any){
   const dialogRef =this.dialog.open(DialogComponent, {
 

@@ -28,7 +28,9 @@ namespace API.Controllers
         {
             var specs = new OrdersSpecification(orderParams);
 
-            var totalItems = await _orderService.CountAsync(specs);
+            var countSpecs = new OrdersWithFiltersCount(orderParams);
+
+            var totalItems = await _orderService.CountAsync(countSpecs);
 
             var orders = await _orderService.GetAllOrdersAsync(specs);
 
