@@ -40,6 +40,7 @@ import { TypeDialogComponent } from './type-dialog/type-dialog.component';
 import { ShopModule } from '../shop/shop.module';
 import { DialogOrderComponent } from './dialog-order/dialog-order.component';
 
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -60,7 +61,7 @@ import { DialogOrderComponent } from './dialog-order/dialog-order.component';
 
     BrandDialogComponent,
       TypeDialogComponent,
-      DialogOrderComponent,
+      DialogOrderComponent
 
   ],
   imports: [
@@ -81,8 +82,8 @@ import { DialogOrderComponent } from './dialog-order/dialog-order.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    ShopModule
-
+    ShopModule,
+    NgChartsModule
 
   ]
 })

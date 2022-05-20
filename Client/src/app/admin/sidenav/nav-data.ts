@@ -1,37 +1,35 @@
-export const navnarData=[
+export const navnarData = [
 
   {
-    routerLink:'dashboard',
-    icon:'fa fa-home',
-    Label:'Dashboard'
+    routerLink: 'dashboard',
+    icon: 'fa fa-home',
+    Label: 'Dashboard'
   },
 
   {
-    routerLink:'products',
-    icon:'fal fa-box-open',
-    Label:'Products'
+    routerLink: 'products',
+    icon: 'fal fa-box-open',
+    Label: 'Products'
   },
   {
-    routerLink:'categories',
-    icon:'fa fa-list',
-    Label:'Categories'
+    routerLink: 'categories',
+    icon: 'fa fa-list',
+    Label: 'Categories'
   },
 
   {
-    routerLink:'brands',
-    icon:'fa fa-flag',
-    Label:'Brands'
+    routerLink: 'brands',
+    icon: 'fa fa-flag',
+    Label: 'Brands'
   },
   {
-    routerLink:'adminOrders',
-    icon:'fa fa-bell',
-    Label:'Orders'
+    routerLink: 'adminOrders',
+    icon: 'fa fa-bell',
+    Label: 'Orders'
   },
   {
-    routerLink:'users',
-    icon:'fa fa-user',
-    Label:'Users'
-  }
-
-
+    routerLink: 'users',
+    icon: 'fa fa-user',
+    Label: 'Users'
+  },
 ];

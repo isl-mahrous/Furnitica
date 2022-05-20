@@ -1,14 +1,10 @@
-
-
-
-
-  <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-    <div class="site-block-top-search">
-      <span class="icon icon-search2 fa fa-search"></span>
-      <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0" placeholder="Search"
-        style="background-color: aliceblue;">
-    </div>
+<div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+  <div class="site-block-top-search">
+    <span class="icon icon-search2 fa fa-search"></span>
+    <input (keyup.enter)="onSearch()" #search type="text" class="form-control border-0" placeholder="Search"
+      style="background-color: aliceblue;">
   </div>
+</div>
 
 <button mat-raised-button color="primary" style="float:right;" (click)="AddDialog()">Add Brand</button>
 
@@ -21,7 +17,7 @@
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Origin</th>
-            <th scope="col"></th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -32,16 +28,16 @@
 
             <td>
 
-                <button (click)="editBrand(item)" mat-icon-button color="primary">
-                    <mat-icon>edit</mat-icon>
+              <button (click)="editBrand(item)" mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
 
-                </button>
+              </button>
 
-                <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
-                  <mat-icon>delete</mat-icon>
+              <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
 
-                 </button>
-              </td>
+              </button>
+            </td>
 
           </tr>
 
@@ -52,4 +48,3 @@
 
   <mat-paginator [length]="count" [pageSize]="6" (page)="onPageChanged($event)" aria-label="Select page">
   </mat-paginator>
-

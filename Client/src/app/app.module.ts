@@ -15,11 +15,12 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { OrdersModule } from './orders/orders.module';
 import { AdminModule } from './admin/admin.module';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { StripeModule } from "stripe-angular";
-import { MainLayoutComponent } from './main-layout/main-layout.component'
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { NgChartsModule } from 'ng2-charts'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MainLayoutComponent } from './main-layout/main-layout.component'
     HomeModule,
     ToastrModule,
     ToastrModule.forRoot(),
-    StripeModule
+    StripeModule,
+    NgChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
