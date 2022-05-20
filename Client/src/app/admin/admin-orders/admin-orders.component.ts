@@ -1,8 +1,10 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { IOrder, orderParams } from 'src/app/shared/models/order';
 import { IOrdersPagination } from 'src/app/shared/models/pagination';
+import { DialogOrderComponent } from '../dialog-order/dialog-order.component';
 import { AdminOrdersService } from './admin-orders.service';
 
 @Component({
@@ -45,7 +47,7 @@ export class AdminOrdersComponent implements OnInit {
   orderDetails: IOrder;
 
 
-  constructor(private adminOrdersService : AdminOrdersService) { }
+  constructor(private adminOrdersService : AdminOrdersService, public dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.orderParamsToSend = new orderParams();
@@ -100,7 +102,20 @@ export class AdminOrdersComponent implements OnInit {
 
   showDetails(orderId : number) {
 
-  }
+    console.log(this.orders.find(o => o.id == orderId));
+
+    const dialogRef =this.dialog.open(DialogOrderComponent, {
+
+      width:'35%',
+      data: {
+        order: this.orders.find(o => o.id == orderId),
+        action:"show",
+        itemsCount:this.orders.find(o => o.id == orderId).orderItems.length
+      }
+  });
+}
+
+
 
   editOrder(order : IOrder) {
 

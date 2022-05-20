@@ -10,6 +10,10 @@ namespace Core.Specifications
 {
     public class OrdersSpecification : BaseSpecification<Order>
     {
+        public OrdersSpecification()
+        {
+            
+        }
         public OrdersSpecification(OrderSpecParams orderParams) : base(x =>
             (string.IsNullOrEmpty(orderParams.Search) || x.Status.ToString() == orderParams.Search) &&
             (!orderParams.SubTotalFrom.HasValue || x.Subtotal >= orderParams.SubTotalFrom) &&

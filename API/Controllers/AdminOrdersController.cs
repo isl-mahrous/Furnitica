@@ -36,7 +36,7 @@ namespace API.Controllers
 
             var data = _mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders);
 
-            data = data.Where(o => o.Total >= orderParams.SubTotalFrom && o.Total <= orderParams.SubTotalTo).ToList();
+            //data = data.Where(o => o.Total >= orderParams.SubTotalFrom && o.Total <= orderParams.SubTotalTo).ToList();
 
             var response = new Pagination<OrderToReturnDto>
             {
@@ -53,8 +53,8 @@ namespace API.Controllers
         [HttpGet("maxPrice")]
         public async Task<ActionResult<decimal>> GetMaxPrice()
         {
-            var specs = new OrdersSpecification(new OrderSpecParams());
-            var result = await _orderService.GetAllOrdersAsync(specs);
+            var specs = new OrdersSpecification();
+            var result = await _orderService.GetAllOrdersAsync();
             var maxPrice = result.Max(p => p.Subtotal);
 
             return Ok(maxPrice);
