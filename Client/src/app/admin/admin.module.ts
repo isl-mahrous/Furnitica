@@ -61,7 +61,7 @@ import { NgChartsModule } from 'ng2-charts';
 
     BrandDialogComponent,
       TypeDialogComponent,
-      DialogOrderComponent
+      DialogOrderComponent,
 
   ],
   imports: [
