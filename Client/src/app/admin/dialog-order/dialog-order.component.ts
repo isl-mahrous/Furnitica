@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { orderParams } from 'src/app/shared/models/order';
 
@@ -11,7 +11,7 @@ import { orderParams } from 'src/app/shared/models/order';
 export class DialogOrderComponent implements OnInit {
 
   orderForm !: FormGroup;
-  items = this.data.order.orderItems;
+  // items = this.data.order.orderItems;
 
   constructor(private formBuilder:FormBuilder,
     private dialogRef:MatDialogRef<DialogOrderComponent>,
@@ -37,7 +37,7 @@ export class DialogOrderComponent implements OnInit {
       deliveryMethod : ['',Validators.required],
       shippingPrice : ['',Validators.required],
 
-      orderItems : this.formBuilder.array([this.createSection()]),
+      orderItems : this.formBuilder.array([this.createSection()], Validators.required),
 
       subtotal : ['',Validators.required],
       total : ['',Validators.required],
@@ -60,22 +60,28 @@ export class DialogOrderComponent implements OnInit {
       this.orderForm.get('deliveryMethod').setValue(orderData.deliveryMethod);
       this.orderForm.get('shippingPrice').setValue(orderData.shippingPrice);
 
-
-      // for(let i = 0; i < this.data.itemsCount; i++)
-      // {
-      //   this.orderForm.get('orderItems')[i].get('productId').setValue(orderData.orderItems[i].productId);
-      //   this.orderForm.get('orderItems')[i].get('productName').setValue(orderData.orderItems[i].productName);
-      //   this.orderForm.get('orderItems')[i].get('price').setValue(orderData.orderItems[i].price);
-      //   this.orderForm.get('orderItems')[i].get('quantity').setValue(orderData.orderItems[i].quantity);
-      // }
-
       this.orderForm.get('subtotal').setValue(orderData.subtotal);
       this.orderForm.get('total').setValue(orderData.total);
       this.orderForm.get('status').setValue(orderData.status);
+
+      for(let i = 0; i < this.data.itemsCount; i++)
+      {
+        this.orderForm.get('orderItems')[i].get('productId').setValue(orderData.orderItems[i].productId);
+        this.orderForm.get('orderItems')[i].get('productName').setValue(orderData.orderItems[i].productName);
+        this.orderForm.get('orderItems')[i].get('price').setValue(orderData.orderItems[i].price);
+        this.orderForm.get('orderItems')[i].get('quantity').setValue(orderData.orderItems[i].quantity);
+      }
+
     }
 
     console.log(this.orderForm);
   }
+
+  get items(){
+    return this.orderForm.get('orderItems') as FormArray;
+  }
+
+
 
   private createSection() {
 

@@ -691,7 +691,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 424,
-                            Status = OrderStatus.PaymentRecieved,
+                            Status = OrderStatus.Confirmed,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
@@ -762,7 +762,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 32,
-                            Status = OrderStatus.PaymentRecieved,
+                            Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
@@ -833,7 +833,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 6465,
-                            Status = OrderStatus.PaymentFailed,
+                            Status = OrderStatus.Confirmed,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
@@ -904,7 +904,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 8797,
-                            Status = OrderStatus.PaymentRecieved,
+                            Status = OrderStatus.Confirmed,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
@@ -975,7 +975,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 12456,
-                            Status = OrderStatus.PaymentRecieved,
+                            Status = OrderStatus.Pending,
                             PaymentIntentId = "53454nskjdfb"
                         },
 
@@ -1117,7 +1117,7 @@ namespace Infrastructure.Data
                                 },
                             },
                             Subtotal = 122,
-                            Status = OrderStatus.PaymentFailed,
+                            Status = OrderStatus.Confirmed,
                             PaymentIntentId = "53454nskjdfb"
                         }
                     };

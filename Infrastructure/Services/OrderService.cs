@@ -101,7 +101,7 @@ namespace Infrastructure.Services
 
         public async Task CancelOrderAsync(int id)
         {
-            await _orderRepo.DeleteAsync(id);
+            await _orderRepo.DeleteAsync(id); 
         }
 
         public async Task UpdateOrder(int id, Order order)

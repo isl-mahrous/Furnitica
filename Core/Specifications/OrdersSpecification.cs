@@ -15,7 +15,7 @@ namespace Core.Specifications
             
         }
         public OrdersSpecification(OrderSpecParams orderParams) : base(x =>
-            (string.IsNullOrEmpty(orderParams.Search) || x.Status.ToString() == orderParams.Search) &&
+            (!orderParams.Search.HasValue|| (int)x.Status == orderParams.Search) &&
             (!orderParams.SubTotalFrom.HasValue || x.Subtotal >= orderParams.SubTotalFrom) &&
             (!orderParams.SubTotalTo.HasValue || x.Subtotal <= orderParams.SubTotalTo)
         )

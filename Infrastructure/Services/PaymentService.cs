@@ -105,7 +105,7 @@ namespace Infrastructure.Services
             var order = await orderRepo.GetEntityWithSpec(spec);
 
             if (order == null) return null;
-            order.Status = OrderStatus.PaymentFailed;
+            order.Status = OrderStatus.Pending;
 
             await orderRepo.UpdateAsync(order.Id, order);
             
@@ -119,7 +119,7 @@ namespace Infrastructure.Services
 
             if (order == null) return null;
 
-            order.Status = OrderStatus.PaymentRecieved;
+            order.Status = OrderStatus.Confirmed;
             await orderRepo.UpdateAsync(order.Id, order);
 
             return null;

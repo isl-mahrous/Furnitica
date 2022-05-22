@@ -121,6 +121,49 @@
     </mat-form-field>
 
     <!--Order Items-->
+    <!-- <div *ngFor="let item of items.controls">
+      <div formGroupName="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Product ID</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="productId"
+            matInput
+            placeholder="Product ID"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="productName"
+            matInput
+            placeholder="Product Name"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="price"
+            matInput
+            placeholder="Price"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input
+            [readonly]="data.action == 'show'"
+            formControlName="quantity"
+            matInput
+            placeholder="Quantity"
+          />
+        </mat-form-field>
+      </div>
+    </div> -->
 
     <mat-form-field appearance="outline">
       <mat-label>Sub Total</mat-label>

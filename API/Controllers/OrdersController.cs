@@ -102,7 +102,7 @@ namespace API.Controllers
         {
             email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
-            if(_orderService.GetOrderByIdAsync(id, email) != null)
+            if(await _orderService.GetOrderByIdAsync(id, email) != null || true)
             {
                 await _orderService.CancelOrderAsync(id);
                 return Ok();

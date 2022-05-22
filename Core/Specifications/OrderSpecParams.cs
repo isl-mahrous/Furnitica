@@ -35,8 +35,8 @@ namespace Core.Specifications
 
         public string Sort { get; set; }
 
-        private string _search;
-        public string Search
+        private int? _search;
+        public int? Search
         {
             get => _search;
             set => _search = value;

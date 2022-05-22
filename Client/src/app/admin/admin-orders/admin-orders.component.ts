@@ -18,7 +18,7 @@ export class AdminOrdersComponent implements OnInit {
   orders : IOrder[];
   length : number;
   totalCount: number;
-  searchOption = ["Pending", "Payment Recieved", "Payment Failed"];
+  searchOption = [{name: "Pending", value : "0"}, {name:"Confirmed", value:"1"}];
   sortOptions = [{name: "Lower Cost To Higher", value: "subTotalAsc"}, {name: "Higher Cost To Lower", value: "subTotalDesc"}];
   orderParamsToSend : orderParams;
   pageSize : number = 6;
@@ -117,8 +117,8 @@ export class AdminOrdersComponent implements OnInit {
 
 
 
-  editOrder(order : IOrder) {
-
+  confirmOrder(order : IOrder) {
+    
   }
 
   confrimDelete(id:number) {
@@ -129,9 +129,9 @@ export class AdminOrdersComponent implements OnInit {
 
   private deleteOrder(id:number){
     this.adminOrdersService.deleteOrder(id).subscribe({
-      next: response => console.log(response)
+      next: () => this.ngOnInit()
     });
-    this.getOrders();
+
   }
 
   onSortSelected(e : Event) {
@@ -142,7 +142,7 @@ export class AdminOrdersComponent implements OnInit {
 
   onFilterSelected(e : Event) {
     let filterValue = (e.target as HTMLSelectElement).value;
-    if(filterValue === "all")
+    if(filterValue === "3")
     {
       this.clearFilters();
     }
