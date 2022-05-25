@@ -96,8 +96,15 @@ export class AdminOrdersComponent implements OnInit {
     })
   }
 
-  openDialog() {
-
+  confirmAllOrders() {
+      this.adminOrdersService.confirmAllOrders().subscribe(
+        {
+          next: ( data : IOrdersPagination[]) => {
+            alert("All Orders Confirmed");
+            this.getOrders();
+          }
+        }
+      );
   }
 
   showDetails(orderId : number) {
@@ -115,10 +122,12 @@ export class AdminOrdersComponent implements OnInit {
   });
 }
 
-
-
-  confirmOrder(order : IOrder) {
-    
+  confirmOrder(order : IOrder)  {
+    this.adminOrdersService.confirmOrder(order.id, order).subscribe({
+      next: ( data : IOrder) => {
+        alert("Order Confirmed");
+      }
+    })
   }
 
   confrimDelete(id:number) {

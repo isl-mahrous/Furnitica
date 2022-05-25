@@ -39,6 +39,8 @@ namespace API.Helpers
                 .ForMember(d => d.OrderItems, o => o.MapFrom(s => s.OrderItems.ToList()))
                 .ForMember(d => d.Total, o => o.MapFrom(s => s.Subtotal + s.DeliveryMethod.Price));
 
+            CreateMap<OrderToReturnDto, Order>();
+
             CreateMap<OrderItem, OrderItemDto>()
                 .ForMember(d => d.ProductId, o => o.MapFrom(s => s.ItemOrdered.ProductItemId))
                 .ForMember(d => d.ProductName, o => o.MapFrom(s => s.ItemOrdered.ProductName));

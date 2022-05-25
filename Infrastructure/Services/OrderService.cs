@@ -119,9 +119,14 @@ namespace Infrastructure.Services
             return await _orderRepo.GetAllAsync(spec);
         }
 
-        public Task<int> CountAsync(ISpecification<Order> spec)
+        public async Task<int> CountAsync(ISpecification<Order> spec)
         {
-            return _orderRepo.CountAsync(spec);
+            return await _orderRepo.CountAsync(spec);
+        }
+
+        public async Task<Order> confirmOrder(int id, Order order)
+        {
+            return await _orderRepo.UpdateAsync(id, order);
         }
     }
 }

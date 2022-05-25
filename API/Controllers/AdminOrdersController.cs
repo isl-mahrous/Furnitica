@@ -2,6 +2,7 @@
 using API.Helpers;
 using AutoMapper;
 using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Core.Specifications;
 using Microsoft.AspNetCore.Http;
@@ -65,6 +66,33 @@ namespace API.Controllers
         {
             var order = await _orderService.GetOrderById(id);
             return _mapper.Map<Order, OrderToReturnDto>(order);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> ConfirmOrder(int id)
+        {
+
+            var order = await _orderService.GetOrderById(id);
+
+            order.Status = OrderStatus.Confirmed;
+
+            await _orderService.confirmOrder(id, order);
+
+            return Ok();
+
+        }
+
+        [HttpPut("confirmAllOrders")]
+        public async Task<ActionResult> ConfirmAllOrder()
+        {
+            var orders = await _orderService.GetAllOrdersAsync();
+
+            foreach(var order in orders)
+            {
+                order.Status = OrderStatus.Confirmed;
+                await _orderService.confirmOrder(order.Id, order);
+            }
+            return Ok();
         }
     }
 

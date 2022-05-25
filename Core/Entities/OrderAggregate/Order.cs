@@ -21,6 +21,7 @@ namespace Core.Entities
             DeliveryMethod = deliveryMethod;
             Subtotal = subTotal;
             PaymentIntentId = paymentIntentId;
+            Status = OrderStatus.Pending;
         }
         public string BuyerEmail { get; set; }
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
@@ -28,7 +29,7 @@ namespace Core.Entities
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
         public decimal Subtotal { get; set; }
-        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public OrderStatus Status { get; set; }
         public string PaymentIntentId { get; set; }
         public decimal GetTotal()
         {

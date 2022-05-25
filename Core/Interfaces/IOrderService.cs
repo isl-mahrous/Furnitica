@@ -30,5 +30,7 @@ namespace Core.Interfaces
         Task<IReadOnlyList<Order>> GetAllOrdersAsync(ISpecification<Order> spec);
 
         Task<int> CountAsync(ISpecification<Order> spec);
+
+        Task<Order> confirmOrder(int id, Order order);
     }
 }

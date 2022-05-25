@@ -13,6 +13,7 @@ import { PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { IBrand } from 'src/app/shared/models/brand';
 import { IType } from 'src/app/shared/models/productType';
+import { IOrder } from 'src/app/shared/models/order';
 
 
 
@@ -106,6 +107,8 @@ dialogRef.afterClosed().subscribe(result => {
 });
 
 }
+
+
 
 showDetails(product:any){
   const dialogRef =this.dialog.open(DialogComponent, {

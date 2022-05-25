@@ -52,6 +52,21 @@ export class AdminOrdersService {
     return this.http.get<number>(this.baseUrl + "AdminOrders/maxPrice");
   }
 
+  confirmAllOrders() {
+    return this.http.put<null>(this.baseUrl + "AdminOrders/confirmAllOrders", {
+      observe : "response",
+      params : null
+    });
+  }
+
+  confirmOrder(id : number, order : IOrder) {
+    order.status = "Confirmed";
+    return this.http.put<null>(this.baseUrl + "AdminOrders/" + id,{
+      observe: "response",
+      params:null
+    });
+  }
+
   deleteOrder(id){
     let params = new HttpParams();
     params = params.append("id", id.toString());
