@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Enum;
 using Core.Entities.OrderAggregate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -1162,7 +1163,8 @@ namespace Infrastructure.Data
                     {
                         Email = adminEmail,
                         UserName = "Thanos",
-                        ProfilePicture = "https://i.ytimg.com/vi/N2YTmooNR8E/maxresdefault.jpg"
+                        ProfilePicture = "https://i.ytimg.com/vi/N2YTmooNR8E/maxresdefault.jpg",
+                        Gender = Gender.Male
                     };
                     var result = await userManager.CreateAsync(newAdmin, "Admin@1234");
                     await userManager.AddToRoleAsync(newAdmin, "Admin");
@@ -1176,7 +1178,8 @@ namespace Infrastructure.Data
                     {
                         Email = customerEmail,
                         UserName = "Wanda",
-                        ProfilePicture = "https://sm.ign.com/ign_me/news/w/wandavisio/wandavision-director-says-theres-a-lot-more-of-scarlet-witch_wyke.jpg"
+                        ProfilePicture = "https://sm.ign.com/ign_me/news/w/wandavisio/wandavision-director-says-theres-a-lot-more-of-scarlet-witch_wyke.jpg",
+                        Gender = Gender.Female
                     };
                     await userManager.CreateAsync(newCustomer, "Customer@1234");
                     await userManager.AddToRoleAsync(newCustomer, "Customer");

@@ -1,4 +1,6 @@
-﻿namespace API.DTOs
+﻿using Core.Entities.Enum;
+
+namespace API.DTOs
 {
     public class UserProfileDto
     {
@@ -12,5 +14,6 @@
 
         public string profilePicture { get; set; }
 
+        public Gender gender { get; set; }
     }
 }
