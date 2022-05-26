@@ -16,9 +16,9 @@ declare var Stripe;
 })
 export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   @Input() checkoutForm: FormGroup;
-  @ViewChild('cardNumber', {static: true}) cardNumberElement: ElementRef;
-  @ViewChild('cardExpiry', {static: true}) cardExpiryElement: ElementRef;
-  @ViewChild('cardCvc', {static: true}) cardCvcElement: ElementRef;
+  @ViewChild('cardNumber', { static: true }) cardNumberElement: ElementRef;
+  @ViewChild('cardExpiry', { static: true }) cardExpiryElement: ElementRef;
+  @ViewChild('cardCvc', { static: true }) cardCvcElement: ElementRef;
   stripe: any;
   cardNumber: any;
   cardExpiry: any;
@@ -84,10 +84,10 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     try {
       const createdOrder = await this.createOrder(basket);
       const paymentResult = await this.confirmPaymentWithStripe(basket);
-
+      console.log(paymentResult)
       if (paymentResult.paymentIntent) {
         this.basketService.deleteBasket(basket);
-        const navigationExtras: NavigationExtras = {state: createdOrder};
+        const navigationExtras: NavigationExtras = { state: createdOrder };
         this.router.navigate(['checkout/success'], navigationExtras);
       } else {
         this.toastr.error(paymentResult.error.message);
