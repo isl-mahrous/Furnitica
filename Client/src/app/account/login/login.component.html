@@ -9,7 +9,7 @@
                 <input style="height: 40px" formControlName="username" type="text" id="inputusername"
                     class="form-control" placeholder="Username" required="" autofocus="">
                 <label for="inputusername">Username</label>
-                <span class="text-danger" *ngIf="loginForm.get('username').invalid 
+                <span class="text-danger" *ngIf="loginForm.get('username').invalid
                     && loginForm.get('username').touched
                     && loginForm.get('username').errors['required']">
                     Username is required
@@ -20,7 +20,7 @@
                 <input formControlName="password" type="password" id="inputPassword" class="form-control"
                     placeholder="Password" required="">
                 <label for="inputPassword">Password</label>
-                <span class="text-danger" *ngIf="loginForm.get('password').invalid 
+                <span class="text-danger" *ngIf="loginForm.get('password').invalid
                     && loginForm.get('password').touched
                     && loginForm.get('password').errors['required']">
                     Password is required
