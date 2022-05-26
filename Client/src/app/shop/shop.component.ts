@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
   ];
   search$: Observable<string>;
   minValue = 0;
-  maxValue = 10000;
+  maxValue = 100000;
   options: Options = {
     floor: 0,
     ceil: this.maxValue,
