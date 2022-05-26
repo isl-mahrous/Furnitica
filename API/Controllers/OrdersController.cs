@@ -49,6 +49,11 @@ namespace API.Controllers
         {
             email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
+            // hard code (to be removed)
+            email = "admin@furnitica.com";
+            ///////
+            
+
             var orders = await _orderService.GetOrdersForUserAsync(email);
 
             return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));

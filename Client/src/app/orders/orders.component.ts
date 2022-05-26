@@ -24,4 +24,12 @@ export class OrdersComponent implements OnInit {
     });
   }
 
+  showDetails(orderID : number){
+
+  }
+
+  confrimDelete(orderID : number){
+
+  }
+
 }

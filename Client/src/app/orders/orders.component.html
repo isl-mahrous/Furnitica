@@ -8,6 +8,7 @@
             <th>Date</th>
             <th>Total</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,18 @@
             <td>{{ order.orderDate | date: "medium" }}</td>
             <td>{{ order.total | currency }}</td>
             <td>{{ order.status }}</td>
+            <td class="align-middle">
+              <button mat-icon-button class="btn-primary m-1 rounded-circle">
+                <mat-icon (click)="showDetails(order.id)">visibility</mat-icon>
+              </button>
+              <button
+                (click)="confrimDelete(order.id)"
+                mat-icon-button
+                class="btn-danger m-1 rounded-circle"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

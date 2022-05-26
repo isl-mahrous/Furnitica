@@ -200,12 +200,12 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter2@1234",
+                            BuyerEmail = "admin@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
-                                FirstName = "Hiso",
-                                LastName = "Hossam",
+                                FirstName = "Thanous",
+                                LastName = "Wanda",
                                 Street = "street1",
                                 City = "cairo",
                                 State = "NY",

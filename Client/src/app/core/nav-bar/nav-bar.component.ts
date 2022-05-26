@@ -37,5 +37,9 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl("/shop");
     this.navBarService.searchSource.next(this.searchTerm.nativeElement.value);
   }
+
+  getUserOrders(){
+    this.router.navigateByUrl("/orders");
+  }
 }
 
