@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-  declarations: [NavBarComponent, SectionHeaderComponent],
+  declarations: [NavBarComponent, SectionHeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -17,7 +18,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
   ],
   exports: [
     NavBarComponent,
-    SectionHeaderComponent
+    SectionHeaderComponent,
+    FooterComponent
   ]
 })
 export class CoreModule { }

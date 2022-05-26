@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
           <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-            <h1 class="mb-2">Finding Your Comfort</h1>
+            <h1 style="line-height: 1;" class="mb-2">Finding Your Comfort</h1>
             <div class="intro-text text-center text-md-left">
               <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
               <p>
@@ -21,7 +21,7 @@
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
           <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-            <h1 class="mb-2">High Quality Service</h1>
+            <h1 style="line-height: 1;" class="mb-2">High Quality Service</h1>
             <div class="intro-text text-center text-md-left">
               <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
               <p>
@@ -38,7 +38,7 @@
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
           <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-            <h1 class="mb-2">Guarnteed Success</h1>
+            <h1 style="line-height: 1;" class="mb-2">Guarnteed Success</h1>
             <div class="intro-text text-center text-md-left">
               <p class="mb-4">Here in Furnitica, we provide a market-leading choices to ensure your comfort</p>
               <p>
@@ -93,37 +93,44 @@
 
 <div class="site-section site-blocks-2">
   <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 site-section-heading text-center pt-4">
+        <h2>Top Collections</h2>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-        <a class="block-2-item" href="#">
+        <a style="cursor: pointer;" class="block-2-item" (click)="goToShop()">
           <figure class="image">
-            <img src="../../assets/images/women.jpg" alt="" class="img-fluid">
+            <img src="https://i.pinimg.com/originals/4b/3f/37/4b3f378cd6d8063462fdc1f74a949bfc.jpg" alt=""
+              class="img-fluid">
           </figure>
           <div class="text">
             <span class="text-uppercase">Collections</span>
-            <h3>Women</h3>
+            <h3>Sofas</h3>
           </div>
         </a>
       </div>
       <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-        <a class="block-2-item" href="#">
+        <a style="cursor: pointer;" class="block-2-item" (click)="goToShop()">
           <figure class="image">
-            <img src="../../assets/images/children.jpg" alt="" class="img-fluid">
+            <img src="https://assets.weimgs.com/weimgs/ab/images/wcm/products/202151/0014/emmett-bed-wood-legs-1-z.jpg"
+              alt="" class="img-fluid">
           </figure>
           <div class="text">
             <span class="text-uppercase">Collections</span>
-            <h3>Children</h3>
+            <h3>Beds</h3>
           </div>
         </a>
       </div>
       <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-        <a class="block-2-item" href="#">
+        <a style="cursor: pointer;" class="block-2-item" (click)="goToShop()">
           <figure class="image">
-            <img src="../../assets/images/men.jpg" alt="" class="img-fluid">
+            <img src="https://www.refinery29.com/images/10826698.png" alt="" class="img-fluid">
           </figure>
           <div class="text">
             <span class="text-uppercase">Collections</span>
-            <h3>Men</h3>
+            <h3>Chairs</h3>
           </div>
         </a>
       </div>
@@ -174,15 +181,17 @@
     </div>
     <div class="row align-items-center">
       <div class="col-md-12 col-lg-7 mb-5">
-        <a href="#"><img src="../../assets/images/blog_1.jpg" alt="Image placeholder" class="img-fluid rounded"></a>
+        <a (click)="goToShop()"><img
+            src="https://i.pinimg.com/736x/26/ee/1c/26ee1ccb3d6d6713eaaf304f337d75f0--peach-rooms-peach-walls.jpg"
+            alt="Image placeholder" class="img-fluid rounded"></a>
       </div>
       <div class="col-md-12 col-lg-5 text-center pl-md-5">
-        <h2><a href="#">50% less in all items</a></h2>
-        <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span class="block-8-sep">&bullet;</span> September 3,
-          2018</p>
+        <h2><a href="#">10% less in all items</a></h2>
+        <p class="post-meta mb-4">By <a>Islam Mahrous</a> <span class="block-8-sep">&bullet;</span> September 3,
+          2022</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis
           ipsum animi deleniti fugiat. Ex, veniam?</p>
-        <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
+        <p><a (click)="goToShop()" class="btn btn-primary btn-sm">Shop Now</a></p>
       </div>
     </div>
   </div>

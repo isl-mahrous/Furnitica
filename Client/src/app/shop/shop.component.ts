@@ -57,10 +57,10 @@ export class ShopComponent implements OnInit {
     this.search$.subscribe({
       next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts(); }
     });
-    this.getProducts();
     this.getBrands();
     this.getTypes();
     this.getTypesCount();
+    this.getProducts();
     this.getColors();
     this.getMaxPrice();
   }
