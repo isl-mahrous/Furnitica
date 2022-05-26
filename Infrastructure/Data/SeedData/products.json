@@ -46,7 +46,7 @@
     "Color": "Brown"
   },
   {
-    "Name": "IDANÄS",
+    "Name": "IDANAS",
     "Description": "The sloping headboard and soft upholstery make this bed frame extra comfortable. Classic button detailing and turned wooden legs are timeless, while soft-closing drawers under the bed add everyday storage.",
     "Price": 1500,
     "ProductTypeId": 1,
@@ -94,7 +94,7 @@
 
   },
   {
-    "Name": "POÄNG",
+    "Name": "POANG",
     "Description": "POÄNG armchair has stylish curved lines in bentwood, providing nice support for the neck and comfy resilience. It’s been in our range for several decades and is still just as popular. Want to try it too?",
     "Price": 1500,
     "ProductTypeId": 2,
@@ -158,7 +158,7 @@
 
   },
   {
-    "Name": "SÖDERHAMN",
+    "Name": "SODERHAMN",
     "Description": "If you like the stylish airy look, you have to try the deep generous seats. Create your own personal combination of SÖDERHAMN sofa, then sit down and relax – by yourself or together with the whole family.",
     "Price": 28085,
     "ProductTypeId": 4,
@@ -186,7 +186,7 @@
     "Width": 150,
     "Length": 250,
     "Weight": 100,
-    "Color": "Black"
+    "Color": "Coral"
 
   },
   {
@@ -202,7 +202,7 @@
     "Width": 150,
     "Length": 250,
     "Weight": 100,
-    "Color": "Black"
+    "Color": "Coral"
 
   }
 ]

@@ -198,8 +198,6 @@ namespace API.Controllers
                 return NoContent();
             }
         }
-
-        //////////////////////// TO BE DELETED ///////////////////
         
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetBrands()
@@ -216,7 +214,8 @@ namespace API.Controllers
         [HttpGet("types/count")]
         public async Task<ActionResult<List<TypesDto>>> GetTypesCount()
         {
-            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var param = new ProductSpecParams() { PageSize = 50 };
+            var specs = new ProductsWithTypesAndBrandsSpecification(param);
             var result = await productRepo.GetAllAsync(specs);
             var count = result.GroupBy(p => p.ProductType).Select(g => new TypesDto{ Id = g.Key.Id, Name=g.Key.Name ,Count = g.Count() }).ToList();
             count.Add(new()
@@ -231,8 +230,8 @@ namespace API.Controllers
         [HttpGet("colors")]
         public async Task<ActionResult<List<ColorDto>>> GetColors()
         {
-            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
-            var result = await productRepo.GetAllAsync(specs);
+            //var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync();
             var count = result.GroupBy(p => p.Color).Select(g => new ColorDto { Color = g.Key, Count = g.Count() }).ToList();
             
             return Ok(count);
@@ -242,8 +241,8 @@ namespace API.Controllers
         [HttpGet("maxPrice")]
         public async Task<ActionResult<decimal>> GetMaxPrice()
         {
-            var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
-            var result = await productRepo.GetAllAsync(specs);
+            //var specs = new ProductsWithTypesAndBrandsSpecification(new ProductSpecParams());
+            var result = await productRepo.GetAllAsync();
             var maxPrice = result.Max(p => p.Price);
 
             return Ok(maxPrice);
