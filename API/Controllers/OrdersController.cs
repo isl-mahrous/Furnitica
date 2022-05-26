@@ -8,6 +8,7 @@ using Core.Interfaces;
 using Core.Specifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -20,17 +21,25 @@ namespace API.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
+        public RoleManager<IdentityRole> _roleManager;
         string email;
-        public OrdersController(IOrderService orderService, IMapper mapper)
+        IConfiguration _config;
+
+        public OrdersController(IOrderService orderService, IMapper mapper, RoleManager<IdentityRole> roleManager, UserManager<AppUser> user, IConfiguration config)
         {
             _orderService = orderService;
             _mapper = mapper;
+            _userManager = user;
+            _roleManager = roleManager;
+            _config = config;
         }
 
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder([FromBody] OrderDto orderDto)
         {
-            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+            string userId = TokenExtractor.GetUserId(_config, HttpContext);
+            email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
             var address = _mapper.Map<AddressDto, Core.Entities.OrderAggregate.Address>(orderDto.ShipToAddress);
 
@@ -44,15 +53,22 @@ namespace API.Controllers
             return Ok(order);
         }
 
-        [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet()]
         public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
         {
-            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            // check
+            string userId = TokenExtractor.GetUserId(_config, HttpContext);
+
+            //email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+
+            email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
             // hard code (to be removed)
-            email = "admin@furnitica.com";
+            //email = "Than@furnitica.com";
             ///////
-            
+
 
             var orders = await _orderService.GetOrdersForUserAsync(email);
 
@@ -62,7 +78,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(int id)
         {
-            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+            string userId = TokenExtractor.GetUserId(_config, HttpContext);
+            email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
             var order = await _orderService.GetOrderByIdAsync(id, email);
 
@@ -81,7 +98,8 @@ namespace API.Controllers
         [HttpPost("{id}")]
         public async Task<ActionResult<Basket>> UpdateOrder(int id, [FromBody] OrderDto orderDto)
         {
-            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+            string userId = TokenExtractor.GetUserId(_config, HttpContext);
+            email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
             //var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
 
@@ -105,9 +123,10 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteOrder(int id)
         {
-            email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
+            string userId = TokenExtractor.GetUserId(_config, HttpContext);
+            email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
-            if(await _orderService.GetOrderByIdAsync(id, email) != null || true) // To be removed
+            if (await _orderService.GetOrderByIdAsync(id, email) != null || true) // To be removed
             {
                 await _orderService.CancelOrderAsync(id);
                 return Ok();

@@ -35,16 +35,16 @@
             <td>{{item.productBrand}}</td>
             <td>
 
-              <button mat-icon-button color="primary">
+              <button mat-icon-button class="btn-primary m-1">
                 <mat-icon (click)="showDetails(item)">visibility</mat-icon>
 
               </button>
-              <button (click)="editProduct(item)" mat-icon-button color="primary">
+              <button (click)="editProduct(item)" mat-icon-button class="btn-success m-1">
                 <mat-icon>edit</mat-icon>
 
               </button>
 
-              <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
+              <button (click)="confrimDelete(item.id)" mat-icon-button class="btn-danger m-1">
                 <mat-icon>delete</mat-icon>
 
               </button>

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   public barChartPlugins = [];
 
   public barChartData = [
-    { data: [10, 20, 10, 3, 30, 25], label: 'Series A' },
+    { data: [10, 20, 10, 3, 30, 25], label: 'Orders Statistics' },
   ];
 
   constructor() { }
