@@ -35,7 +35,7 @@
                     <i class="icon-sm fas fa-cloud-download-alt mr-2"></i>
                     waiting Order
                   </p>
-                  <h2>5</h2>
+                  <h2>10</h2>
                   <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">12% increase</label>
                 </div>
                 <div class="statistics-item">
@@ -51,7 +51,7 @@
                     <i class="icon-sm fas fa-chart-line mr-2"></i>
                     all Products
                   </p>
-                  <h2>50</h2>
+                  <h2>30</h2>
                   <label class="badge badge-outline-success badge-pill" style="font-size: 20px;">10% increase</label>
                 </div>
                 <div class="statistics-item">
@@ -59,7 +59,7 @@
                     <i class="icon-sm fas fa-circle-notch mr-2"></i>
                     Pending
                   </p>
-                  <h2>7500</h2>
+                  <h2>25</h2>
                   <label class="badge badge-outline-danger badge-pill" style="font-size: 20px;">16% decrease</label>
                 </div>
               </div>
@@ -75,16 +75,11 @@
 
 <div class="contianer">
   <div class="d-flex flex-row justify-content-start align-items-center">
-    <i style="font-size: 50px;" class="fa fa-user"></i>
+    <i style="font-size: 50px;" class="fa fa-btc"></i>
     <h1 class="mt-4 ml-2">Orders</h1>
   </div>
   <div class="row">
-    <div class="col-6">
-      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [plugins]="barChartPlugins" [legend]="barChartLegend" chartType="bar">
-      </canvas>
-    </div>
-    <div class="col-6">
+    <div class="col-12">
       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
         [plugins]="barChartPlugins" [legend]="barChartLegend" chartType="bar">
       </canvas>

@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { StripeModule } from "stripe-angular";
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { NgChartsModule } from 'ng2-charts'
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,14 +42,18 @@ import { NgChartsModule } from 'ng2-charts'
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HomeModule,
-    ToastrModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
     StripeModule,
     NgChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

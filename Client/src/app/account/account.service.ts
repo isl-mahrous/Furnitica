@@ -89,7 +89,6 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
-          console.log(user)
           // Get user basket after a successful login
           this.injector.get(BasketService).initializeBasket();
           this.router.navigateByUrl('/');
@@ -103,7 +102,7 @@ export class AccountService {
 
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
       map((response) => {
-        console.log(response)
+        // console.log(response)
         this.assignRoleToUser(
           {
             RoleName: 'Customer',
@@ -112,7 +111,7 @@ export class AccountService {
           }
         ).subscribe(() => {
 
-          console.log('role assigned');
+          // console.log('role assigned');
         })
       })
     );
@@ -122,7 +121,7 @@ export class AccountService {
 
     return this.http.post(this.baseUrl + 'Role/AssignRole', values).pipe(
       map((response) => {
-        console.log(response)
+        // console.log(response)
       })
     );
   }
@@ -143,7 +142,7 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'Account', values).pipe(
       map((response) => {
 
-        console.log(response)
+        // console.log(response)
       })
     )
   }

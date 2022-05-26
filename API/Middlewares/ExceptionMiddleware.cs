@@ -33,7 +33,7 @@ namespace API.Middleware
 
                 var response = env.IsDevelopment()
                     ? new ApiException((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString())
-                    : new ApiException((int)HttpStatusCode.InternalServerError);
+                    : new ApiException(context.Response.StatusCode);
 
                 var options = new JsonSerializerOptions()
                 {

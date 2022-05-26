@@ -17,16 +17,8 @@ export class DashboardComponent implements OnInit {
   public barChartPlugins = [];
 
   public barChartData = [
-    { data: [10, 20, 5, 3, 50, 150], label: 'Series A' },
+    { data: [10, 20, 10, 3, 30, 25], label: 'Series A' },
   ];
-
-  public pieChartLabels = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData = [300, 500, 100];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
-
-
 
   constructor() { }
 
