@@ -136,6 +136,7 @@ export class AdminOrdersComponent implements OnInit {
     if(confirm("Are you sure to delete ")) {
       this.deleteOrder(id);
       this.toastr.success("Order deleted");
+      this.getOrders();
     }
   }
 
