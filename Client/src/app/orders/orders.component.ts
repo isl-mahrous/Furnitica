@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './orders.service';
 import { IOrder } from '../shared/models/order';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-orders',
@@ -10,7 +12,7 @@ import { IOrder } from '../shared/models/order';
 export class OrdersComponent implements OnInit {
   orders: IOrder[];
 
-  constructor(private ordersService: OrdersService) { }
+  constructor(private ordersService: OrdersService, private toastr : ToastrService) { }
 
   ngOnInit() {
     this.getOrders();
@@ -28,8 +30,14 @@ export class OrdersComponent implements OnInit {
 
   }
 
-  confrimDelete(orderID : number){
-
+  deleteOrder(orderID : number){
+   this.ordersService.deleteOrder(orderID).subscribe({
+     next : data => {
+       this.toastr.success("Order deleted");
+       this.getOrders()
+      },
+       error : err => this.toastr.error("Error! Order wasn't deleted"),
+   })
   }
 
 }

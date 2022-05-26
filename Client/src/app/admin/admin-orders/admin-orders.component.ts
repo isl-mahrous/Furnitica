@@ -2,6 +2,7 @@ import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 import { IOrder, orderParams } from 'src/app/shared/models/order';
 import { IOrdersPagination } from 'src/app/shared/models/pagination';
 import { DialogOrderComponent } from '../dialog-order/dialog-order.component';
@@ -47,7 +48,7 @@ export class AdminOrdersComponent implements OnInit {
   orderDetails: IOrder;
 
 
-  constructor(private adminOrdersService : AdminOrdersService, public dialog : MatDialog) { }
+  constructor(private adminOrdersService : AdminOrdersService, public dialog : MatDialog, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.orderParamsToSend = new orderParams();
@@ -100,8 +101,8 @@ export class AdminOrdersComponent implements OnInit {
       this.adminOrdersService.confirmAllOrders().subscribe(
         {
           next: ( data : IOrdersPagination[]) => {
-            alert("All Orders Confirmed");
-            this.getOrders();
+            this.toastr.success("All orders confirmed successfully");
+            this.getOrders()
           }
         }
       );
@@ -125,14 +126,16 @@ export class AdminOrdersComponent implements OnInit {
   confirmOrder(order : IOrder)  {
     this.adminOrdersService.confirmOrder(order.id, order).subscribe({
       next: ( data : IOrder) => {
-        alert("Order Confirmed");
-      }
+        this.toastr.success("Order confirmed");
+      },
+      error : err => this.toastr.error("Error! order isn't confirmed")
     })
   }
 
   confrimDelete(id:number) {
     if(confirm("Are you sure to delete ")) {
       this.deleteOrder(id);
+      this.toastr.success("Order deleted");
     }
   }
 

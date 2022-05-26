@@ -342,7 +342,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter7@1234",
+                            BuyerEmail = "admin@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -413,7 +413,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter7@1234",
+                            BuyerEmail = "admin@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -484,7 +484,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter8@1234",
+                            BuyerEmail = "admin@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {

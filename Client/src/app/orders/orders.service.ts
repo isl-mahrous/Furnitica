@@ -17,4 +17,8 @@ export class OrdersService {
   getOrderDetailed(id: number) {
     return this.http.get(this.baseUrl + 'orders/' + id);
   }
+
+  deleteOrder(orderID : number) {
+    return this.http.delete(this.baseUrl + "orders/" + orderID);
+  }
 }

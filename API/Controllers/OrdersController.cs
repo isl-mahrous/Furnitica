@@ -102,12 +102,12 @@ namespace API.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             email = HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
-            if(await _orderService.GetOrderByIdAsync(id, email) != null || true)
+            if(await _orderService.GetOrderByIdAsync(id, email) != null || true) // To be removed
             {
                 await _orderService.CancelOrderAsync(id);
                 return Ok();
