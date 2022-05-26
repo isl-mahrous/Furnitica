@@ -135,14 +135,15 @@ export class AdminOrdersComponent implements OnInit {
   confrimDelete(id:number) {
     if(confirm("Are you sure to delete ")) {
       this.deleteOrder(id);
-      this.toastr.success("Order deleted");
-      this.getOrders();
     }
   }
 
   private deleteOrder(id:number){
     this.adminOrdersService.deleteOrder(id).subscribe({
-      next: () => this.ngOnInit()
+      next: (data) => {
+          this.toastr.success("Order deleted");
+          this.getOrders();
+        }
     });
 
   }

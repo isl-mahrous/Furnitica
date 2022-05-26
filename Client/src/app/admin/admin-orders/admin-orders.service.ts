@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { map } from 'rxjs';
 import { IOrder, orderParams } from 'src/app/shared/models/order';
 import { IOrdersPagination } from 'src/app/shared/models/pagination';
@@ -67,13 +68,8 @@ export class AdminOrdersService {
     });
   }
 
-  deleteOrder(id){
-    let params = new HttpParams();
-    params = params.append("id", id.toString());
-    return this.http.delete<IOrder>(this.baseUrl + "Orders", {
-      observe: "response",
-      params: params,
-    });
+  deleteOrder(id : number){
+    return this.http.delete<IOrder>(this.baseUrl + "Orders/" + id);
   }
 
   getOrder(id : number) {
