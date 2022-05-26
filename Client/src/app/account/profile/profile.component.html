@@ -45,25 +45,18 @@
         <div class="row mt-3">
           <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control"
               placeholder="enter phone number" [value]="(currentUser$ | async).mobileNumber || ''"></div>
-          <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control"
-              placeholder="enter address line 1" value=""></div>
-          <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control"
-              placeholder="enter address line 2" value=""></div>
-          <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control"
-              placeholder="enter address line 2" value=""></div>
-          <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control"
-              placeholder="enter address line 2" value=""></div>
           <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control"
               placeholder="enter email id" [value]="(currentUser$ | async).email || ''"></div>
+          <div class="col-md-12"><label class="labels">Gender</label>
+            <select class="form-control">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
         </div>
-        <div class="row mt-3">
-          <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control"
-              placeholder="country" value=""></div>
-          <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control"
-              value="" placeholder="state"></div>
-        </div>
-        <!-- <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                        Profile</button></div> -->
+
+        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
+            Profile</button></div>
       </div>
     </div>
   </div>
