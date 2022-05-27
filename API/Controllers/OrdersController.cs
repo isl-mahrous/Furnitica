@@ -126,7 +126,7 @@ namespace API.Controllers
             string userId = TokenExtractor.GetUserId(_config, HttpContext);
             email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
-            if (await _orderService.GetOrderByIdAsync(id, email) != null || true) // To be removed
+            if (await _orderService.GetOrderByIdAsync(id, email) != null) // To be removed
             {
                 await _orderService.CancelOrderAsync(id);
                 return Ok();

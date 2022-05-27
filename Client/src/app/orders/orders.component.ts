@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
   }
 
   showDetails(id : number){
-    this.router.navigate(["/order-detailed/" + id]);
+    this.router.navigate(["/orders/" + id]);
   }
 
   deleteOrder(orderID : number){
