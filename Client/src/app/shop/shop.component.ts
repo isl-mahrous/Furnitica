@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
   ];
   search$: Observable<string>;
   minValue = 0;
-  maxValue = 10000;
+  maxValue = 100000;
   options: Options = {
     floor: 0,
     ceil: this.maxValue,
@@ -57,10 +57,10 @@ export class ShopComponent implements OnInit {
     this.search$.subscribe({
       next: res => { this.shopParams.search = res; this.shopParams.pageIndex = 1; this.getProducts(); }
     });
-    this.getProducts();
     this.getBrands();
     this.getTypes();
     this.getTypesCount();
+    this.getProducts();
     this.getColors();
     this.getMaxPrice();
   }
@@ -110,7 +110,7 @@ export class ShopComponent implements OnInit {
   typesCountResult: any;
   typesWithCount() {
     const map = new Map();
-    this.types.forEach(item => map.set(item.id, item));
+    this.types?.forEach(item => map.set(item.id, item));
     this.typesCount.forEach(item => map.set(item.id, { ...map.get(item.id), ...item }));
     let mergedArr = Array.from(map.values());
     return mergedArr;

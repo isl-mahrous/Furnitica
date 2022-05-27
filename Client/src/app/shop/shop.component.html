@@ -27,7 +27,8 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                     <ng-container *ngFor="let item of this.brands">
-                      <a class="dropdown-item" (click)="onBrandSelected(item?.id)">{{item?.name}}</a>
+                      <a style="cursor: pointer;" class="dropdown-item"
+                        (click)="onBrandSelected(item?.id)">{{item?.name}}</a>
                     </ng-container>
                   </div>
                 </div>
@@ -35,11 +36,11 @@
                   <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
                     data-toggle="dropdown">Sort</button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                    <a class="dropdown-item" (click)="sortNameAsc()">Name, A to Z</a>
-                    <a class="dropdown-item" (click)="sortNameDesc()">Name, Z to A</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortNameAsc()">Name, A to Z</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortNameDesc()">Name, Z to A</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" (click)="sortPriceAsc()">Price, low to high</a>
-                    <a class="dropdown-item" (click)="sortPriceDesc()">Price, high to low</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortPriceAsc()">Price, low to high</a>
+                    <a style="cursor: pointer;" class="dropdown-item" (click)="sortPriceDesc()">Price, high to low</a>
                   </div>
                 </div>
               </div>
@@ -116,129 +117,55 @@
       <div class="row">
         <div class="col-md-12">
           <div class="site-section site-blocks-2">
-            <div class="row justify-content-center text-center mb-5">
-              <div class="col-md-7 site-section-heading pt-4">
-                <h2>Categories</h2>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                  <h2>Top Collections</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(4)">
+                    <figure class="image">
+                      <img src="https://i.pinimg.com/originals/4b/3f/37/4b3f378cd6d8063462fdc1f74a949bfc.jpg" alt=""
+                        class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Sofas</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(1)">
+                    <figure class="image">
+                      <img
+                        src="https://assets.weimgs.com/weimgs/ab/images/wcm/products/202151/0014/emmett-bed-wood-legs-1-z.jpg"
+                        alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Beds</h3>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+                  <a style="cursor: pointer;" class="block-2-item" (click)="onTypeSelected(2)">
+                    <figure class="image">
+                      <img src="https://www.refinery29.com/images/10826698.png" alt="" class="img-fluid">
+                    </figure>
+                    <div class="text">
+                      <span class="text-uppercase">Collections</span>
+                      <h3>Chairs</h3>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-                <a class="block-2-item" href="#">
-                  <figure class="image">
-                    <img src="assets/images/women.jpg" alt="" class="img-fluid">
-                  </figure>
-                  <div class="text">
-                    <span class="text-uppercase">Collections</span>
-                    <h3>Women</h3>
-                  </div>
-                </a>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                <a class="block-2-item" href="#">
-                  <figure class="image">
-                    <img src="assets/images/children.jpg" alt="" class="img-fluid">
-                  </figure>
-                  <div class="text">
-                    <span class="text-uppercase">Collections</span>
-                    <h3>Children</h3>
-                  </div>
-                </a>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-                <a class="block-2-item" href="#">
-                  <figure class="image">
-                    <img src="assets/images/men.jpg" alt="" class="img-fluid">
-                  </figure>
-                  <div class="text">
-                    <span class="text-uppercase">Collections</span>
-                    <h3>Men</h3>
-                  </div>
-                </a>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
 
     </div>
   </div>
-
-  <footer class="site-footer border-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="footer-heading mb-4">Navigations</h3>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Sell online</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Shopping cart</a></li>
-                <li><a href="#">Store builder</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Mobile commerce</a></li>
-                <li><a href="#">Dropshipping</a></li>
-                <li><a href="#">Website development</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Point of sale</a></li>
-                <li><a href="#">Hardware</a></li>
-                <li><a href="#">Software</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <h3 class="footer-heading mb-4">Promo</h3>
-          <a href="#" class="block-6">
-            <img src="assets/images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-            <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-            <p>Promo from nuary 15 &mdash; 25, 2019</p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="block-5 mb-5">
-            <h3 class="footer-heading mb-4">Contact Info</h3>
-            <ul class="list-unstyled">
-              <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-              <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-              <li class="email">emailaddress@domain.com</li>
-            </ul>
-          </div>
-
-          <div class="block-7">
-            <form action="#" method="post">
-              <label for="email_subscribe" class="footer-heading">Subscribe</label>
-              <div class="form-group">
-                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                <input type="submit" class="btn btn-sm btn-primary" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="row pt-5 mt-5 text-center">
-        <div class="col-md-12">
-          <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-            is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-              class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </footer>
 </div>

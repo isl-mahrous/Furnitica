@@ -25,7 +25,7 @@ namespace Core.Specifications
             set => _priceFrom = value > PriceTo? PriceTo: value;
         }
 
-        private decimal? _priceTo = 10000;
+        private decimal? _priceTo = 100000;
 
         public decimal? PriceTo
         {

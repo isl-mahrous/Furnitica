@@ -13,14 +13,14 @@
   <div class="row">
     <div class="col-12">
       <table class="table table-hover" style="cursor: pointer">
-        <thead class="thead-light">
+        <thead class="thead-light text-center">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Origin</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <tr *ngFor="let item of brands">
             <td>{{item.name}}</td>
 
@@ -28,12 +28,12 @@
 
             <td>
 
-              <button (click)="editBrand(item)" mat-icon-button color="primary">
+              <button (click)="editBrand(item)" mat-icon-button class="btn-primary m-1">
                 <mat-icon>edit</mat-icon>
 
               </button>
 
-              <button (click)="confrimDelete(item.id)" mat-icon-button color="warn">
+              <button (click)="confrimDelete(item.id)" mat-icon-button class="btn-danger m-1">
                 <mat-icon>delete</mat-icon>
 
               </button>

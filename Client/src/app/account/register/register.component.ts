@@ -28,21 +28,41 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required)
     });
   }
 
+  changeCity(e: any) {
+    this.gender?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
+  get gender() {
+    return this.registerForm.get('gender');
+  }
+
   onSubmit() {
-    this.accountService.register(this.registerForm.value).subscribe((user) => {
+
+    let { username, email, password, gender } = this.registerForm.value;
+    let registerObj = {
+      username,
+      email,
+      password,
+      gender: parseInt(gender)
+    }
+
+    this.accountService.register(registerObj).subscribe((user) => {
 
       console.log('sign Up')
+
       console.log(this.registerForm.value)
       this.router.navigateByUrl('/');
     },
       error => {
         console.log(error)
       })
-    console.log(this.registerForm.value)
   }
 
 }

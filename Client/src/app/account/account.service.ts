@@ -2,7 +2,7 @@ import { IProduct } from 'src/app/shared/models/product';
 import { IWishList } from './../shared/models/wishlist';
 import { environment } from './../../environments/environment';
 import { IUser } from './../shared/models/user';
-import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
@@ -55,7 +55,7 @@ export class AccountService {
   }
 
 
-  loadCustomerUsers(paginationData:any) {
+  loadCustomerUsers(paginationData: any) {
 
     let params = new HttpParams();
 
@@ -102,7 +102,6 @@ export class AccountService {
 
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
       map((response) => {
-        // console.log(response)
         this.assignRoleToUser(
           {
             RoleName: 'Customer',
@@ -140,6 +139,15 @@ export class AccountService {
   changeProfileImage(values) {
 
     return this.http.post(this.baseUrl + 'Account', values).pipe(
+      map((response) => {
+
+        // console.log(response)
+      })
+    )
+  }
+
+  updateProfileData(values) {
+    return this.http.put(this.baseUrl + 'Account/updateProfile', values).pipe(
       map((response) => {
 
         // console.log(response)

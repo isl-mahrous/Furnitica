@@ -15,6 +15,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Linq;
+using Core.Entities.Enum;
 
 namespace API.Controllers
 {
@@ -59,6 +60,7 @@ namespace API.Controllers
             newUser.Email = registerDTO.Email;
             newUser.UserName = registerDTO.Username;
             newUser.ProfilePicture = "https://localhost:7272/images/32190230-20c8-4efa-8a47-9ebb91f3cf0f_ktokatitmir0.jpg";
+            newUser.Gender = registerDTO.Gender;
 
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
 
@@ -120,6 +122,8 @@ namespace API.Controllers
                         signingCredentials:
                             new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                         );
+
+                    var x = Enum.GetName(typeof(Gender), user.Gender);
                     return Ok(new
                     {
                         token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -130,6 +134,7 @@ namespace API.Controllers
                         mobileNumber = user.PhoneNumber,
                         expiration = token.ValidTo,
                         roles = roles,
+                        gender = Enum.GetName(typeof(Gender), user.Gender)
                     });
                 }
                 else
@@ -225,7 +230,8 @@ namespace API.Controllers
                     roles = roles,
                     mobileNumber = user.PhoneNumber,
                     username = user.UserName,
-                }); ;
+                    gender = Enum.GetName(typeof(Gender), user.Gender)
+            });
 
             }
 
@@ -244,11 +250,12 @@ namespace API.Controllers
                 userName = user.UserName,
                 email = user.Email,
                 phoneNumber = user.PhoneNumber,
-                profilePicture = user.ProfilePicture
+                profilePicture = user.ProfilePicture,
+                gender = user.Gender,
             });
         }
 
-        [HttpPut]
+        [HttpPut("updateProfile")]
         public async Task<IActionResult> UpdateUserProfile(UserProfileDto userProfileDto)
         {
             var user = await _userManager.FindByIdAsync(userProfileDto.id);
@@ -258,6 +265,7 @@ namespace API.Controllers
                 user.UserName = userProfileDto.userName;
                 user.Email = userProfileDto.email;
                 user.PhoneNumber = userProfileDto.phoneNumber;
+                user.Gender = userProfileDto.gender;
 
                 await _userManager.UpdateAsync(user);
                 return Ok(new ApiResponse(200));

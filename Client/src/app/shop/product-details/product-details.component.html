@@ -1,7 +1,6 @@
 <div class="site-section">
   <div class="container">
 
-
     <div class="row">
       <div class="col-md-6">
 
@@ -56,209 +55,222 @@
 
       </div>
     </div>
-  </div>
-</div>
+    <div class="row">
+      <div class="col-10">
+        <div style="margin: 5px; padding: 5px;">
+          <tabset>
+            <tab heading="Specification" id="tab1">
 
+              <div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
 
-<div  style="margin: 5px; padding: 5px;">
-  <tabset>
-    <tab heading="Specification" id="tab1">
+                      <tr>
+                        <td>
+                          <h5>Width</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.width}}</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h5>Height</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.height}}</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h5>Length</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.length}}</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h5>Weight</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.weight}}</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h5>Color</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.color}}</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h5>Manufacture Date</h5>
+                        </td>
+                        <td>
+                          <h5>{{product?.manufactureDate|date}}</h5>
+                        </td>
+                      </tr>
 
-      <div>
-        <div class="table-responsive">
-          <table class="table">
-            <tbody>
-
-              <tr>
-                <td>
-                  <h5>Width</h5>
-                </td>
-                <td>
-                  <h5>{{product?.width}}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Height</h5>
-                </td>
-                <td>
-                  <h5>{{product?.height}}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Length</h5>
-                </td>
-                <td>
-                  <h5>{{product?.length}}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Weight</h5>
-                </td>
-                <td>
-                  <h5>{{product?.weight}}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Color</h5>
-                </td>
-                <td>
-                  <h5>{{product?.color}}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Manufacture Date</h5>
-                </td>
-                <td>
-                  <h5>{{product?.manufactureDate|date}}</h5>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-
-    </tab>
-
-
-
-    <tab heading="Reviews">
-
-
-      <div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="row ">
-              <div class="col-6">
-                <div>
-                  <p><strong class="text-primary h5">Overall</strong></p>
-                  <p><strong class="text-primary h5">{{(Reviews$ | async)?.rating}} Stars</strong></p>
-                  <p class="h6">({{(Reviews$ | async)?.reviews.length}} Reviews) </p>
-
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div class="col-6">
-                <div>
-                  <h3>Based on {{productReviews?.reviews.length}} Reviews</h3>
-                  <ul class="list">
 
-                    <li>
-                      <a>5 Star
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i> {{(Reviews$ | async)?.stars[4]}}</a>
-                    </li>
-                    <li>
-                      <a>4 Star
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[3]}}</a>
-                    </li>
-                    <li>
-                      <a>3 Star
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[2]}}</a>
-                    </li>
-                    <li>
-                      <a>2 Star
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[1]}}</a>
-                    </li>
-                    <li>
-                      <a>1 Star
-                        <i class="fa fa-star" style="color:purple"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[0]}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div>
-              <ng-container *ngIf="productReviews !== null">
-                <ng-container *ngFor="let review of (Reviews$ | async)?.reviews">
-                  <div class="review_item">
-                    <div class="media">
-                      <!-- <div class="d-flex">
-                        <img src="/assets/images/banner_1.png" alt="" />
-                      </div> -->
-                      <div class="media-body">
-                        <h4>{{review?.userName}}</h4>
-                        <ng-container *ngFor="let star of [1,2,3,4,5]">
-                          <ng-container *ngIf="star <= review?.stars">
-                            <i class="fa fa-star" style="color:purple"></i>
-                          </ng-container>
-                          <ng-container *ngIf="star > review?.stars">
-                            <i class="fa fa-star-o"></i>
-                          </ng-container>
-                        </ng-container>
+
+
+            </tab>
+
+
+
+            <tab heading="Reviews">
+
+
+              <div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="row ">
+                      <div class="col-6">
+                        <div>
+                          <p><strong class="text-primary h5">Overall</strong></p>
+                          <p><strong class="text-primary h5">{{(Reviews$ | async)?.rating}} Stars</strong></p>
+                          <p class="h6">({{(Reviews$ | async)?.reviews.length}} Reviews) </p>
+
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div>
+                          <h3>Based on {{productReviews?.reviews.length}} Reviews</h3>
+                          <ul class="list">
+
+                            <li>
+                              <a>5 Star
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i> {{(Reviews$ | async)?.stars[4]}}</a>
+                            </li>
+                            <li>
+                              <a>4 Star
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[3]}}</a>
+                            </li>
+                            <li>
+                              <a>3 Star
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[2]}}</a>
+                            </li>
+                            <li>
+                              <a>2 Star
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[1]}}</a>
+                            </li>
+                            <li>
+                              <a>1 Star
+                                <i class="fa fa-star" style="color:purple"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i> {{(Reviews$ | async)?.stars[0]}}</a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                    <p>
-                      {{review?.body}}
-                    </p>
-                  </div>
-                </ng-container>
-              </ng-container>
-            </div>
-          </div>
-          <div class="col-lg-6">
+                    <div>
+                      <ng-container *ngIf="productReviews !== null">
+                        <ng-container *ngFor="let review of (Reviews$ | async)?.reviews">
+                          <div class="review_item">
+                            <div class="media">
+                              <!-- <div class="d-flex">
+                                <img src="/assets/images/banner_1.png" alt="" />
+                              </div> -->
+                              <div class="media-body">
+                                <h4 style="font-weight: bolder;">{{review?.userName}}</h4>
+                                <div class="d-flex justify-content-between">
+                                  <div>
+                                    <p>
+                                      {{review?.body}}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <ng-container *ngFor="let star of [1,2,3,4,5]">
+                                      <ng-container *ngIf="star <= review?.stars">
+                                        <i class="fa fa-star" style="color:purple"></i>
+                                      </ng-container>
+                                      <ng-container *ngIf="star > review?.stars">
+                                        <i class="fa fa-star-o"></i>
+                                      </ng-container>
+                                    </ng-container>
+                                  </div>
 
-            <div class="review_box">
-              <ng-container *ngIf="currentUser !== null">
-                <h4>Add a Review</h4>
-                <p class="d-inline">Your Rating: </p>
-                <ul class="list-inline d-inline">
-                  <li class="list-inline-item">
-                    <a *ngFor="let item of ratingList; let i=index " (click)="setStar(i)">
-                      <i *ngIf="item" class="fa fa-star-o"></i>
-                      <i *ngIf="!item" class="fa fa-star" style="color:purple"></i>
-                    </a>
-                  </li>
-                </ul>
-                <p class="d-inline"> Outstanding</p>
-                <div class=" mt-1 row ">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <textarea [(ngModel)]="reviewBody" class="form-control" name="message" rows="1" cols="5"
-                        placeholder="Review"></textarea>
+                                </div>
+
+                              </div>
+                            </div>
+
+                          </div>
+                        </ng-container>
+                      </ng-container>
                     </div>
                   </div>
-                  <div class="col-md-12 text-right">
-                    <button (click)="submitReview()" type="submit" value="submit" class="btn btn-sm btn-primary">
-                      Submit Now
-                    </button>
+                  <div class="col-lg-6">
+
+                    <div class="review_box">
+                      <ng-container *ngIf="currentUser !== null">
+                        <h4>Add a Review</h4>
+                        <p class="d-inline">Your Rating: </p>
+                        <ul class="list-inline d-inline">
+                          <li class="list-inline-item">
+                            <a *ngFor="let item of ratingList; let i=index " (click)="setStar(i)">
+                              <i *ngIf="item" class="fa fa-star-o"></i>
+                              <i *ngIf="!item" class="fa fa-star" style="color:purple"></i>
+                            </a>
+                          </li>
+                        </ul>
+                        <p class="d-inline"> Outstanding</p>
+                        <div class=" mt-1 row ">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <textarea [(ngModel)]="reviewBody" class="form-control" name="message" rows="1" cols="5"
+                                placeholder="Review"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-12 text-right">
+                            <button (click)="submitReview()" type="submit" value="submit"
+                              class="btn btn-sm btn-primary">
+                              Submit Now
+                            </button>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="currentUser === null">
+                        Please Login To Add Your Review
+                      </ng-container>
+
+                    </div>
                   </div>
                 </div>
-              </ng-container>
-              <ng-container *ngIf="currentUser === null">
-                Please Login To Add Your Review
-              </ng-container>
+              </div>
 
-            </div>
-          </div>
+            </tab>
+          </tabset>
         </div>
       </div>
+    </div>
 
-    </tab>
-  </tabset>
+  </div>
 </div>
