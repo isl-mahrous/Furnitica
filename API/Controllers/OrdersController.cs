@@ -45,7 +45,7 @@ namespace API.Controllers
 
             var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, address);
 
-            if(order == null)
+            if (order == null)
             {
                 return BadRequest(new ApiResponse(400, "Problem Creating an order"));
             }
@@ -126,13 +126,15 @@ namespace API.Controllers
             string userId = TokenExtractor.GetUserId(_config, HttpContext);
             email = _userManager.Users.FirstOrDefault(u => u.Id == userId).Email;
 
-            if (await _orderService.GetOrderByIdAsync(id, email) != null) // To be removed
+            try
             {
                 await _orderService.CancelOrderAsync(id);
                 return Ok();
             }
-
-            return BadRequest(new ApiResponse(404, "No Order with this ID"));
+            catch (Exception ex)
+            {
+                return BadRequest(new ApiResponse(404, "No Order with this ID"));
+            }
         }
 
 
