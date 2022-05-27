@@ -321,7 +321,7 @@ namespace API.Controllers
                     .ThenInclude(p => p.Pictures)
                     .FirstOrDefaultAsync(u => u.Id == userId);
 
-                var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(user.WishList.Products);
+                var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(user?.WishList?.Products);
 
                 return Ok(new
                 {

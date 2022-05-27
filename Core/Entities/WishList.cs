@@ -16,6 +16,6 @@ namespace Core.Entities
         //[ForeignKey(nameof(UserId))]
         //public AppUser User { get; set; }
 
-        public virtual List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; } = new List<Product>();
     }
 }

@@ -75,13 +75,13 @@
             </th>
             <th class="align-middle" scope="col">{{ order.status }}</th>
             <td class="align-middle">
-              <button mat-icon-button class="btn-primary m-1">
+              <button mat-icon-button class="btn-primary">
                 <mat-icon (click)="showDetails(order.id)">visibility</mat-icon>
               </button>
               <button
                 (click)="confirmOrder(order)"
                 mat-icon-button
-                class="btn-success m-1"
+                class="btn-success"
               >
                 <mat-icon *ngIf="order.status == 'Pending'">done</mat-icon>
                 <mat-icon *ngIf="order.status == 'Confirmed'"
@@ -92,7 +92,7 @@
               <button
                 (click)="confrimDelete(order.id)"
                 mat-icon-button
-                class="btn-danger m-1"
+                class="btn-danger"
               >
                 <mat-icon>delete</mat-icon>
               </button>
