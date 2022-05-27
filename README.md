@@ -19,9 +19,9 @@ This software project was built using a layered architecture. The following diag
 * Admin CRUD operations to products
 
 # 💁 Client
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/45319166/164311567-bac9b6e3-a82f-4a41-9ead-8f494e819d94.gif)
+![ezgif com-gif-maker]()
 # 🔑 Admin
-![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/45319166/164312129-3e00d0c0-5316-4529-9d9a-794ad21112cc.gif)
+![ezgif com-gif-maker-2]()
 
 
 # ⚙ Technologies used
@@ -30,7 +30,6 @@ This software project was built using a layered architecture. The following diag
 * Entity Framework
 * SQL Server
 * Bootstrap
-* Apache mail
 * Stripe
 
 
