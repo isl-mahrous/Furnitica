@@ -59,6 +59,7 @@ namespace API.Controllers
             newUser.Email = registerDTO.Email;
             newUser.UserName = registerDTO.Username;
             newUser.ProfilePicture = "https://localhost:7272/images/32190230-20c8-4efa-8a47-9ebb91f3cf0f_ktokatitmir0.jpg";
+            newUser.Gender = registerDTO.Gender;
 
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
 

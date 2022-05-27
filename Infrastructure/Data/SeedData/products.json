@@ -2,7 +2,7 @@
   {
     "Name": "Alumini",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 1500,
+    "Price": 7800,
     "ProductTypeId": 1,
     "ProductBrandId": 1,
     "UnitsInStock": 100,
@@ -18,7 +18,7 @@
   {
     "Name": "HAUGA",
     "Description": "The best start to your day is a good night’s sleep. Buy double beds and king size beds from our range of styles for maximum comfort and quality. Many are sized so you can slide boxes underneath or come with smart features like built-in storage. Pick an IKEA bed to secure many years of sweet dreams.",
-    "Price": 1000,
+    "Price": 6500,
     "ProductTypeId": 1,
     "ProductBrandId": 1,
     "UnitsInStock": 20,
@@ -33,7 +33,7 @@
   {
     "Name": "BRIMNES",
     "Description": "When you live in a small space you need to be clever. That’s probably why you’re looking at this bed frame with 4 spacious drawers. The BRIMNES series has several heroes that help you save space.",
-    "Price": 5000,
+    "Price": 8790,
     "ProductTypeId": 1,
     "ProductBrandId": 2,
     "UnitsInStock": 1,
@@ -48,7 +48,7 @@
   {
     "Name": "IDANAS",
     "Description": "The sloping headboard and soft upholstery make this bed frame extra comfortable. Classic button detailing and turned wooden legs are timeless, while soft-closing drawers under the bed add everyday storage.",
-    "Price": 1500,
+    "Price": 6600,
     "ProductTypeId": 1,
     "ProductBrandId": 2,
     "UnitsInStock": 100,
@@ -64,7 +64,7 @@
   {
     "Name": "SLATTUM",
     "Description": "Upholstered in soft woven fabric that brings a cosy feeling into your bedroom. The headboard is a comfy backrest for late night reading. And what’s more, it all comes in 1 package. Convenient, right?",
-    "Price": 4995,
+    "Price": 2500,
     "ProductTypeId": 1,
     "ProductBrandId": 4,
     "UnitsInStock": 100,
@@ -80,7 +80,7 @@
   {
     "Name": "SAGSTUA",
     "Description": "A classic bed frame with a brass twist. The curved headboard and brass-coloured details soften the sturdy steel. Dressed with your favourite linens, it becomes a statement piece and your own personal haven.",
-    "Price": 1500,
+    "Price": 5900,
     "ProductTypeId": 1,
     "ProductBrandId": 5,
     "UnitsInStock": 100,
@@ -96,7 +96,7 @@
   {
     "Name": "POANG",
     "Description": "POÄNG armchair has stylish curved lines in bentwood, providing nice support for the neck and comfy resilience. It’s been in our range for several decades and is still just as popular. Want to try it too?",
-    "Price": 1500,
+    "Price": 1000,
     "ProductTypeId": 2,
     "ProductBrandId": 2,
     "UnitsInStock": 100,
@@ -128,7 +128,7 @@
   {
     "Name": "HAVSTA",
     "Description": "Made of solid wood with crafted details and a brushed surface, HAVSTA coffee table adds a genuine feel and charm to your room. Its timeless design makes it easy to combine with many furniture styles.",
-    "Price": 1500,
+    "Price": 1230,
     "ProductTypeId": 3,
     "ProductBrandId": 2,
     "UnitsInStock": 100,
@@ -160,7 +160,7 @@
   {
     "Name": "SODERHAMN",
     "Description": "If you like the stylish airy look, you have to try the deep generous seats. Create your own personal combination of SÖDERHAMN sofa, then sit down and relax – by yourself or together with the whole family.",
-    "Price": 28085,
+    "Price": 25000,
     "ProductTypeId": 4,
     "ProductBrandId": 1,
     "UnitsInStock": 100,
@@ -176,7 +176,7 @@
   {
     "Name": "VIMLE",
     "Description": "This firm sofa will have a long life since the seat cushions are filled with high resilience foam that gives good support for your body and quickly regains its original shape when you get up.",
-    "Price": 14520,
+    "Price": 22000,
     "ProductTypeId": 4,
     "ProductBrandId": 4,
     "UnitsInStock": 100,
