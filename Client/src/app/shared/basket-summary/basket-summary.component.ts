@@ -18,6 +18,7 @@ export class BasketSummaryComponent implements OnInit {
 
   @Input() basketProducts : productViewModel[];
 
+  basketItems : IBasketItem[];
 
   @Output() decrement : EventEmitter<productViewModel> = new EventEmitter<productViewModel>();
   @Output() increment : EventEmitter<productViewModel> = new EventEmitter<productViewModel>();
@@ -29,6 +30,14 @@ export class BasketSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
+    this.basket$.subscribe(
+      {
+        next : (data) => {
+          console.log(data.basketItems);
+          this.basketItems = data.basketItems;
+        }
+      }
+    )
   }
 
   decrementItemQuantity(item : productViewModel)

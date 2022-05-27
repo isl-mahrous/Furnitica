@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { CheckoutService } from '../checkout.service';
 import { IDeliveryMethod } from 'src/app/shared/models/deliveryMethod';
 import { BasketService } from 'src/app/basket/basket.service';
+import { CdkStepper } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-checkout-delivery',
@@ -12,6 +13,7 @@ import { BasketService } from 'src/app/basket/basket.service';
 export class CheckoutDeliveryComponent implements OnInit {
   @Input() checkoutForm: FormGroup;
   deliveryMethods: IDeliveryMethod[];
+  @Input() appStepper : CdkStepper;
 
   constructor(private checkoutService: CheckoutService, private basketService: BasketService) { }
 
@@ -27,5 +29,16 @@ export class CheckoutDeliveryComponent implements OnInit {
 
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
     this.basketService.setShippingPrice(deliveryMethod);
+  }
+
+  createPaymentIntent(){
+    return this.basketService.createPaymentIntent().subscribe({
+      next: (response: any) => {
+        // this.appStepper.next();
+      },
+      error: (err) => {
+        console.log(err.message);
+      }
+    })
   }
 }
