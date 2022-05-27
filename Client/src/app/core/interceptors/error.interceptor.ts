@@ -29,14 +29,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                         this.toastr.error(error.error.message, error.error.statusCode);
                     }
                     if (error.status === 404) {
-                        console.log("i'm here 404")
-
-                        console.log("i'm here 404")
                         this.toastr.error(error.error.message, error.error.statusCode);
                     }
                     if (error.status === 500) {
-                        console.log("i'm here 500")
-
                         const navigationExtras: NavigationExtras = { state: { error: error.error } }
                         this.router.navigateByUrl('/server-error', navigationExtras);
                     }

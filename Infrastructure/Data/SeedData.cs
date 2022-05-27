@@ -58,9 +58,6 @@ namespace Infrastructure.Data
                     var productsData = await
                         File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
 
-                    
-
-                    //var products = JsonSerializer.Deserialize<List<Product>>(productsData);
 
                     var products = JsonConvert.DeserializeObject<List<Product>>(productsData);
 
@@ -88,44 +85,64 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
+
+                // Seed Roles
+                if (!await roleManager.RoleExistsAsync("Admin"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole("Admin"));
+                }
+
+                if (!await roleManager.RoleExistsAsync("Customer"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole("Customer"));
+                }
+                var adminEmail = "admin@furnitica.com";
+                var adminUser = await userManager.FindByEmailAsync(adminEmail);
+                if (adminUser == null)
+                {
+                    var newAdmin = new AppUser()
+                    {
+                        Email = adminEmail,
+                        UserName = "Thanos",
+                        ProfilePicture = "https://i.ytimg.com/vi/N2YTmooNR8E/maxresdefault.jpg",
+                        Gender = Gender.Male
+                    };
+                    var result = await userManager.CreateAsync(newAdmin, "Admin@1234");
+                    await userManager.AddToRoleAsync(newAdmin, "Admin");
+                }
+
+                var customerEmail = "customer@furnitica.com";
+                var customerUser = await userManager.FindByEmailAsync(customerEmail);
+                if (customerUser == null)
+                {
+                    var newCustomer = new AppUser()
+                    {
+                        Email = customerEmail,
+                        UserName = "Wanda",
+                        ProfilePicture = "https://sm.ign.com/ign_me/news/w/wandavisio/wandavision-director-says-theres-a-lot-more-of-scarlet-witch_wyke.jpg",
+                        Gender = Gender.Female
+                    };
+                    await userManager.CreateAsync(newCustomer, "Customer@1234");
+                    await userManager.AddToRoleAsync(newCustomer, "Customer");
+                }
+                if (!context.Medias.Any())
+                {
+                    var mediaData = await
+                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/media.json");
+
+                    var medias = JsonConvert.DeserializeObject<List<Media>>(mediaData);
+
+                    foreach (var media in medias)
+                    {
+                        context.Medias.Add(media);
+                    }
+                    await context.SaveChangesAsync();
+                }
+
+
                 //Seed Orders
                 if (!context.Orders.Any())
                 {
-                    /*
-                        public string BuyerEmail { get; set; }
-                        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
-                        public Address ShipToAddress { get; set; }
-                        public DeliveryMethod DeliveryMethod { get; set; }
-                        public IReadOnlyList<OrderItem> OrderItems { get; set; }
-                        public decimal Subtotal { get; set; }
-                        public OrderStatus Status { get; set; } = OrderStatus.Pending;
-                        public string PaymentIntentId { get; set; }
-                     */
-                    /*
-                        FirstName = firstName;
-                        LastName = lastName;
-                        Street = street;
-                        City = city;
-                        State = state;
-                        Zipcode = zipcode;
-                     */
-
-                    /*
-                        public string ShortName { get; set; }
-                        public string DeliveryTime { get; set; }
-                        public string Description { get; set; }
-                        public decimal Price { get; set; }
-                     */
-                    /* (Order Item)
-                        public ProductItemOrdered ItemOrdered { get; set; }
-                        public decimal Price { get; set; }
-                        public int Quantity { get; set; }
-                     */
-                    /*
-                        public int ProductItemId { get; set; }
-                        public string ProductName { get; set; }
-                     */
-
                     var ordersData = new List<Order>()
                     {
                         new Order()
@@ -1145,58 +1162,7 @@ namespace Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
-                // Seed Roles
-                if (!await roleManager.RoleExistsAsync("Admin"))
-                {
-                    await roleManager.CreateAsync(new IdentityRole("Admin"));
-                }
-
-                if (!await roleManager.RoleExistsAsync("Customer"))
-                {
-                    await roleManager.CreateAsync(new IdentityRole("Customer"));
-                }
-                var adminEmail = "admin@furnitica.com";
-                var adminUser = await userManager.FindByEmailAsync(adminEmail);
-                if(adminUser == null)
-                {
-                    var newAdmin = new AppUser()
-                    {
-                        Email = adminEmail,
-                        UserName = "Thanos",
-                        ProfilePicture = "https://i.ytimg.com/vi/N2YTmooNR8E/maxresdefault.jpg",
-                        Gender = Gender.Male
-                    };
-                    var result = await userManager.CreateAsync(newAdmin, "Admin@1234");
-                    await userManager.AddToRoleAsync(newAdmin, "Admin");
-                }
-
-                var customerEmail = "customer@furnitica.com";
-                var customerUser = await userManager.FindByEmailAsync(customerEmail);
-                if (customerUser == null)
-                {
-                    var newCustomer = new AppUser()
-                    {
-                        Email = customerEmail,
-                        UserName = "Wanda",
-                        ProfilePicture = "https://sm.ign.com/ign_me/news/w/wandavisio/wandavision-director-says-theres-a-lot-more-of-scarlet-witch_wyke.jpg",
-                        Gender = Gender.Female
-                    };
-                    await userManager.CreateAsync(newCustomer, "Customer@1234");
-                    await userManager.AddToRoleAsync(newCustomer, "Customer");
-                }
-                if (!context.Medias.Any())
-                {
-                    var mediaData = await
-                        File.ReadAllTextAsync("../Infrastructure/Data/SeedData/media.json");
-
-                    var medias = JsonConvert.DeserializeObject<List<Media>>(mediaData);
-
-                    foreach (var media in medias)
-                    {
-                        context.Medias.Add(media);
-                    }
-                    await context.SaveChangesAsync();
-                }
+                
 
             }
             catch (Exception ex)
