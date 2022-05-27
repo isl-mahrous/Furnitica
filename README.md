@@ -1,10 +1,6 @@
 ![logo](https://cdn.shopify.com/s/files/1/1980/6793/files/logo-icon.png)
 >An e-commerce website built using Angular and ASP.Net WebAPI. It is a responsive web design that will be automatically adjusted for different screen sizes.
 
-# 🏛 Architecture
-This software project was built using a layered architecture. The following diagram demonstrates an example use case that goes through all the layers. 
-![layer](https://user-images.githubusercontent.com/36333141/164351708-f3be4a50-4d52-42b0-b651-b746a1393a06.png)
-
 
 # ⚙ Features
 * Registration and login
