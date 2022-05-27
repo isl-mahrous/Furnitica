@@ -110,7 +110,7 @@ export class ShopComponent implements OnInit {
   typesCountResult: any;
   typesWithCount() {
     const map = new Map();
-    this.types.forEach(item => map.set(item.id, item));
+    this.types?.forEach(item => map.set(item.id, item));
     this.typesCount.forEach(item => map.set(item.id, { ...map.get(item.id), ...item }));
     let mergedArr = Array.from(map.values());
     return mergedArr;

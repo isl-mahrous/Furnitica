@@ -16,6 +16,9 @@ export class ProfileComponent implements OnInit {
   currentUser$: Observable<IUser>;
   modalRef?: BsModalRef;
   changeImageForm: FormGroup;
+  mobileNumber: string;
+  gender: string;
+
 
   constructor(private accountService: AccountService, private modalService: BsModalService, public fb: FormBuilder, private http: HttpClient) { }
 
@@ -46,6 +49,48 @@ export class ProfileComponent implements OnInit {
         next: (response) => console.log(response),
         error: (error) => console.log(error),
       });
+  }
+
+  genderUpdate(e: any) {
+
+    this.gender = e.target.value
+  }
+
+  mobileChanged(e: any) {
+
+    this.mobileNumber = e.target.value
+  }
+
+  updateProfile() {
+
+    this.currentUser$.subscribe({
+      next: data => {
+        let output = null
+        if (this.gender) {
+          if (this.gender == 'Female') output = 1
+          if (this.gender == 'Male') output = 0
+        }
+        let dataObj = {
+          id: data['userId'],
+          userName: data['username'],
+          email: data['email'],
+          phoneNumber: this.mobileNumber ?? data['mobileNumber'],
+          profilePicture: data['profilePicture'],
+          gender: output ?? data['gender'],
+        }
+
+        this.accountService.updateProfileData(dataObj).subscribe({
+
+          next: data => {
+            console.log(data)
+          },
+          error: error => {
+
+            console.log(error)
+          }
+        })
+      }
+    })
   }
 
 }

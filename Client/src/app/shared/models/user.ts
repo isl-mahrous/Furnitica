@@ -7,4 +7,5 @@ export interface IUser {
   mobileNumber: string;
   token: string;
   roles: string[];
+  gender: string;
 }

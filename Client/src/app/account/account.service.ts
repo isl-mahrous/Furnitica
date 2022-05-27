@@ -92,7 +92,6 @@ export class AccountService {
           // Get user basket after a successful login
           this.injector.get(BasketService).initializeBasket();
           this.router.navigateByUrl('/');
-          console.log(user)
         }
       })
     );
@@ -103,7 +102,6 @@ export class AccountService {
 
     return this.http.post(this.baseUrl + 'Account/register', values).pipe(
       map((response) => {
-        console.log(response)
         this.assignRoleToUser(
           {
             RoleName: 'Customer',
@@ -141,6 +139,15 @@ export class AccountService {
   changeProfileImage(values) {
 
     return this.http.post(this.baseUrl + 'Account', values).pipe(
+      map((response) => {
+
+        // console.log(response)
+      })
+    )
+  }
+
+  updateProfileData(values) {
+    return this.http.put(this.baseUrl + 'Account/updateProfile', values).pipe(
       map((response) => {
 
         // console.log(response)
