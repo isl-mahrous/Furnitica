@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,6 +25,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     CommonModule,
     AccountRoutingModule,
     SharedModule,
+    FormsModule,
     ModalModule.forRoot()
   ]
 })

@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IBasket } from 'src/app/shared/models/basket';
 import { IOrder } from 'src/app/shared/models/order';
 import { Router, NavigationExtras } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 declare var Stripe;
 
 @Component({
@@ -37,7 +37,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     private router: Router) { }
 
   ngAfterViewInit() {
-    this.stripe = Stripe('pk_test_2PZ84pFKu2MddUgGDG521v9m00SlLWySIR');
+    this.stripe = Stripe(environment.stripeKey);
     const elements = this.stripe.elements();
 
     this.cardNumber = elements.create('cardNumber');
@@ -84,7 +84,6 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     try {
       const createdOrder = await this.createOrder(basket);
       const paymentResult = await this.confirmPaymentWithStripe(basket);
-      console.log(paymentResult)
       if (paymentResult.paymentIntent) {
         this.basketService.deleteBasket(basket);
         const navigationExtras: NavigationExtras = { state: createdOrder };

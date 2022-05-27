@@ -147,7 +147,7 @@ namespace Infrastructure.Data
                     {
                         new Order()
                         {
-                            BuyerEmail = "Cusomter1@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -158,13 +158,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Car",
-                                DeliveryTime = "two day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_1,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -183,7 +177,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Chair with Pillows"
                                     },
                                     Price = 40,
                                     Quantity = 3,
@@ -205,7 +199,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "cupboard"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -218,7 +212,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "admin@furnitica.com",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -229,13 +223,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Van",
-                                DeliveryTime = "three day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_1,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -254,7 +242,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Cupboard"
                                     },
                                     Price = 67,
                                     Quantity = 7,
@@ -276,7 +264,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Stand"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -289,7 +277,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter4@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -300,13 +288,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Metro",
-                                DeliveryTime = "Four day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_1,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -325,7 +307,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Sofa"
+                                        ProductName = "Wooden Floor"
                                     },
                                     Price = 40,
                                     Quantity = 3,
@@ -336,7 +318,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "Table"
+                                        ProductName = "Sofe"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -347,7 +329,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Door"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -371,13 +353,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Van",
-                                DeliveryTime = "Five day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_1,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -396,7 +372,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Mraya"
+                                        ProductName = "Mirror Stand"
                                     },
                                     Price = 677,
                                     Quantity = 6,
@@ -407,7 +383,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "Table"
+                                        ProductName = "Samll Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -418,7 +394,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Sreer"
+                                        ProductName = "Bed"
                                     },
                                     Price = 122,
                                     Quantity = 3,
@@ -442,13 +418,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Uber",
-                                DeliveryTime = "Seven day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -456,7 +426,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Chair"
+                                        ProductName = "Bed"
                                     },
                                     Price = 100,
                                     Quantity = 4,
@@ -478,7 +448,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "Komodino"
+                                        ProductName = "Meeting Table"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -489,7 +459,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Cupboard"
                                     },
                                     Price = 66,
                                     Quantity = 2,
@@ -513,13 +483,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Microbas",
-                                DeliveryTime = "10 day",
-                                Description = "Microbas mahatet misr",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -538,7 +502,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Abajora"
+                                        ProductName = "Wooden Fence"
                                     },
                                     Price = 40,
                                     Quantity = 7,
@@ -560,7 +524,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Wooden Counter"
                                     },
                                     Price = 900,
                                     Quantity = 5,
@@ -573,7 +537,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter54@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -584,13 +548,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Bus",
-                                DeliveryTime = "one day",
-                                Description = "isa gaya 3la tool fel el 3arabya",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -598,7 +556,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Chair"
+                                        ProductName = "Big Chair"
                                     },
                                     Price = 100,
                                     Quantity = 7,
@@ -609,7 +567,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 1,
-                                        ProductName = "Segada"
+                                        ProductName = "Seat with Pillows"
                                     },
                                     Price = 40,
                                     Quantity = 3,
@@ -644,7 +602,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter32@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -655,13 +613,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Fedex",
-                                DeliveryTime = "Twent days",
-                                Description = "مفيش حد عاوز يجبها إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -691,7 +643,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 7,
-                                        ProductName = "Sa5an"
+                                        ProductName = "Sofra"
                                     },
                                     Price = 200,
                                     Quantity = 1,
@@ -715,7 +667,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter22@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -726,13 +678,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Wester unioin",
-                                DeliveryTime = "one month",
-                                Description = "eb2a 2ablny lw weslet",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -773,7 +719,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Bed"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -781,7 +727,7 @@ namespace Infrastructure.Data
                             },
                             Subtotal = 32,
                             Status = OrderStatus.Pending,
-                            PaymentIntentId = "53454nskjdfb"
+                            PaymentIntentId = "customer@furnitica.com"
                         },
 
                         new Order()
@@ -797,13 +743,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_2,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -811,7 +751,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Kanaba"
+                                        ProductName = "Door"
                                     },
                                     Price = 100,
                                     Quantity = 3,
@@ -844,7 +784,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Alamotal"
+                                        ProductName = "Wooden Table"
                                     },
                                     Price = 900,
                                     Quantity = 2,
@@ -857,7 +797,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -868,13 +808,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_3,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -882,7 +816,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 3,
-                                        ProductName = "Chair"
+                                        ProductName = "Tray"
                                     },
                                     Price = 100,
                                     Quantity = 1,
@@ -915,7 +849,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "Vase"
                                     },
                                     Price = 900,
                                     Quantity = 1,
@@ -928,7 +862,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -939,13 +873,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "by Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_3,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -986,7 +914,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Fota"
+                                        ProductName = "long table"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -999,7 +927,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -1010,13 +938,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Car",
-                                DeliveryTime = "one day",
-                                Description = "هتوصل إن شاء الله",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_3,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()
@@ -1057,7 +979,7 @@ namespace Infrastructure.Data
                                     ItemOrdered = new ProductItemOrdered()
                                     {
                                         ProductItemId = 5,
-                                        ProductName = "Molla"
+                                        ProductName = "stool"
                                     },
                                     Price = 900,
                                     Quantity = 8,
@@ -1070,7 +992,7 @@ namespace Infrastructure.Data
 
                         new Order()
                         {
-                            BuyerEmail = "Cusomter@1234",
+                            BuyerEmail = "customer@furnitica.com",
                             OrderDate = DateTime.Now,
                             ShipToAddress = new Address()
                             {
@@ -1081,13 +1003,7 @@ namespace Infrastructure.Data
                                 State = "NY",
                                 Zipcode = "1234"
                             },
-                            DeliveryMethod = new DeliveryMethod()
-                            {
-                                ShortName = "Sha7n saree3",
-                                DeliveryTime = "one year",
-                                Description = "لما نوصل تحت هنرنلك تنزل تاخد الحاجة",
-                                Price = 2434
-                            },
+                            DeliveryMethod = deliveryMethod_3,
                             OrderItems = new List<OrderItem>()
                             {
                                 new OrderItem()

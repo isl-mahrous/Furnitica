@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasket } from 'src/app/shared/models/basket';
+import { productViewModel } from 'src/app/shared/viewmodels/product-viewmodel';
 
 @Component({
   selector: 'app-checkout-review',
@@ -16,10 +17,18 @@ export class CheckoutReviewComponent implements OnInit {
   basket$:Observable<IBasket>;
   checkoutForm: FormGroup;
 
+  basketProducts : any[];
+
   constructor(private basketService: BasketService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.basket$ = this.basketService.basket$;
+    this.basketService.basket$.subscribe(
+      {
+        next : data => {
+          this.basketProducts = data.basketItems;
+        }
+      }
+    )
   }
 
   createPaymentIntent(){

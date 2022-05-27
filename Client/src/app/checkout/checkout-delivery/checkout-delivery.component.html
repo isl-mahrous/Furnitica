@@ -30,7 +30,8 @@
     [disabled]="checkoutForm.get('deliveryForm').invalid"
     class="btn btn-primary"
     cdkStepperNext
+    (click)="createPaymentIntent()"
   >
-    Go to Review <i class="fa fa-angle-right"></i>
+    Go to Payment <i class="fa fa-angle-right"></i>
   </button>
 </div>
