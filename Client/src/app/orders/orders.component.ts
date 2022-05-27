@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './orders.service';
 import { IOrder } from '../shared/models/order';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrdersComponent implements OnInit {
   orders: IOrder[];
 
-  constructor(private ordersService: OrdersService, private toastr : ToastrService) { }
+  constructor(private ordersService: OrdersService, private toastr : ToastrService, private router : Router) { }
 
   ngOnInit() {
     this.getOrders();
@@ -26,8 +27,8 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  showDetails(orderID : number){
-
+  showDetails(id : number){
+    this.router.navigate(["/order-detailed", id]);
   }
 
   deleteOrder(orderID : number){
